@@ -1,35 +1,50 @@
-import { StrictMode, useEffect } from 'react';
+/// <reference types="vite/client" />
+import { StrictMode } from 'react';
+import type { JSX } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
-import SimpleApp from './SimpleApp.tsx';
 import './index.css';
-import { loadGoogleAnalytics } from './utils/scriptLoader';
 
 // Adiciona tipos para as variáveis globais
 declare global {
   interface Window {
-    wp?: any;
     gtag?: (...args: any[]) => void;
   }
 }
 
-// Componente wrapper para inicializar scripts e otimizações
-const AppWithAnalytics = () => {
-  useEffect(() => {
-    // Carrega o Google Analytics se estiver em produção
-    if (import.meta.env.PROD) {
-      const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
-      if (measurementId) {
-        loadGoogleAnalytics(measurementId);
-      }
+// Função para inicializar o app
+function initApp(): void {
+  try {
+    // Primeiro tenta encontrar o elemento root padrão
+    let rootElement = document.getElementById('root');
+    
+    // Se não encontrar, cria um novo elemento
+    if (!rootElement) {
+      rootElement = document.createElement('div');
+      rootElement.id = 'root';
+      document.body.appendChild(rootElement);
     }
     
-    // Reporta métricas de Web Vitals
+    // Cria a raiz do React e renderiza o app
+    const root = createRoot(rootElement);
+    root.render(
+      <StrictMode>
+        <App />
+      </StrictMode>
+    );
+
+    // Carrega analytics e web vitals de forma assíncrona
     if (import.meta.env.PROD) {
+      import('./utils/scriptLoader').then(({ loadGoogleAnalytics }) => {
+        const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+        if (measurementId) {
+          loadGoogleAnalytics(measurementId);
+        }
+      });
+
+      // Carrega web vitals de forma assíncrona
       import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-        // Função para enviar métricas para o Google Analytics
         const sendToGoogleAnalytics = ({ name, delta, id }: { name: string, delta: number, id: string }) => {
-          // Envia evento para o Google Analytics
           window.gtag?.('event', name, {
             event_category: 'Web Vitals',
             event_label: id,
@@ -38,7 +53,6 @@ const AppWithAnalytics = () => {
           });
         };
         
-        // Monitora as métricas de Web Vitals
         getCLS(sendToGoogleAnalytics);
         getFID(sendToGoogleAnalytics);
         getFCP(sendToGoogleAnalytics);
@@ -46,38 +60,24 @@ const AppWithAnalytics = () => {
         getTTFB(sendToGoogleAnalytics);
       });
     }
-  }, []);
-
-  // Usando o App component principal
-  return <App />;
-};
-
-// Função para inicializar o app
-function initPromiseBox() {
-  const rootElement = document.getElementById('promise-box-root');
-  if (rootElement) {
-    createRoot(rootElement).render(
-      <StrictMode>
-        <AppWithAnalytics />
-      </StrictMode>
-    );
+  } catch (error) {
+    console.error('Erro ao inicializar o app:', error);
+    // Renderiza uma versão simplificada em caso de erro
+    const fallbackElement = document.createElement('div');
+    fallbackElement.innerHTML = `
+      <div style="text-align: center; padding: 20px;">
+        <h1>Caixinha de Promessas</h1>
+        <p>Desculpe, ocorreu um erro ao carregar o aplicativo.</p>
+        <p>Por favor, recarregue a página ou tente novamente mais tarde.</p>
+      </div>
+    `;
+    document.body.appendChild(fallbackElement);
   }
 }
 
-// Verifica se estamos em um ambiente WordPress
-if (window.wp) {
-  // Se estivermos no WordPress, inicializa quando o DOM estiver pronto
-  document.addEventListener('DOMContentLoaded', initPromiseBox);
+// Inicializa o app quando o DOM estiver pronto
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
 } else {
-  // Se não, assume que estamos em desenvolvimento
-  const rootElement = document.getElementById('root');
-  if (rootElement) {
-    createRoot(rootElement).render(
-      <StrictMode>
-        <AppWithAnalytics />
-      </StrictMode>
-    );
-  } else {
-    console.error('Elemento root não encontrado no DOM!');
-  }
+  initApp();
 }

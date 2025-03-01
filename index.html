@@ -77,14 +77,18 @@
     <!-- Service Worker Registration -->
     <script>
       if ('serviceWorker' in navigator) {
+        // Delay service worker registration until after page load
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/service-worker.js')
-            .then(registration => {
-              console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-              console.log('SW registration failed: ', registrationError);
-            });
+          // Wrap in setTimeout to not block the main thread
+          setTimeout(() => {
+            navigator.serviceWorker.register('/service-worker.js')
+              .then(registration => {
+                console.log('SW registered: ', registration);
+              })
+              .catch(registrationError => {
+                console.log('SW registration failed: ', registrationError);
+              });
+          }, 1000);
         });
       }
     </script>
