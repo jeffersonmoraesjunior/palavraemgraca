@@ -58,6 +58,8 @@ function initApp(): void {
         getFCP(sendToGoogleAnalytics);
         getLCP(sendToGoogleAnalytics);
         getTTFB(sendToGoogleAnalytics);
+      }).catch(err => {
+        console.warn('Erro ao carregar web-vitals:', err);
       });
     }
   } catch (error) {
