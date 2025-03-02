@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://amigosdedeus.com.br/sitemap.xml 
+Sitemap: https://amigodedeus.com.br/sitemap.xml 
