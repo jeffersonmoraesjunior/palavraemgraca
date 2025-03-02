@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <Link 
-                  to="/biblia" 
+                  to="/biblia/ntlh/gn/1" 
                   className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   aria-label="Bíblia Sagrada"
                 >

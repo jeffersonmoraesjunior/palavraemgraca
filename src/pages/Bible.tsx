@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+import { useParams, useNavigate } from 'react-router-dom';
 
 // Tipos para a estrutura da Bíblia
 interface BibleVerse {
@@ -25,6 +26,9 @@ interface BibleVersion {
 
 // Componente principal da página da Bíblia
 const Bible: React.FC = () => {
+  const navigate = useNavigate();
+  const { version, book, chapter } = useParams<{ version?: string; book?: string; chapter?: string }>();
+  
   // Lista de versões disponíveis
   const bibleVersions: BibleVersion[] = [
     { id: 'ACF', name: 'Almeida Corrigida Fiel' },
@@ -43,13 +47,33 @@ const Bible: React.FC = () => {
   ];
 
   // Estados
-  const [selectedVersion, setSelectedVersion] = useState<string>('NTLH');
+  const [selectedVersion, setSelectedVersion] = useState<string>(version?.toUpperCase() || 'NTLH');
   const [bibleData, setBibleData] = useState<BibleBook[]>([]);
-  const [selectedBook, setSelectedBook] = useState<string>('Gn');
-  const [selectedChapter, setSelectedChapter] = useState<number>(1);
+  const [selectedBook, setSelectedBook] = useState<string>(book || 'Gn');
+  const [selectedChapter, setSelectedChapter] = useState<number>(chapter ? parseInt(chapter) : 1);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [currentBookData, setCurrentBookData] = useState<BibleBook | null>(null);
+
+  // Efeito para atualizar a URL quando os parâmetros mudam
+  useEffect(() => {
+    if (selectedVersion && selectedBook && selectedChapter) {
+      navigate(`/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}`, { replace: true });
+    }
+  }, [selectedVersion, selectedBook, selectedChapter, navigate]);
+
+  // Efeito para atualizar os estados quando os parâmetros da URL mudam
+  useEffect(() => {
+    if (version) {
+      setSelectedVersion(version.toUpperCase());
+    }
+    if (book) {
+      setSelectedBook(book);
+    }
+    if (chapter) {
+      setSelectedChapter(parseInt(chapter));
+    }
+  }, [version, book, chapter]);
 
   // Carregar dados da Bíblia quando a versão selecionada mudar
   useEffect(() => {
@@ -76,10 +100,10 @@ const Bible: React.FC = () => {
   // Atualizar o livro atual quando os dados da Bíblia ou o livro selecionado mudar
   useEffect(() => {
     if (bibleData.length > 0) {
-      const book = bibleData.find(b => b.abbrev === selectedBook);
+      const book = bibleData.find(b => b.abbrev.toLowerCase() === selectedBook.toLowerCase());
       setCurrentBookData(book || null);
       
-      // Resetar o capítulo selecionado se o livro mudar
+      // Resetar o capítulo selecionado se o livro mudar e o capítulo atual não existir
       if (book && (selectedChapter > book.chapters.length)) {
         setSelectedChapter(1);
       }
@@ -160,6 +184,27 @@ const Bible: React.FC = () => {
     return bookNames[abbrev] || abbrev;
   };
 
+  // Função para lidar com a mudança de versão
+  const handleVersionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newVersion = e.target.value;
+    setSelectedVersion(newVersion);
+    navigate(`/biblia/${newVersion.toLowerCase()}/${selectedBook.toLowerCase()}/1`);
+  };
+
+  // Função para lidar com a mudança de livro
+  const handleBookChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newBook = e.target.value;
+    setSelectedBook(newBook);
+    setSelectedChapter(1); // Reset para o primeiro capítulo ao mudar de livro
+    navigate(`/biblia/${selectedVersion.toLowerCase()}/${newBook.toLowerCase()}/1`);
+  };
+
+  // Função para lidar com a mudança de capítulo
+  const handleChapterChange = (chapter: number) => {
+    setSelectedChapter(chapter);
+    navigate(`/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${chapter}`);
+  };
+
   // Renderizar versículos do capítulo atual
   const renderVerses = () => {
     if (!currentBookData || !currentBookData.chapters || !currentBookData.chapters[selectedChapter - 1]) {
@@ -173,7 +218,7 @@ const Bible: React.FC = () => {
         {verses.map((verse, index) => (
           <div key={index} className="flex">
             <span className="text-sm font-semibold mr-2 text-blue-600 dark:text-blue-400 w-6 flex-shrink-0">
-              {index + 1}
+              {index + 1} 
             </span>
             <p className="text-gray-800 dark:text-gray-200">{verse}</p>
           </div>
@@ -195,7 +240,7 @@ const Bible: React.FC = () => {
         {Array.from({ length: chapterCount }, (_, i) => i + 1).map(chapter => (
           <button
             key={chapter}
-            onClick={() => setSelectedChapter(chapter)}
+            onClick={() => handleChapterChange(chapter)}
             className={`px-3 py-1 rounded-md text-sm ${
               selectedChapter === chapter
                 ? 'bg-blue-600 text-white'
@@ -209,11 +254,21 @@ const Bible: React.FC = () => {
     );
   };
 
+  // Gerar título da página e meta descrição para SEO
+  const pageTitle = currentBookData 
+    ? `${getBookName(currentBookData.abbrev)} ${selectedChapter} - ${bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion} | Amigos de Deus`
+    : 'Bíblia Sagrada | Amigos de Deus';
+    
+  const pageDescription = currentBookData 
+    ? `Leia ${getBookName(currentBookData.abbrev)} capítulo ${selectedChapter} na versão ${bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion} da Bíblia Sagrada.`
+    : 'Leia a Bíblia Sagrada em diferentes versões. Navegue pelos livros e capítulos da Bíblia.';
+
   return (
     <div className="py-6">
       <Helmet>
-        <title>Bíblia Sagrada | Amigos de Deus</title>
-        <meta name="description" content="Leia a Bíblia Sagrada em diferentes versões. Navegue pelos livros e capítulos da Bíblia." />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={`https://amigosdedeus.com/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}`} />
       </Helmet>
 
       <h1 className="text-3xl font-bold mb-6 text-center">Bíblia Sagrada</h1>
@@ -226,7 +281,7 @@ const Bible: React.FC = () => {
         <select
           id="version-select"
           value={selectedVersion}
-          onChange={(e) => setSelectedVersion(e.target.value)}
+          onChange={handleVersionChange}
           className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
         >
           {bibleVersions.map((version) => (
@@ -255,10 +310,7 @@ const Bible: React.FC = () => {
             <select
               id="book-select"
               value={selectedBook}
-              onChange={(e) => {
-                setSelectedBook(e.target.value);
-                setSelectedChapter(1); // Reset para o primeiro capítulo ao mudar de livro
-              }}
+              onChange={handleBookChange}
               className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
             >
               {bibleData.map((book) => (

@@ -38,13 +38,13 @@ const Header: React.FC<HeaderProps> = ({ theme, setTheme, adjustFontSize }) => {
           <Link to="/sobre" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
             Sobre
           </Link>
-          <Link to="/biblia" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
+          <Link to="/biblia/ntlh/gn/1" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
             Bíblia
           </Link>
-          {/* <Link to="/contato" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
+           <Link to="/contato" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
             Contato
           </Link>
-          <Link to="/privacidade" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
+          {/* <Link to="/privacidade" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
             Privacidade
           </Link>
           <Link to="/termos" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
@@ -114,7 +114,7 @@ const Header: React.FC<HeaderProps> = ({ theme, setTheme, adjustFontSize }) => {
             </li>
             <li>
               <Link 
-                to="/biblia" 
+                to="/biblia/ntlh/gn/1" 
                 className="block py-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
                 onClick={() => setMenuOpen(false)}
               >

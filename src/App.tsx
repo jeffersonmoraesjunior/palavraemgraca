@@ -65,6 +65,9 @@ function App() {
           <Route path="/contato" element={<Contact />} />
           <Route path="/termos" element={<Terms />} />
           <Route path="/biblia" element={<Bible />} />
+          <Route path="/biblia/:version" element={<Bible />} />
+          <Route path="/biblia/:version/:book" element={<Bible />} />
+          <Route path="/biblia/:version/:book/:chapter" element={<Bible />} />
         </Routes>
         
         <Footer />
