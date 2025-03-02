@@ -23,12 +23,10 @@ const Header: React.FC<HeaderProps> = ({ theme, setTheme, adjustFontSize }) => {
           <Link to="/" className="flex items-center">
             <img 
               src="/logo.svg" 
-              alt="Logo Amigo de Deus" 
+              alt="Logo" 
               className="w-10 h-10 mr-3"
             />
-            <h1 className="text-3xl font-bold" id="main-heading">
-              Amigo de Deus
-            </h1>
+            
           </Link>
         </div>
 
@@ -52,7 +50,6 @@ const Header: React.FC<HeaderProps> = ({ theme, setTheme, adjustFontSize }) => {
         </nav>
         
         <div className="flex gap-2 items-center" role="toolbar" aria-label="Ajustes de acessibilidade">
-          <span className="text-sm mr-2 hidden md:inline">Acessibilidade:</span>
           <button
             onClick={() => adjustFontSize(false)}
             className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"

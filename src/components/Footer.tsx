@@ -75,7 +75,7 @@ const Footer: React.FC = () => {
             As escrituras são fornecidas pela API da Bíblia. Este aplicativo não tem afiliação oficial com nenhuma denominação religiosa.
           </p>
           <p className="mt-2">
-            Amigo de Deus é um aplicativo cristão dedicado a trazer conforto e orientação espiritual através da Palavra de Deus.
+            Este é um aplicativo cristão dedicado a trazer conforto e orientação espiritual através da Palavra de Deus.
           </p>
         </div>
       </div>
