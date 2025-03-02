@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import type { Theme } from './types';
 import { Header, Footer } from './components';
-import { About, Privacy, Contact, Terms, Home } from './pages';
+import { About, Privacy, Contact, Terms, Home, Bible } from './pages';
 
 // Main App Component
 function App() {
@@ -64,6 +64,7 @@ function App() {
           <Route path="/privacidade" element={<Privacy />} />
           <Route path="/contato" element={<Contact />} />
           <Route path="/termos" element={<Terms />} />
+          <Route path="/biblia" element={<Bible />} />
         </Routes>
         
         <Footer />

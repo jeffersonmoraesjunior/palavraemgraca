@@ -12,10 +12,12 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
+    "@types/react-helmet": "^6.1.11",
     "lucide-react": "^0.344.0",
     "openai": "^4.28.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
     "react-helmet-async": "^2.0.5",
     "react-router-dom": "^7.2.0",
     "web-vitals": "^3.5.2"

@@ -35,6 +35,15 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <Link 
+                  to="/biblia" 
+                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  aria-label="Bíblia Sagrada"
+                >
+                  Bíblia
+                </Link>
+              </li>
+              <li>
+                <Link 
                   to="/contato" 
                   className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   aria-label="Entre em contato"

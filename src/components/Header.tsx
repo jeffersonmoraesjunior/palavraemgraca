@@ -38,7 +38,10 @@ const Header: React.FC<HeaderProps> = ({ theme, setTheme, adjustFontSize }) => {
           <Link to="/sobre" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
             Sobre
           </Link>
-          <Link to="/contato" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
+          <Link to="/biblia" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
+            Bíblia
+          </Link>
+          {/* <Link to="/contato" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
             Contato
           </Link>
           <Link to="/privacidade" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
@@ -46,7 +49,7 @@ const Header: React.FC<HeaderProps> = ({ theme, setTheme, adjustFontSize }) => {
           </Link>
           <Link to="/termos" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
             Termos
-          </Link>
+          </Link> */}
         </nav>
         
         <div className="flex gap-2 items-center" role="toolbar" aria-label="Ajustes de acessibilidade">
@@ -107,6 +110,15 @@ const Header: React.FC<HeaderProps> = ({ theme, setTheme, adjustFontSize }) => {
                 onClick={() => setMenuOpen(false)}
               >
                 Sobre
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/biblia" 
+                className="block py-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+                onClick={() => setMenuOpen(false)}
+              >
+                Bíblia
               </Link>
             </li>
             <li>
