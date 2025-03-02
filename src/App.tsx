@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import type { Theme } from './types';
 import { Header, Footer } from './components';
-import { About, Privacy, Contact, Terms, Home, Bible } from './pages';
+import { About, Privacy, Contact, Terms, Home, Bible, BibleIndex } from './pages';
 
 // Main App Component
 function App() {
@@ -65,6 +65,8 @@ function App() {
           <Route path="/contato" element={<Contact />} />
           <Route path="/termos" element={<Terms />} />
           <Route path="/biblia" element={<Bible />} />
+          <Route path="/biblia/indice" element={<BibleIndex />} />
+          <Route path="/biblia/indice/:version" element={<BibleIndex />} />
           <Route path="/biblia/:version" element={<Bible />} />
           <Route path="/biblia/:version/:book" element={<Bible />} />
           <Route path="/biblia/:version/:book/:chapter" element={<Bible />} />

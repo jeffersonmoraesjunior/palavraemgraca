@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet';
-import { useParams, useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 
 // Tipos para a estrutura da Bíblia
 interface BibleVerse {
@@ -80,6 +80,8 @@ const Bible: React.FC = () => {
       setSelectedVersion(version.toUpperCase());
     }
     if (book) {
+      // Garantir que o livro selecionado seja atualizado corretamente
+      console.log('Book from URL:', book);
       setSelectedBook(book);
     }
     if (chapter) {
@@ -110,7 +112,12 @@ const Bible: React.FC = () => {
     const fetchBibleData = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`/bible/${selectedVersion}.json`);
+        // Adicionando um cache-control para o navegador
+        const response = await fetch(`/bible/${selectedVersion}.json`, {
+          headers: {
+            'Cache-Control': 'max-age=3600'
+          }
+        });
         if (!response.ok) {
           throw new Error(`Erro ao carregar a Bíblia: ${response.statusText}`);
         }
@@ -131,6 +138,7 @@ const Bible: React.FC = () => {
   useEffect(() => {
     if (bibleData.length > 0) {
       const book = bibleData.find(b => b.abbrev.toLowerCase() === selectedBook.toLowerCase());
+      console.log('Found book:', book?.abbrev, book?.name);
       setCurrentBookData(book || null);
       
       // Resetar o capítulo selecionado se o livro mudar e o capítulo atual não existir
@@ -225,6 +233,7 @@ const Bible: React.FC = () => {
   // Função para lidar com a mudança de livro
   const handleBookChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newBook = e.target.value;
+    console.log('Selected new book:', newBook);
     setSelectedBook(newBook);
     setSelectedChapter(1);
     setSelectedVerse(null);
@@ -379,13 +388,29 @@ const Bible: React.FC = () => {
     : 'Bíblia Sagrada | Amigos de Deus';
     
   const pageDescription = currentBookData 
-    ? `Leia ${getBookName(currentBookData.abbrev)} capítulo ${selectedChapter}${selectedVerse ? ` versículo ${selectedVerse}` : ''} na versão ${bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion} da Bíblia Sagrada.`
-    : 'Leia a Bíblia Sagrada em diferentes versões. Navegue pelos livros e capítulos da Bíblia.';
+    ? `Leia ${getBookName(currentBookData.abbrev)} capítulo ${selectedChapter}${selectedVerse ? ` versículo ${selectedVerse}` : ''} na versão ${bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion} da Bíblia Sagrada. Estudo bíblico online gratuito.`
+    : 'Leia a Bíblia Sagrada em diferentes versões. Navegue pelos livros e capítulos da Bíblia. Estudo bíblico online gratuito.';
 
   // URL canônica para SEO
   const canonicalUrl = selectedVerse 
     ? `https://amigosdedeus.com/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}/${selectedVerse}`
     : `https://amigosdedeus.com/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}`;
+
+  // Gerar dados estruturados para SEO (Schema.org)
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": pageTitle,
+    "description": pageDescription,
+    "url": canonicalUrl,
+    "mainEntity": {
+      "@type": "CreativeWork",
+      "name": currentBookData ? `${getBookName(currentBookData.abbrev)} ${selectedChapter}` : "Bíblia Sagrada",
+      "author": "Bíblia Sagrada",
+      "inLanguage": "pt-BR",
+      "version": bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion
+    }
+  };
 
   return (
     <div className="py-6">
@@ -393,9 +418,46 @@ const Bible: React.FC = () => {
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
         <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Meta tags adicionais para SEO */}
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="Amigos de Deus" />
+        
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        
+        {/* Keywords relevantes para SEO */}
+        <meta name="keywords" content={`bíblia online, ${bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion}, ${currentBookData ? getBookName(currentBookData.abbrev) : 'bíblia sagrada'}, versículos bíblicos, estudo bíblico`} />
+        
+        {/* Dados estruturados JSON-LD para SEO */}
+        <script type="application/ld+json">
+          {JSON.stringify(schemaData)}
+        </script>
+        
+        {/* Preload para melhorar performance */}
+        <link rel="preload" href={`/bible/${selectedVersion}.json`} as="fetch" crossOrigin="anonymous" />
+        
+        {/* Preconnect para domínios externos */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </Helmet>
 
       <h1 className="text-3xl font-bold mb-6 text-center">Bíblia Sagrada</h1>
+
+      {/* Link para o índice da Bíblia */}
+      <div className="text-center mb-6">
+        <Link 
+          to={`/biblia/indice/${selectedVersion.toLowerCase()}`}
+          className="text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center"
+        >
+          <BookOpen size={18} className="mr-1" />
+          Ver índice completo da Bíblia
+        </Link>
+      </div>
 
       {/* Seletor de versão */}
       <div className="mb-6">
@@ -432,24 +494,28 @@ const Bible: React.FC = () => {
               Livro:
             </label>
             <select
+              key={`book-select-${selectedBook}`}
               id="book-select"
               value={selectedBook}
               onChange={handleBookChange}
               className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
             >
-              {bibleData.map((book) => (
-                <option key={book.abbrev} value={book.abbrev}>
-                  {getBookName(book.abbrev)}
-                </option>
-              ))}
+              {bibleData.length > 0 && bibleData.map((book) => {
+                return (
+                  <option key={book.abbrev} value={book.abbrev}>
+                    {book.name}
+                  </option>
+                );
+              })}
             </select>
           </div>
 
           {/* Título do livro e capítulo atual */}
-          <h2 className="text-2xl font-bold mb-4 text-center">
-            {currentBookData ? getBookName(currentBookData.abbrev) : ''} {selectedChapter}
-            {selectedVerse && <span className="text-blue-600 dark:text-blue-400">:{selectedVerse}</span>}
-          </h2>
+          {currentBookData && (
+            <h2 className="text-2xl font-bold text-center mb-6">
+              {currentBookData.name} {selectedChapter}
+            </h2>
+          )}
 
           {/* Seletor de capítulos */}
           {renderChapterSelector()}
@@ -459,9 +525,15 @@ const Bible: React.FC = () => {
             Clique em um versículo para selecioná-lo e obter um link direto.
           </p>
 
-          {/* Versículos */}
+          {/* Versículos com lazy loading para capítulos grandes */}
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-            {renderVerses()}
+            {currentBookData && currentBookData.chapters && currentBookData.chapters[selectedChapter - 1]?.length > 50 ? (
+              <Suspense fallback={<div className="text-center py-4">Carregando versículos...</div>}>
+                {renderVerses()}
+              </Suspense>
+            ) : (
+              renderVerses()
+            )}
           </div>
 
           {/* Navegação entre capítulos */}
