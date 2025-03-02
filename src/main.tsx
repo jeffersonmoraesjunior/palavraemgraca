@@ -2,6 +2,8 @@
 import { StrictMode } from 'react';
 import type { JSX } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import App from './App.tsx';
 import './index.css';
 
@@ -29,7 +31,11 @@ function initApp(): void {
     const root = createRoot(rootElement);
     root.render(
       <StrictMode>
-        <App />
+        <BrowserRouter>
+          <HelmetProvider>
+            <App />
+          </HelmetProvider>
+        </BrowserRouter>
       </StrictMode>
     );
 
@@ -63,7 +69,7 @@ function initApp(): void {
       });
     }
   } catch (error) {
-    console.error('Erro ao inicializar o app:', error);
+    console.error('Erro ao inicializar o aplicativo:', error);
     // Renderiza uma versão simplificada em caso de erro
     const fallbackElement = document.createElement('div');
     fallbackElement.innerHTML = `
