@@ -68,6 +68,7 @@ function App() {
           <Route path="/biblia/:version" element={<Bible />} />
           <Route path="/biblia/:version/:book" element={<Bible />} />
           <Route path="/biblia/:version/:book/:chapter" element={<Bible />} />
+          <Route path="/biblia/:version/:book/:chapter/:verse" element={<Bible />} />
         </Routes>
         
         <Footer />

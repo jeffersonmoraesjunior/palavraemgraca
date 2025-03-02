@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import { useParams, useNavigate } from 'react-router-dom';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 // Tipos para a estrutura da Bíblia
 interface BibleVerse {
@@ -27,7 +28,15 @@ interface BibleVersion {
 // Componente principal da página da Bíblia
 const Bible: React.FC = () => {
   const navigate = useNavigate();
-  const { version, book, chapter } = useParams<{ version?: string; book?: string; chapter?: string }>();
+  const { version, book, chapter, verse } = useParams<{ 
+    version?: string; 
+    book?: string; 
+    chapter?: string;
+    verse?: string;
+  }>();
+  
+  // Referência para o versículo selecionado
+  const selectedVerseRef = useRef<HTMLDivElement>(null);
   
   // Lista de versões disponíveis
   const bibleVersions: BibleVersion[] = [
@@ -51,6 +60,7 @@ const Bible: React.FC = () => {
   const [bibleData, setBibleData] = useState<BibleBook[]>([]);
   const [selectedBook, setSelectedBook] = useState<string>(book || 'Gn');
   const [selectedChapter, setSelectedChapter] = useState<number>(chapter ? parseInt(chapter) : 1);
+  const [selectedVerse, setSelectedVerse] = useState<number | null>(verse ? parseInt(verse) : null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [currentBookData, setCurrentBookData] = useState<BibleBook | null>(null);
@@ -58,9 +68,11 @@ const Bible: React.FC = () => {
   // Efeito para atualizar a URL quando os parâmetros mudam
   useEffect(() => {
     if (selectedVersion && selectedBook && selectedChapter) {
-      navigate(`/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}`, { replace: true });
+      const baseUrl = `/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}`;
+      const url = selectedVerse ? `${baseUrl}/${selectedVerse}` : baseUrl;
+      navigate(url, { replace: true });
     }
-  }, [selectedVersion, selectedBook, selectedChapter, navigate]);
+  }, [selectedVersion, selectedBook, selectedChapter, selectedVerse, navigate]);
 
   // Efeito para atualizar os estados quando os parâmetros da URL mudam
   useEffect(() => {
@@ -73,7 +85,25 @@ const Bible: React.FC = () => {
     if (chapter) {
       setSelectedChapter(parseInt(chapter));
     }
-  }, [version, book, chapter]);
+    if (verse) {
+      setSelectedVerse(parseInt(verse));
+    } else {
+      setSelectedVerse(null);
+    }
+  }, [version, book, chapter, verse]);
+
+  // Efeito para rolar até o versículo selecionado
+  useEffect(() => {
+    if (selectedVerse && selectedVerseRef.current) {
+      // Pequeno atraso para garantir que o DOM foi atualizado
+      setTimeout(() => {
+        selectedVerseRef.current?.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+      }, 300);
+    }
+  }, [selectedVerse, loading]);
 
   // Carregar dados da Bíblia quando a versão selecionada mudar
   useEffect(() => {
@@ -188,6 +218,7 @@ const Bible: React.FC = () => {
   const handleVersionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newVersion = e.target.value;
     setSelectedVersion(newVersion);
+    setSelectedVerse(null);
     navigate(`/biblia/${newVersion.toLowerCase()}/${selectedBook.toLowerCase()}/1`);
   };
 
@@ -195,14 +226,82 @@ const Bible: React.FC = () => {
   const handleBookChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newBook = e.target.value;
     setSelectedBook(newBook);
-    setSelectedChapter(1); // Reset para o primeiro capítulo ao mudar de livro
+    setSelectedChapter(1);
+    setSelectedVerse(null);
     navigate(`/biblia/${selectedVersion.toLowerCase()}/${newBook.toLowerCase()}/1`);
   };
 
   // Função para lidar com a mudança de capítulo
   const handleChapterChange = (chapter: number) => {
     setSelectedChapter(chapter);
+    setSelectedVerse(null);
     navigate(`/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${chapter}`);
+  };
+
+  // Função para lidar com a seleção de versículo
+  const handleVerseClick = (verseNumber: number) => {
+    // Se clicar no mesmo versículo, desseleciona
+    if (selectedVerse === verseNumber) {
+      setSelectedVerse(null);
+      navigate(`/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}`);
+    } else {
+      setSelectedVerse(verseNumber);
+      navigate(`/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}/${verseNumber}`);
+    }
+  };
+
+  // Função para navegar para o próximo capítulo
+  const goToNextChapter = () => {
+    if (currentBookData && selectedChapter < currentBookData.chapters.length) {
+      handleChapterChange(selectedChapter + 1);
+    } else if (bibleData.length > 0) {
+      // Se estiver no último capítulo do livro atual, vá para o próximo livro
+      const currentBookIndex = bibleData.findIndex(b => b.abbrev.toLowerCase() === selectedBook.toLowerCase());
+      if (currentBookIndex < bibleData.length - 1) {
+        const nextBook = bibleData[currentBookIndex + 1];
+        setSelectedBook(nextBook.abbrev);
+        setSelectedChapter(1);
+        setSelectedVerse(null);
+        navigate(`/biblia/${selectedVersion.toLowerCase()}/${nextBook.abbrev.toLowerCase()}/1`);
+      }
+    }
+  };
+
+  // Função para navegar para o capítulo anterior
+  const goToPreviousChapter = () => {
+    if (selectedChapter > 1) {
+      handleChapterChange(selectedChapter - 1);
+    } else if (bibleData.length > 0) {
+      // Se estiver no primeiro capítulo do livro atual, vá para o livro anterior
+      const currentBookIndex = bibleData.findIndex(b => b.abbrev.toLowerCase() === selectedBook.toLowerCase());
+      if (currentBookIndex > 0) {
+        const previousBook = bibleData[currentBookIndex - 1];
+        const lastChapter = previousBook.chapters.length;
+        setSelectedBook(previousBook.abbrev);
+        setSelectedChapter(lastChapter);
+        setSelectedVerse(null);
+        navigate(`/biblia/${selectedVersion.toLowerCase()}/${previousBook.abbrev.toLowerCase()}/${lastChapter}`);
+      }
+    }
+  };
+
+  // Verificar se está no primeiro capítulo da Bíblia (Gênesis 1)
+  const isFirstChapter = (): boolean => {
+    if (bibleData.length === 0) return false;
+    
+    // Verificar se o livro atual é o primeiro livro (Gênesis)
+    const firstBook = bibleData[0];
+    return selectedBook.toLowerCase() === firstBook.abbrev.toLowerCase() && selectedChapter === 1;
+  };
+
+  // Verificar se está no último capítulo da Bíblia (Apocalipse 22)
+  const isLastChapter = (): boolean => {
+    if (bibleData.length === 0) return false;
+    
+    // Verificar se o livro atual é o último livro (Apocalipse)
+    const lastBook = bibleData[bibleData.length - 1];
+    return selectedBook.toLowerCase() === lastBook.abbrev.toLowerCase() && 
+           currentBookData !== null && selectedChapter === currentBookData.chapters.length;
   };
 
   // Renderizar versículos do capítulo atual
@@ -215,14 +314,34 @@ const Bible: React.FC = () => {
     
     return (
       <div className="space-y-2">
-        {verses.map((verse, index) => (
-          <div key={index} className="flex">
-            <span className="text-sm font-semibold mr-2 text-blue-600 dark:text-blue-400 w-6 flex-shrink-0">
-              {index + 1} 
-            </span>
-            <p className="text-gray-800 dark:text-gray-200">{verse}</p>
-          </div>
-        ))}
+        {verses.map((verse, index) => {
+          const verseNumber = index + 1;
+          const isSelected = selectedVerse === verseNumber;
+          
+          return (
+            <div 
+              key={verseNumber} 
+              className={`flex p-2 rounded-md transition-colors ${
+                isSelected 
+                  ? 'bg-blue-100 dark:bg-blue-900 border-l-4 border-blue-500' 
+                  : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+              }`}
+              ref={isSelected ? selectedVerseRef : null}
+              onClick={() => handleVerseClick(verseNumber)}
+            >
+              <span 
+                className={`text-sm font-semibold mr-2 w-6 flex-shrink-0 ${
+                  isSelected 
+                    ? 'text-blue-700 dark:text-blue-300' 
+                    : 'text-blue-600 dark:text-blue-400'
+                }`}
+              >
+                {verseNumber}
+              </span>
+              <p className="text-gray-800 dark:text-gray-200">{verse}</p>
+            </div>
+          );
+        })}
       </div>
     );
   };
@@ -256,19 +375,24 @@ const Bible: React.FC = () => {
 
   // Gerar título da página e meta descrição para SEO
   const pageTitle = currentBookData 
-    ? `${getBookName(currentBookData.abbrev)} ${selectedChapter} - ${bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion} | Amigos de Deus`
+    ? `${getBookName(currentBookData.abbrev)} ${selectedChapter}${selectedVerse ? `:${selectedVerse}` : ''} - ${bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion} | Amigos de Deus`
     : 'Bíblia Sagrada | Amigos de Deus';
     
   const pageDescription = currentBookData 
-    ? `Leia ${getBookName(currentBookData.abbrev)} capítulo ${selectedChapter} na versão ${bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion} da Bíblia Sagrada.`
+    ? `Leia ${getBookName(currentBookData.abbrev)} capítulo ${selectedChapter}${selectedVerse ? ` versículo ${selectedVerse}` : ''} na versão ${bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion} da Bíblia Sagrada.`
     : 'Leia a Bíblia Sagrada em diferentes versões. Navegue pelos livros e capítulos da Bíblia.';
+
+  // URL canônica para SEO
+  const canonicalUrl = selectedVerse 
+    ? `https://amigosdedeus.com/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}/${selectedVerse}`
+    : `https://amigosdedeus.com/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}`;
 
   return (
     <div className="py-6">
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <link rel="canonical" href={`https://amigosdedeus.com/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}`} />
+        <link rel="canonical" href={canonicalUrl} />
       </Helmet>
 
       <h1 className="text-3xl font-bold mb-6 text-center">Bíblia Sagrada</h1>
@@ -324,14 +448,51 @@ const Bible: React.FC = () => {
           {/* Título do livro e capítulo atual */}
           <h2 className="text-2xl font-bold mb-4 text-center">
             {currentBookData ? getBookName(currentBookData.abbrev) : ''} {selectedChapter}
+            {selectedVerse && <span className="text-blue-600 dark:text-blue-400">:{selectedVerse}</span>}
           </h2>
 
           {/* Seletor de capítulos */}
           {renderChapterSelector()}
 
+          {/* Instruções para o usuário */}
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 italic text-center">
+            Clique em um versículo para selecioná-lo e obter um link direto.
+          </p>
+
           {/* Versículos */}
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
             {renderVerses()}
+          </div>
+
+          {/* Navegação entre capítulos */}
+          <div className="flex justify-between mt-6">
+            <button
+              onClick={goToPreviousChapter}
+              className={`flex items-center px-4 py-2 rounded-md transition-colors ${
+                isFirstChapter()
+                  ? 'bg-gray-400 text-gray-200 cursor-not-allowed'
+                  : 'bg-blue-600 text-white hover:bg-blue-700'
+              }`}
+              aria-label="Capítulo anterior"
+              disabled={isFirstChapter()}
+            >
+              <ChevronLeft size={20} className="mr-1" />
+              Anterior
+            </button>
+            
+            <button
+              onClick={goToNextChapter}
+              className={`flex items-center px-4 py-2 rounded-md transition-colors ${
+                isLastChapter()
+                  ? 'bg-gray-400 text-gray-200 cursor-not-allowed'
+                  : 'bg-blue-600 text-white hover:bg-blue-700'
+              }`}
+              aria-label="Próximo capítulo"
+              disabled={isLastChapter()}
+            >
+              Próximo
+              <ChevronRight size={20} className="ml-1" />
+            </button>
           </div>
         </div>
       )}
