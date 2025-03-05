@@ -68,7 +68,8 @@ const Bible: React.FC = () => {
   // Efeito para atualizar a URL quando os parâmetros mudam
   useEffect(() => {
     if (selectedVersion && selectedBook && selectedChapter) {
-      const baseUrl = `/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}`;
+      const normalizedBook = normalizeForUrl(selectedBook);
+      const baseUrl = `/biblia/${selectedVersion.toLowerCase()}/${normalizedBook}/${selectedChapter}`;
       const url = selectedVerse ? `${baseUrl}/${selectedVerse}` : baseUrl;
       navigate(url, { replace: true });
     }
@@ -80,8 +81,29 @@ const Bible: React.FC = () => {
       setSelectedVersion(version.toUpperCase());
     }
     if (book) {
-      // Garantir que o livro selecionado seja atualizado corretamente
-      setSelectedBook(book);
+      // Se os dados da Bíblia estiverem carregados, tenta encontrar o livro correspondente
+      if (bibleData.length > 0) {
+        // Primeiro, tenta encontrar o livro diretamente pela abreviação
+        let foundBook = bibleData.find(b => normalizeForUrl(b.abbrev) === book);
+        
+        // Se não encontrar, tenta encontrar pela abreviação normalizada
+        if (!foundBook) {
+          foundBook = bibleData.find(b => 
+            normalizeForUrl(b.abbrev) === normalizeForUrl(book) ||
+            normalizeForUrl(b.name).includes(normalizeForUrl(book))
+          );
+        }
+        
+        if (foundBook) {
+          setSelectedBook(foundBook.abbrev);
+        } else {
+          // Se não encontrar o livro, usa o valor da URL como está
+          setSelectedBook(book);
+        }
+      } else {
+        // Se os dados da Bíblia ainda não foram carregados, usa o valor da URL como está
+        setSelectedBook(book);
+      }
     }
     if (chapter) {
       setSelectedChapter(parseInt(chapter));
@@ -91,7 +113,7 @@ const Bible: React.FC = () => {
     } else {
       setSelectedVerse(null);
     }
-  }, [version, book, chapter, verse]);
+  }, [version, book, chapter, verse, bibleData]);
 
   // Efeito para rolar até o versículo selecionado
   useEffect(() => {
@@ -155,6 +177,14 @@ const Bible: React.FC = () => {
       }
     }
   }, [bibleData, selectedBook, selectedChapter]);
+
+  // Função para normalizar caracteres especiais para URLs
+  const normalizeForUrl = (text: string): string => {
+    return text
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') // Remove acentos
+      .toLowerCase();
+  };
 
   // Função para obter o nome completo do livro a partir da abreviação
   const getBookName = (abbrev: string): string => {
@@ -246,8 +276,9 @@ const Bible: React.FC = () => {
     setSelectedChapter(1);
     setSelectedVerse(null);
     
-    // Navegar para a nova URL
-    const newUrl = `/biblia/${selectedVersion.toLowerCase()}/${newBook.toLowerCase()}/1`;
+    // Navegar para a nova URL com caracteres normalizados
+    const normalizedBook = normalizeForUrl(newBook);
+    const newUrl = `/biblia/${selectedVersion.toLowerCase()}/${normalizedBook}/1`;
     navigate(newUrl);
   };
 
@@ -437,7 +468,10 @@ const Bible: React.FC = () => {
       setSelectedBook(book.abbrev);
       setSelectedChapter(1);
       setSelectedVerse(null);
-      navigate(`/biblia/${selectedVersion.toLowerCase()}/${book.abbrev.toLowerCase()}/1`);
+      
+      // Usar a versão normalizada para a URL
+      const normalizedBook = normalizeForUrl(book.abbrev);
+      navigate(`/biblia/${selectedVersion.toLowerCase()}/${normalizedBook}/1`);
     };
     
     return (
