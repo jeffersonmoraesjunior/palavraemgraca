@@ -35,9 +35,6 @@ const Bible: React.FC = () => {
     verse?: string;
   }>();
   
-  // Log para depuração
-  console.log('Current URL params:', { version, book, chapter, verse });
-  
   // Referência para o versículo selecionado
   const selectedVerseRef = useRef<HTMLDivElement>(null);
   
@@ -84,7 +81,6 @@ const Bible: React.FC = () => {
     }
     if (book) {
       // Garantir que o livro selecionado seja atualizado corretamente
-      console.log('Book from URL:', book);
       setSelectedBook(book);
     }
     if (chapter) {
@@ -128,7 +124,6 @@ const Bible: React.FC = () => {
         setBibleData(data);
         setLoading(false);
       } catch (err) {
-        console.error('Erro ao carregar dados da Bíblia:', err);
         setError('Não foi possível carregar a Bíblia. Por favor, tente novamente mais tarde.');
         setLoading(false);
       }
@@ -139,7 +134,6 @@ const Bible: React.FC = () => {
 
   // Efeito para atualizar o livro atual quando os dados da Bíblia ou o livro selecionado mudar
   useEffect(() => {
-    console.log('Current selectedBook state:', selectedBook);
     if (bibleData.length > 0) {
       // Encontrar o livro pelo nome ou abreviação
       let book = bibleData.find(b => b.abbrev.toLowerCase() === selectedBook.toLowerCase());
@@ -148,9 +142,7 @@ const Bible: React.FC = () => {
       if (!book) {
         book = bibleData.find(b => b.name.toLowerCase().includes(selectedBook.toLowerCase()));
       }
-      
-      console.log('Found book:', book?.abbrev, book?.name);
-      
+            
       if (book) {
         setCurrentBookData(book);
         
@@ -248,9 +240,7 @@ const Bible: React.FC = () => {
 
   // Função para lidar com a mudança de livro
   const handleBookChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newBook = e.target.value;
-    console.log('Selected new book:', newBook);
-    
+    const newBook = e.target.value;    
     // Atualizar o estado
     setSelectedBook(newBook);
     setSelectedChapter(1);
@@ -258,7 +248,6 @@ const Bible: React.FC = () => {
     
     // Navegar para a nova URL
     const newUrl = `/biblia/${selectedVersion.toLowerCase()}/${newBook.toLowerCase()}/1`;
-    console.log('Navigating to:', newUrl);
     navigate(newUrl);
   };
 
@@ -445,7 +434,6 @@ const Bible: React.FC = () => {
     // Função para selecionar um livro
     const selectBook = (book: BibleBook) => {
       setIsOpen(false);
-      console.log('Selected book:', book.abbrev, book.name);
       setSelectedBook(book.abbrev);
       setSelectedChapter(1);
       setSelectedVerse(null);
