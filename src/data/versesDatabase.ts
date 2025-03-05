@@ -942,6 +942,193 @@ export const VERSES_DATABASE: Verse[] = [
     text: "Porque todo o que é nascido de Deus vence o mundo; e esta é a vitória que vence o mundo: a nossa fé.",
     reference: "1 João 5:4",
     categories: ["VICTORY", "FAITH_CRISIS", "STRENGTH"]
+  },
+
+  // Versículos para MOMENTOS DE INCERTEZA
+  {
+    text: "Porque sou eu que conheço os planos que tenho para vocês, diz o Senhor, planos de fazê-los prosperar e não de causar dano, planos de dar a vocês esperança e um futuro.",
+    reference: "Jeremias 29:11",
+    categories: ["HOPE", "TRUST", "ANXIETY"]
+  },
+  {
+    text: "Antes que te formasse no ventre te conheci, e antes que saísses da madre te santifiquei; às nações te dei por profeta.",
+    reference: "Jeremias 1:5",
+    categories: ["IDENTITY", "PURPOSE", "WORTH"]
+  },
+  {
+    text: "O Senhor é quem vai adiante de ti; ele será contigo, não te deixará, nem te desamparará; não temas, nem te espantes.",
+    reference: "Deuteronômio 31:8",
+    categories: ["TRUST", "FEAR", "STRENGTH"]
+  },
+
+  // Versículos para MOMENTOS DE RENOVAÇÃO
+  {
+    text: "De sorte que, se alguém está em Cristo, nova criatura é; as coisas velhas já passaram; eis que tudo se fez novo.",
+    reference: "2 Coríntios 5:17",
+    categories: ["CHANGE", "HOPE", "IDENTITY"]
+  },
+  {
+    text: "E não vos conformeis com este mundo, mas transformai-vos pela renovação do vosso entendimento, para que experimenteis qual seja a boa, agradável e perfeita vontade de Deus.",
+    reference: "Romanos 12:2",
+    categories: ["CHANGE", "WISDOM", "PURPOSE"]
+  },
+  {
+    text: "Mas os que esperam no Senhor renovarão as suas forças, subirão com asas como águias; correrão, e não se cansarão; caminharão, e não se fatigarão.",
+    reference: "Isaías 40:31",
+    categories: ["STRENGTH", "HOPE", "RENEWAL"]
+  },
+
+  // Versículos para MOMENTOS DE GRATIDÃO
+  {
+    text: "Entrai por suas portas com gratidão e em seus átrios com louvor; dai-lhe graças e bendizei o seu nome.",
+    reference: "Salmos 100:4",
+    categories: ["GRATITUDE", "WORSHIP", "JOY"]
+  },
+  {
+    text: "Em tudo dai graças, porque esta é a vontade de Deus em Cristo Jesus para convosco.",
+    reference: "1 Tessalonicenses 5:18",
+    categories: ["GRATITUDE", "PURPOSE", "TRUST"]
+  },
+  {
+    text: "Bendize, ó minha alma, ao Senhor, e não te esqueças de nenhum de seus benefícios.",
+    reference: "Salmos 103:2",
+    categories: ["GRATITUDE", "WORSHIP", "MEMORY"]
+  },
+
+  // Versículos para MOMENTOS DE DECISÃO
+  {
+    text: "Se algum de vós tem falta de sabedoria, peça-a a Deus, que a todos dá liberalmente e não censura, e ser-lhe-á dada.",
+    reference: "Tiago 1:5",
+    categories: ["WISDOM", "PRAYER", "TRUST"]
+  },
+  {
+    text: "Entrega o teu caminho ao Senhor; confia nele, e ele tudo fará.",
+    reference: "Salmos 37:5",
+    categories: ["TRUST", "SURRENDER", "PEACE"]
+  },
+  {
+    text: "Em seu coração o homem planeja o seu caminho, mas o Senhor lhe dirige os passos.",
+    reference: "Provérbios 16:9",
+    categories: ["WISDOM", "TRUST", "GUIDANCE"]
+  },
+
+  // Versículos para MOMENTOS DE ADORAÇÃO
+  {
+    text: "Alegrai-vos sempre no Senhor; outra vez digo: alegrai-vos.",
+    reference: "Filipenses 4:4",
+    categories: ["JOY", "WORSHIP", "PEACE"]
+  },
+  {
+    text: "Cantai ao Senhor um cântico novo, porque ele tem feito maravilhas; a sua destra e o seu braço santo lhe alcançaram a vitória.",
+    reference: "Salmos 98:1",
+    categories: ["WORSHIP", "VICTORY", "JOY"]
+  },
+  {
+    text: "Mas vem a hora, e já chegou, em que os verdadeiros adoradores adorarão o Pai em espírito e em verdade; porque são estes que o Pai procura para seus adoradores.",
+    reference: "João 4:23",
+    categories: ["WORSHIP", "TRUTH", "PURPOSE"]
+  },
+
+  // Versículos para MOMENTOS DE PERSEVERANÇA
+  {
+    text: "Sabemos que Deus age em todas as coisas para o bem daqueles que o amam, dos que foram chamados de acordo com o seu propósito.",
+    reference: "Romanos 8:28",
+    categories: ["TRUST", "PURPOSE", "HOPE"]
+  },
+  {
+    text: "Considerai uma grande alegria, meus irmãos, quando passardes por diversas provações, sabendo que a prova da vossa fé produz perseverança.",
+    reference: "Tiago 1:2-3",
+    categories: ["STRENGTH", "GROWTH", "JOY"]
+  },
+  {
+    text: "Não to mandei eu? Sê forte e corajoso; não temas, nem te espantes, porque o Senhor, teu Deus, é contigo por onde quer que andares.",
+    reference: "Josué 1:9",
+    categories: ["STRENGTH", "COURAGE", "TRUST"]
+  },
+
+  // Versículos para MOMENTOS DE CURA
+  {
+    text: "Ele sara os quebrantados de coração e lhes cura as feridas.",
+    reference: "Salmos 147:3",
+    categories: ["HEALING", "COMFORT", "LOVE"]
+  },
+  {
+    text: "O Senhor é o meu pastor; nada me faltará. Deitar-me faz em verdes pastos, guia-me mansamente a águas tranquilas. Refrigera a minha alma.",
+    reference: "Salmos 23:1-3",
+    categories: ["PEACE", "HEALING", "REST"]
+  },
+  {
+    text: "Mas para vós que temeis o meu nome nascerá o sol da justiça, e cura trará nas suas asas.",
+    reference: "Malaquias 4:2",
+    categories: ["HEALING", "HOPE", "PROMISE"]
+  },
+
+  // Versículos para MOMENTOS DE SABEDORIA
+  {
+    text: "O temor do Senhor é o princípio da sabedoria; bom entendimento têm todos os que cumprem os seus mandamentos.",
+    reference: "Salmos 111:10",
+    categories: ["WISDOM", "FEAR", "OBEDIENCE"]
+  },
+  {
+    text: "Bem-aventurado o homem que acha sabedoria, e o homem que adquire conhecimento; porque melhor é o lucro que ela dá do que o da prata, e melhor a sua renda do que o ouro mais fino.",
+    reference: "Provérbios 3:13-14",
+    categories: ["WISDOM", "VALUE", "GROWTH"]
+  },
+  {
+    text: "A sabedoria que vem do alto é, primeiramente, pura; depois, pacífica, moderada, tratável, cheia de misericórdia e de bons frutos, sem parcialidade e sem hipocrisia.",
+    reference: "Tiago 3:17",
+    categories: ["WISDOM", "PEACE", "CHARACTER"]
+  },
+
+  // Versículos para MOMENTOS DE CONFIANÇA
+  {
+    text: "Porque eu, o Senhor, teu Deus, te tomo pela tua mão direita e te digo: Não temas, eu te ajudo.",
+    reference: "Isaías 41:13",
+    categories: ["TRUST", "FEAR", "COMFORT"]
+  },
+  {
+    text: "O Senhor é a minha luz e a minha salvação; a quem temerei? O Senhor é a fortaleza da minha vida; de quem me recearei?",
+    reference: "Salmos 27:1",
+    categories: ["TRUST", "STRENGTH", "COURAGE"]
+  },
+  {
+    text: "Mas os que confiam no Senhor são como o monte Sião, que não se abala, mas permanece para sempre.",
+    reference: "Salmos 125:1",
+    categories: ["TRUST", "STABILITY", "FAITH"]
+  },
+
+  // Versículos para MOMENTOS DE ALEGRIA
+  {
+    text: "A alegria do Senhor é a vossa força.",
+    reference: "Neemias 8:10",
+    categories: ["JOY", "STRENGTH", "WORSHIP"]
+  },
+  {
+    text: "Ao anoitecer pode vir o choro, mas a alegria vem pela manhã.",
+    reference: "Salmos 30:5",
+    categories: ["JOY", "HOPE", "CHANGE"]
+  },
+  {
+    text: "Regozijai-vos sempre no Senhor; outra vez digo: regozijai-vos.",
+    reference: "Filipenses 4:4",
+    categories: ["JOY", "WORSHIP", "PEACE"]
+  },
+
+  // Versículos para MOMENTOS DE PAZ
+  {
+    text: "Tu conservarás em paz aquele cuja mente está firme em ti; porque ele confia em ti.",
+    reference: "Isaías 26:3",
+    categories: ["PEACE", "TRUST", "MIND"]
+  },
+  {
+    text: "A paz de Deus, que excede todo o entendimento, guardará os vossos corações e as vossas mentes em Cristo Jesus.",
+    reference: "Filipenses 4:7",
+    categories: ["PEACE", "MIND", "PROTECTION"]
+  },
+  {
+    text: "Deixo-vos a paz, a minha paz vos dou; não vo-la dou como o mundo a dá. Não se turbe o vosso coração, nem se atemorize.",
+    reference: "João 14:27",
+    categories: ["PEACE", "COMFORT", "FEAR"]
   }
 ];
 
@@ -1626,42 +1813,40 @@ export function getRandomVerse(): string {
  * @returns Versículo com referência
  */
 export function getVerseByCategories(categories: string[]): string {
-  const primaryCategories = categories.slice(0, 2);
-  
-  // Filtra versículos que correspondem às categorias
-  let matchingVerses = VERSES_DATABASE.filter(verse => 
-    primaryCategories.some(category => verse.categories.includes(category))
-  );
-  
-  if (matchingVerses.length === 0) {
-    return getRandomVerse();
-  }
-  
-  // Aplica sistema de aprendizado para ajustar relevância
-  matchingVerses = adjustRelevance(matchingVerses, categories, 'verse');
-  
-  // Filtra versículos recentes
   const session = getSession();
-  let availableVerses = matchingVerses.filter(verse => 
+  
+  // Filtra os versículos que correspondem às categorias
+  let matchingVerses = VERSES_DATABASE.filter(verse =>
+    verse.categories.some(category => categories.includes(category))
+  );
+
+  // Remove versículos recentemente usados
+  matchingVerses = matchingVerses.filter(verse => 
     !session.recentVerses.includes(verse.reference)
   );
-  
-  // Se todos os versículos já foram mostrados, limpa o histórico
-  if (availableVerses.length === 0) {
+
+  // Se não houver versículos disponíveis após filtrar os recentes,
+  // limpa o histórico e usa todos os versículos correspondentes
+  if (matchingVerses.length === 0) {
     session.recentVerses = [];
     updateSession(session);
-    availableVerses = matchingVerses;
+    matchingVerses = VERSES_DATABASE.filter(verse =>
+      verse.categories.some(category => categories.includes(category))
+    );
   }
-  
-  // Seleciona um dos versículos mais relevantes
-  const topVerses = availableVerses.slice(0, 3);
-  const randomIndex = Math.floor(Math.random() * topVerses.length);
-  const verse = topVerses[randomIndex];
-  
-  // Registra o versículo usado
-  addRecentItem('verses', verse.reference);
-  
-  return `${verse.text} (${verse.reference})`;
+
+  // Ajusta a relevância dos versículos com base nas categorias
+  matchingVerses = adjustRelevance(matchingVerses, categories, 'verse');
+
+  // Seleciona um versículo aleatório dentre os mais relevantes (top 30%)
+  const topCount = Math.max(1, Math.ceil(matchingVerses.length * 0.3));
+  const topVerses = matchingVerses.slice(0, topCount);
+  const selectedVerse = topVerses[Math.floor(Math.random() * topVerses.length)];
+
+  // Adiciona o versículo selecionado ao histórico recente
+  addRecentItem('verses', selectedVerse.reference);
+
+  return `${selectedVerse.text} (${selectedVerse.reference})`;
 }
 
 /**
