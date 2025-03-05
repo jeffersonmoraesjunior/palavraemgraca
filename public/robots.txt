@@ -1,7 +1,44 @@
 # Allow all web crawlers
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
-# Sitemap locations
-Sitemap: https://amigodedeus.com.br/sitemap.xml
-Sitemap: https://amigodedeus.com.br/bible-sitemap.xml 
+# Specific rules for Google
+User-agent: Googlebot
+Allow: /
+Allow: /biblia/
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.ico$
+
+# Specific rules for Bing
+User-agent: Bingbot
+Allow: /
+Allow: /biblia/
+
+# Block access to specific folders
+Disallow: /api/
+Disallow: /_next/static/
+Disallow: /_error
+
+# Main Sitemaps
+Sitemap: https://amigosdedeus.com.br/sitemap.xml
+
+# Bible Version Specific Sitemaps
+Sitemap: https://amigosdedeus.com.br/acf-sitemap.xml
+Sitemap: https://amigosdedeus.com.br/ara-sitemap.xml
+Sitemap: https://amigosdedeus.com.br/arc-sitemap.xml
+Sitemap: https://amigosdedeus.com.br/as21-sitemap.xml
+Sitemap: https://amigosdedeus.com.br/jfaa-sitemap.xml
+Sitemap: https://amigosdedeus.com.br/kja-sitemap.xml
+Sitemap: https://amigosdedeus.com.br/kjf-sitemap.xml
+Sitemap: https://amigosdedeus.com.br/naa-sitemap.xml
+Sitemap: https://amigosdedeus.com.br/nbv-sitemap.xml
+Sitemap: https://amigosdedeus.com.br/ntlh-sitemap.xml
+Sitemap: https://amigosdedeus.com.br/nvi-sitemap.xml
+Sitemap: https://amigosdedeus.com.br/nvt-sitemap.xml
+Sitemap: https://amigosdedeus.com.br/tb-sitemap.xml 
