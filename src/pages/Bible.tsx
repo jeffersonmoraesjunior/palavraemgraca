@@ -28,12 +28,14 @@ interface BibleVersion {
 // Componente principal da página da Bíblia
 const Bible: React.FC = () => {
   const navigate = useNavigate();
-  const { version, book, chapter, verse } = useParams<{ 
+  const { version, book, chapter } = useParams<{ 
     version?: string; 
     book?: string; 
     chapter?: string;
-    verse?: string;
   }>();
+  
+  // Log para depuração
+  console.log('Current URL params:', { version, book, chapter });
   
   // Referência para o versículo selecionado
   const selectedVerseRef = useRef<HTMLDivElement>(null);
@@ -60,7 +62,7 @@ const Bible: React.FC = () => {
   const [bibleData, setBibleData] = useState<BibleBook[]>([]);
   const [selectedBook, setSelectedBook] = useState<string>(book || 'gn');
   const [selectedChapter, setSelectedChapter] = useState<number>(chapter ? parseInt(chapter) : 1);
-  const [selectedVerse, setSelectedVerse] = useState<number | null>(verse ? parseInt(verse) : null);
+  const [selectedVerse, setSelectedVerse] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [currentBookData, setCurrentBookData] = useState<BibleBook | null>(null);
@@ -70,7 +72,10 @@ const Bible: React.FC = () => {
     if (selectedVersion && selectedBook && selectedChapter) {
       const normalizedBook = normalizeForUrl(selectedBook);
       const baseUrl = `/biblia/${selectedVersion.toLowerCase()}/${normalizedBook}/${selectedChapter}`;
-      const url = selectedVerse ? `${baseUrl}/${selectedVerse}` : baseUrl;
+      
+      // Usar fragmento (hash) para o versículo em vez de parâmetro de caminho
+      const url = selectedVerse ? `${baseUrl}#${selectedVerse}` : baseUrl;
+      
       navigate(url, { replace: true });
     }
   }, [selectedVersion, selectedBook, selectedChapter, selectedVerse, navigate]);
@@ -81,6 +86,9 @@ const Bible: React.FC = () => {
       setSelectedVersion(version.toUpperCase());
     }
     if (book) {
+      // Garantir que o livro selecionado seja atualizado corretamente
+      console.log('Book from URL:', book);
+      
       // Se os dados da Bíblia estiverem carregados, tenta encontrar o livro correspondente
       if (bibleData.length > 0) {
         // Primeiro, tenta encontrar o livro diretamente pela abreviação
@@ -95,6 +103,7 @@ const Bible: React.FC = () => {
         }
         
         if (foundBook) {
+          console.log('Found book from URL:', foundBook.abbrev, foundBook.name);
           setSelectedBook(foundBook.abbrev);
         } else {
           // Se não encontrar o livro, usa o valor da URL como está
@@ -108,12 +117,36 @@ const Bible: React.FC = () => {
     if (chapter) {
       setSelectedChapter(parseInt(chapter));
     }
-    if (verse) {
-      setSelectedVerse(parseInt(verse));
-    } else {
-      setSelectedVerse(null);
-    }
-  }, [version, book, chapter, verse, bibleData]);
+    // Não precisamos mais ler o parâmetro verse aqui, pois agora usamos o fragmento
+  }, [version, book, chapter, bibleData]);
+
+  // Efeito para ler o fragmento (hash) da URL e definir o versículo selecionado
+  useEffect(() => {
+    // Função para lidar com mudanças no hash da URL
+    const handleHashChange = () => {
+      // Obter o fragmento da URL (remove o # do início)
+      const hash = window.location.hash.replace('#', '');
+      
+      // Se o fragmento for um número, define como versículo selecionado
+      if (hash && /^\d+$/.test(hash)) {
+        const verseNumber = parseInt(hash);
+        setSelectedVerse(verseNumber);
+      } else {
+        setSelectedVerse(null);
+      }
+    };
+    
+    // Verificar o hash inicial
+    handleHashChange();
+    
+    // Adicionar listener para mudanças no hash
+    window.addEventListener('hashchange', handleHashChange);
+    
+    // Remover listener ao desmontar o componente
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
 
   // Efeito para rolar até o versículo selecionado
   useEffect(() => {
@@ -291,14 +324,14 @@ const Bible: React.FC = () => {
 
   // Função para lidar com a seleção de versículo
   const handleVerseClick = (verseNumber: number) => {
-    // Se clicar no mesmo versículo, desseleciona
-    if (selectedVerse === verseNumber) {
-      setSelectedVerse(null);
-      navigate(`/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}`);
-    } else {
-      setSelectedVerse(verseNumber);
-      navigate(`/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}/${verseNumber}`);
-    }
+    setSelectedVerse(verseNumber);
+    
+    // Usar fragmento (hash) para o versículo em vez de parâmetro de caminho
+    const normalizedBook = normalizeForUrl(selectedBook);
+    const url = `/biblia/${selectedVersion.toLowerCase()}/${normalizedBook}/${selectedChapter}#${verseNumber}`;
+    
+    // Atualizar a URL sem recarregar a página
+    window.history.replaceState(null, '', url);
   };
 
   // Função para navegar para o próximo capítulo
