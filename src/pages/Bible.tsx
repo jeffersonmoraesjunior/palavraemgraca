@@ -35,6 +35,9 @@ const Bible: React.FC = () => {
     verse?: string;
   }>();
   
+  // Log para depuração
+  console.log('Current URL params:', { version, book, chapter, verse });
+  
   // Referência para o versículo selecionado
   const selectedVerseRef = useRef<HTMLDivElement>(null);
   
@@ -58,7 +61,7 @@ const Bible: React.FC = () => {
   // Estados
   const [selectedVersion, setSelectedVersion] = useState<string>(version?.toUpperCase() || 'NTLH');
   const [bibleData, setBibleData] = useState<BibleBook[]>([]);
-  const [selectedBook, setSelectedBook] = useState<string>(book || 'Gn');
+  const [selectedBook, setSelectedBook] = useState<string>(book || 'gn');
   const [selectedChapter, setSelectedChapter] = useState<number>(chapter ? parseInt(chapter) : 1);
   const [selectedVerse, setSelectedVerse] = useState<number | null>(verse ? parseInt(verse) : null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -134,16 +137,29 @@ const Bible: React.FC = () => {
     fetchBibleData();
   }, [selectedVersion]);
 
-  // Atualizar o livro atual quando os dados da Bíblia ou o livro selecionado mudar
+  // Efeito para atualizar o livro atual quando os dados da Bíblia ou o livro selecionado mudar
   useEffect(() => {
+    console.log('Current selectedBook state:', selectedBook);
     if (bibleData.length > 0) {
-      const book = bibleData.find(b => b.abbrev.toLowerCase() === selectedBook.toLowerCase());
-      console.log('Found book:', book?.abbrev, book?.name);
-      setCurrentBookData(book || null);
+      // Encontrar o livro pelo nome ou abreviação
+      let book = bibleData.find(b => b.abbrev.toLowerCase() === selectedBook.toLowerCase());
       
-      // Resetar o capítulo selecionado se o livro mudar e o capítulo atual não existir
-      if (book && (selectedChapter > book.chapters.length)) {
-        setSelectedChapter(1);
+      // Se não encontrar pela abreviação, tenta encontrar pelo nome
+      if (!book) {
+        book = bibleData.find(b => b.name.toLowerCase().includes(selectedBook.toLowerCase()));
+      }
+      
+      console.log('Found book:', book?.abbrev, book?.name);
+      
+      if (book) {
+        setCurrentBookData(book);
+        
+        // Resetar o capítulo selecionado se o livro mudar e o capítulo atual não existir
+        if (selectedChapter > book.chapters.length) {
+          setSelectedChapter(1);
+        }
+      } else {
+        setCurrentBookData(null);
       }
     }
   }, [bibleData, selectedBook, selectedChapter]);
@@ -234,10 +250,16 @@ const Bible: React.FC = () => {
   const handleBookChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newBook = e.target.value;
     console.log('Selected new book:', newBook);
+    
+    // Atualizar o estado
     setSelectedBook(newBook);
     setSelectedChapter(1);
     setSelectedVerse(null);
-    navigate(`/biblia/${selectedVersion.toLowerCase()}/${newBook.toLowerCase()}/1`);
+    
+    // Navegar para a nova URL
+    const newUrl = `/biblia/${selectedVersion.toLowerCase()}/${newBook.toLowerCase()}/1`;
+    console.log('Navigating to:', newUrl);
+    navigate(newUrl);
   };
 
   // Função para lidar com a mudança de capítulo
@@ -412,6 +434,62 @@ const Bible: React.FC = () => {
     }
   };
 
+  // Componente customizado para o select de livros
+  const CustomBookSelect = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    
+    // Encontrar o livro atual
+    const currentBook = bibleData.find(b => b.abbrev.toLowerCase() === selectedBook.toLowerCase());
+    const displayName = currentBook ? currentBook.name : getBookName(selectedBook);
+    
+    // Função para selecionar um livro
+    const selectBook = (book: BibleBook) => {
+      setIsOpen(false);
+      console.log('Selected book:', book.abbrev, book.name);
+      setSelectedBook(book.abbrev);
+      setSelectedChapter(1);
+      setSelectedVerse(null);
+      navigate(`/biblia/${selectedVersion.toLowerCase()}/${book.abbrev.toLowerCase()}/1`);
+    };
+    
+    return (
+      <div className="mb-6">
+        <label className="block text-sm font-medium mb-2">
+          Livro:
+        </label>
+        <div className="relative">
+          <button
+            type="button"
+            className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-left flex justify-between items-center"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <span>{displayName}</span>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          
+          {isOpen && (
+            <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg max-h-60 overflow-y-auto">
+              {bibleData.length > 0 && bibleData.map((book) => (
+                <button
+                  key={book.abbrev}
+                  type="button"
+                  className={`w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 ${
+                    book.abbrev === selectedBook ? 'bg-blue-100 dark:bg-blue-900' : ''
+                  }`}
+                  onClick={() => selectBook(book)}
+                >
+                  {book.name}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="py-6">
       <Helmet>
@@ -462,7 +540,7 @@ const Bible: React.FC = () => {
       {/* Seletor de versão */}
       <div className="mb-6">
         <label htmlFor="version-select" className="block text-sm font-medium mb-2">
-          Versão da Bíblia:
+          Versão:
         </label>
         <select
           id="version-select"
@@ -472,7 +550,7 @@ const Bible: React.FC = () => {
         >
           {bibleVersions.map((version) => (
             <option key={version.id} value={version.id}>
-              {version.name} ({version.id})
+              {version.name}
             </option>
           ))}
         </select>
@@ -489,26 +567,7 @@ const Bible: React.FC = () => {
       ) : (
         <div>
           {/* Seletor de livro */}
-          <div className="mb-6">
-            <label htmlFor="book-select" className="block text-sm font-medium mb-2">
-              Livro:
-            </label>
-            <select
-              key={`book-select-${selectedBook}`}
-              id="book-select"
-              value={selectedBook}
-              onChange={handleBookChange}
-              className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-            >
-              {bibleData.length > 0 && bibleData.map((book) => {
-                return (
-                  <option key={book.abbrev} value={book.abbrev}>
-                    {book.name}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
+          <CustomBookSelect />
 
           {/* Título do livro e capítulo atual */}
           {currentBookData && (
