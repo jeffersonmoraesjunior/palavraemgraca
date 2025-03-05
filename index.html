@@ -4,34 +4,52 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/bible.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Caixinha de Promessas - Receba versículos bíblicos e palavras de conforto personalizadas para o seu momento. Orientação espiritual diária baseada na Bíblia." />
-    <meta name="keywords" content="versículos bíblicos, promessas bíblicas, conforto espiritual, orientação cristã, versículo do dia, palavra de Deus" />
+    <meta
+      name="description"
+      content="Caixinha de Promessas - Receba versículos bíblicos e palavras de conforto personalizadas para o seu momento. Orientação espiritual diária baseada na Bíblia."
+    />
+    <meta
+      name="keywords"
+      content="versículos bíblicos, promessas bíblicas, conforto espiritual, orientação cristã, versículo do dia, palavra de Deus"
+    />
     <meta name="author" content="Amigos de Deus" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://amigosdedeus.vercel.app" />
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://amigosdedeus.vercel.app" />
-    <meta property="og:title" content="Caixinha de Promessas | Conforto Espiritual" />
-    <meta property="og:description" content="Receba versículos bíblicos e palavras de conforto personalizadas para o seu momento. Orientação espiritual diária baseada na Bíblia." />
+    <meta
+      property="og:title"
+      content="Caixinha de Promessas | Conforto Espiritual"
+    />
+    <meta
+      property="og:description"
+      content="Receba versículos bíblicos e palavras de conforto personalizadas para o seu momento. Orientação espiritual diária baseada na Bíblia."
+    />
     <meta property="og:image" content="/og-image.jpg" />
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://amigosdedeus.vercel.app" />
-    <meta property="twitter:title" content="Caixinha de Promessas | Conforto Espiritual" />
-    <meta property="twitter:description" content="Receba versículos bíblicos e palavras de conforto personalizadas para o seu momento. Orientação espiritual diária baseada na Bíblia." />
+    <meta
+      property="twitter:title"
+      content="Caixinha de Promessas | Conforto Espiritual"
+    />
+    <meta
+      property="twitter:description"
+      content="Receba versículos bíblicos e palavras de conforto personalizadas para o seu momento. Orientação espiritual diária baseada na Bíblia."
+    />
     <meta property="twitter:image" content="/og-image.jpg" />
-    
+
     <!-- PWA support -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#4f46e5" />
     <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
-    
+
     <!-- Structured Data / JSON-LD -->
     <script type="application/ld+json">
       {
@@ -47,39 +65,60 @@
         }
       }
     </script>
-    
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-PBX29C9L");
+    </script>
+    <!-- End Google Tag Manager -->
+
     <title>Caixinha de Promessas | Conforto Espiritual Diário</title>
   </head>
   <body>
     <div id="root">
       <!-- Conteúdo de fallback enquanto o React carrega -->
-      <div style="text-align: center; padding: 20px;">
+      <div style="text-align: center; padding: 20px">
         <h1>Carregando...</h1>
-        <p>Se esta mensagem persistir, pode haver um problema com o JavaScript.</p>
+        <p>
+          Se esta mensagem persistir, pode haver um problema com o JavaScript.
+        </p>
       </div>
     </div>
     <script type="module" src="/src/main.tsx"></script>
-    
-    <!-- Adicione o Google Analytics aqui -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-PBX29C9L"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <!-- Service Worker Registration - Simplificado -->
     <script>
-      if ('serviceWorker' in navigator && window.location.hostname !== 'localhost') {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-              console.log('SW registered: ', registration);
+      if (
+        "serviceWorker" in navigator &&
+        window.location.hostname !== "localhost"
+      ) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then((registration) => {
+              console.log("SW registered: ", registration);
             })
-            .catch(error => {
-              console.warn('SW registration failed: ', error);
+            .catch((error) => {
+              console.warn("SW registration failed: ", error);
             });
         });
       }

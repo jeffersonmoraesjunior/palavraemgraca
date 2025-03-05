@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
+import { getBookDescription } from '../data/bibleBookDescriptions';
 
 // Tipos para a estrutura da Bíblia
 interface BibleVerse {
@@ -28,12 +29,14 @@ interface BibleVersion {
 // Componente principal da página da Bíblia
 const Bible: React.FC = () => {
   const navigate = useNavigate();
-  const { version, book, chapter, verse } = useParams<{ 
+  const { version, book, chapter } = useParams<{ 
     version?: string; 
     book?: string; 
     chapter?: string;
-    verse?: string;
   }>();
+  
+  // Log para depuração
+  console.log('Current URL params:', { version, book, chapter });
   
   // Referência para o versículo selecionado
   const selectedVerseRef = useRef<HTMLDivElement>(null);
@@ -60,7 +63,7 @@ const Bible: React.FC = () => {
   const [bibleData, setBibleData] = useState<BibleBook[]>([]);
   const [selectedBook, setSelectedBook] = useState<string>(book || 'gn');
   const [selectedChapter, setSelectedChapter] = useState<number>(chapter ? parseInt(chapter) : 1);
-  const [selectedVerse, setSelectedVerse] = useState<number | null>(verse ? parseInt(verse) : null);
+  const [selectedVerse, setSelectedVerse] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [currentBookData, setCurrentBookData] = useState<BibleBook | null>(null);
@@ -70,7 +73,10 @@ const Bible: React.FC = () => {
     if (selectedVersion && selectedBook && selectedChapter) {
       const normalizedBook = normalizeForUrl(selectedBook);
       const baseUrl = `/biblia/${selectedVersion.toLowerCase()}/${normalizedBook}/${selectedChapter}`;
-      const url = selectedVerse ? `${baseUrl}/${selectedVerse}` : baseUrl;
+      
+      // Usar fragmento (hash) para o versículo em vez de parâmetro de caminho
+      const url = selectedVerse ? `${baseUrl}#${selectedVerse}` : baseUrl;
+      
       navigate(url, { replace: true });
     }
   }, [selectedVersion, selectedBook, selectedChapter, selectedVerse, navigate]);
@@ -81,6 +87,9 @@ const Bible: React.FC = () => {
       setSelectedVersion(version.toUpperCase());
     }
     if (book) {
+      // Garantir que o livro selecionado seja atualizado corretamente
+      console.log('Book from URL:', book);
+      
       // Se os dados da Bíblia estiverem carregados, tenta encontrar o livro correspondente
       if (bibleData.length > 0) {
         // Primeiro, tenta encontrar o livro diretamente pela abreviação
@@ -95,6 +104,7 @@ const Bible: React.FC = () => {
         }
         
         if (foundBook) {
+          console.log('Found book from URL:', foundBook.abbrev, foundBook.name);
           setSelectedBook(foundBook.abbrev);
         } else {
           // Se não encontrar o livro, usa o valor da URL como está
@@ -108,12 +118,36 @@ const Bible: React.FC = () => {
     if (chapter) {
       setSelectedChapter(parseInt(chapter));
     }
-    if (verse) {
-      setSelectedVerse(parseInt(verse));
-    } else {
-      setSelectedVerse(null);
-    }
-  }, [version, book, chapter, verse, bibleData]);
+    // Não precisamos mais ler o parâmetro verse aqui, pois agora usamos o fragmento
+  }, [version, book, chapter, bibleData]);
+
+  // Efeito para ler o fragmento (hash) da URL e definir o versículo selecionado
+  useEffect(() => {
+    // Função para lidar com mudanças no hash da URL
+    const handleHashChange = () => {
+      // Obter o fragmento da URL (remove o # do início)
+      const hash = window.location.hash.replace('#', '');
+      
+      // Se o fragmento for um número, define como versículo selecionado
+      if (hash && /^\d+$/.test(hash)) {
+        const verseNumber = parseInt(hash);
+        setSelectedVerse(verseNumber);
+      } else {
+        setSelectedVerse(null);
+      }
+    };
+    
+    // Verificar o hash inicial
+    handleHashChange();
+    
+    // Adicionar listener para mudanças no hash
+    window.addEventListener('hashchange', handleHashChange);
+    
+    // Remover listener ao desmontar o componente
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
 
   // Efeito para rolar até o versículo selecionado
   useEffect(() => {
@@ -291,14 +325,14 @@ const Bible: React.FC = () => {
 
   // Função para lidar com a seleção de versículo
   const handleVerseClick = (verseNumber: number) => {
-    // Se clicar no mesmo versículo, desseleciona
-    if (selectedVerse === verseNumber) {
-      setSelectedVerse(null);
-      navigate(`/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}`);
-    } else {
-      setSelectedVerse(verseNumber);
-      navigate(`/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}/${verseNumber}`);
-    }
+    setSelectedVerse(verseNumber);
+    
+    // Usar fragmento (hash) para o versículo em vez de parâmetro de caminho
+    const normalizedBook = normalizeForUrl(selectedBook);
+    const url = `/biblia/${selectedVersion.toLowerCase()}/${normalizedBook}/${selectedChapter}#${verseNumber}`;
+    
+    // Atualizar a URL sem recarregar a página
+    window.history.replaceState(null, '', url);
   };
 
   // Função para navegar para o próximo capítulo
@@ -424,35 +458,166 @@ const Bible: React.FC = () => {
     );
   };
 
-  // Gerar título da página e meta descrição para SEO
-  const pageTitle = currentBookData 
-    ? `${getBookName(currentBookData.abbrev)} ${selectedChapter}${selectedVerse ? `:${selectedVerse}` : ''} - ${bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion} | Amigos de Deus`
-    : 'Bíblia Sagrada | Amigos de Deus';
+  // Função para construir títulos e descrições para SEO
+  const buildSeoTitles = () => {
+    // Título da página
+    let pageTitle = 'Bíblia Sagrada Online - Leitura e Estudo Bíblico';
     
-  const pageDescription = currentBookData 
-    ? `Leia ${getBookName(currentBookData.abbrev)} capítulo ${selectedChapter}${selectedVerse ? ` versículo ${selectedVerse}` : ''} na versão ${bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion} da Bíblia Sagrada. Estudo bíblico online gratuito.`
-    : 'Leia a Bíblia Sagrada em diferentes versões. Navegue pelos livros e capítulos da Bíblia. Estudo bíblico online gratuito.';
-
-  // URL canônica para SEO
-  const canonicalUrl = selectedVerse 
-    ? `https://amigosdedeus.com/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}/${selectedVerse}`
-    : `https://amigosdedeus.com/biblia/${selectedVersion.toLowerCase()}/${selectedBook.toLowerCase()}/${selectedChapter}`;
-
-  // Gerar dados estruturados para SEO (Schema.org)
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": pageTitle,
-    "description": pageDescription,
-    "url": canonicalUrl,
-    "mainEntity": {
-      "@type": "CreativeWork",
-      "name": currentBookData ? `${getBookName(currentBookData.abbrev)} ${selectedChapter}` : "Bíblia Sagrada",
-      "author": "Bíblia Sagrada",
-      "inLanguage": "pt-BR",
-      "version": bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion
+    // Descrição da página
+    let pageDescription = 'Leia a Bíblia Sagrada online, compare versões, estude versículos e compartilhe passagens bíblicas. Ferramenta gratuita para estudo e meditação diária.';
+    
+    // Palavras-chave
+    let pageKeywords = 'bíblia online, estudo bíblico, versículos bíblicos, leitura da bíblia, meditação diária';
+    
+    // Se tiver versão selecionada
+    if (selectedVersion) {
+      const versionName = bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion;
+      pageTitle = `${versionName} - Bíblia Sagrada Online para Leitura e Estudo`;
+      pageDescription = `Leia a Bíblia ${versionName} online gratuitamente. Navegue por livros, capítulos e versículos para estudo bíblico e meditação diária.`;
+      pageKeywords = `${versionName}, bíblia ${versionName.toLowerCase()}, versículos ${versionName.toLowerCase()}, estudo bíblico ${versionName.toLowerCase()}`;
+      
+      // Se tiver livro selecionado
+      if (currentBookData) {
+        const bookName = currentBookData.name;
+        pageTitle = `${bookName} - ${versionName} | Leitura e Estudo Bíblico Online`;
+        pageDescription = `Leia o livro de ${bookName} na Bíblia ${versionName} online. Encontre ensinamentos, histórias e versículos para meditação e estudo bíblico.`;
+        pageKeywords = `${bookName}, livro de ${bookName}, ${bookName} na bíblia, ${bookName} ${versionName.toLowerCase()}, versículos de ${bookName}`;
+        
+        // Se tiver capítulo selecionado
+        if (selectedChapter) {
+          pageTitle = `${bookName} ${selectedChapter} - ${versionName} | Versículos para Estudo e Reflexão`;
+          pageDescription = `Leia ${bookName} capítulo ${selectedChapter} na Bíblia ${versionName}. Estude, medite e compartilhe versículos deste capítulo para crescimento espiritual.`;
+          pageKeywords = `${bookName} ${selectedChapter}, ${bookName} capítulo ${selectedChapter}, versículos de ${bookName} ${selectedChapter}, estudo de ${bookName} ${selectedChapter}, ${bookName} ${selectedChapter} explicação`;
+          
+          // Se tiver versículo selecionado
+          if (selectedVerse) {
+            pageTitle = `${bookName} ${selectedChapter}:${selectedVerse} - ${versionName} | Versículo para Meditação`;
+            pageDescription = `"${getVerseText(selectedVerse)}" - ${bookName} ${selectedChapter}:${selectedVerse} na Bíblia ${versionName}. Medite neste versículo e compartilhe esta palavra.`;
+            pageKeywords = `${bookName} ${selectedChapter}:${selectedVerse}, versículo ${bookName} ${selectedChapter}:${selectedVerse}, significado de ${bookName} ${selectedChapter}:${selectedVerse}, explicação de ${bookName} ${selectedChapter}:${selectedVerse}`;
+          }
+        }
+      }
+    }
+    
+    // URL canônica
+    const normalizedBook = currentBookData ? normalizeForUrl(currentBookData.abbrev) : '';
+    const canonicalUrl = currentBookData && selectedChapter
+      ? `${window.location.origin}/biblia/${selectedVersion?.toLowerCase()}/${normalizedBook}/${selectedChapter}`
+      : `${window.location.origin}/biblia`;
+    
+    return { pageTitle, pageDescription, pageKeywords, canonicalUrl };
+  };
+  
+  // Função auxiliar para obter o texto do versículo selecionado
+  const getVerseText = (verseNumber: number): string => {
+    if (!currentBookData || !selectedChapter) return '';
+    
+    try {
+      const chapterData = currentBookData.chapters[selectedChapter - 1];
+      if (!chapterData || !chapterData[verseNumber - 1]) return '';
+      
+      // Limitar o texto a 150 caracteres para a meta description
+      const verseText = chapterData[verseNumber - 1];
+      return verseText.length > 150 ? verseText.substring(0, 147) + '...' : verseText;
+    } catch (error) {
+      console.error('Erro ao obter texto do versículo:', error);
+      return '';
     }
   };
+
+  const { pageTitle, pageDescription, pageKeywords, canonicalUrl } = buildSeoTitles();
+
+  // Função para construir dados estruturados para SEO
+  const buildSchemaData = () => {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": pageTitle,
+      "description": pageDescription,
+      "author": {
+        "@type": "Organization",
+        "name": "Amigos de Deus"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Amigos de Deus",
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${window.location.origin}/logo.svg`,
+          "width": "192",
+          "height": "192"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": canonicalUrl
+      },
+      "datePublished": "2023-01-01T00:00:00Z",
+      "dateModified": new Date().toISOString(),
+      "about": {
+        "@type": "Thing",
+        "name": currentBookData ? `${currentBookData.name} ${selectedChapter}` : "Bíblia Sagrada"
+      },
+      "keywords": pageKeywords.split(', '),
+      "isAccessibleForFree": "True",
+      "inLanguage": "pt-BR"
+    };
+  };
+
+  // Função para construir dados de breadcrumb para SEO
+  const buildBreadcrumbData = () => {
+    const items = [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Início",
+        "item": window.location.origin
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Bíblia",
+        "item": `${window.location.origin}/biblia`
+      }
+    ];
+
+    if (selectedVersion) {
+      const versionName = bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion;
+      items.push({
+        "@type": "ListItem",
+        "position": 3,
+        "name": versionName,
+        "item": `${window.location.origin}/biblia/${selectedVersion.toLowerCase()}`
+      });
+
+      if (currentBookData) {
+        items.push({
+          "@type": "ListItem",
+          "position": 4,
+          "name": currentBookData.name,
+          "item": `${window.location.origin}/biblia/${selectedVersion.toLowerCase()}/${normalizeForUrl(currentBookData.abbrev)}`
+        });
+
+        if (selectedChapter) {
+          items.push({
+            "@type": "ListItem",
+            "position": 5,
+            "name": `Capítulo ${selectedChapter}`,
+            "item": `${window.location.origin}/biblia/${selectedVersion.toLowerCase()}/${normalizeForUrl(currentBookData.abbrev)}/${selectedChapter}`
+          });
+        }
+      }
+    }
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": items
+    };
+  };
+
+  const schemaData = buildSchemaData();
+  const breadcrumbData = buildBreadcrumbData();
 
   // Componente customizado para o select de livros
   const CustomBookSelect = () => {
@@ -517,6 +682,7 @@ const Bible: React.FC = () => {
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
+        <meta name="keywords" content={pageKeywords} />
         <link rel="canonical" href={canonicalUrl} />
         
         {/* Meta tags adicionais para SEO */}
@@ -530,12 +696,14 @@ const Bible: React.FC = () => {
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         
-        {/* Keywords relevantes para SEO */}
-        <meta name="keywords" content={`bíblia online, ${bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion}, ${currentBookData ? getBookName(currentBookData.abbrev) : 'bíblia sagrada'}, versículos bíblicos, estudo bíblico`} />
-        
         {/* Dados estruturados JSON-LD para SEO */}
         <script type="application/ld+json">
-          {JSON.stringify(schemaData)}
+          {JSON.stringify(buildSchemaData())}
+        </script>
+        
+        {/* Breadcrumbs estruturados para SEO */}
+        <script type="application/ld+json">
+          {JSON.stringify(buildBreadcrumbData())}
         </script>
         
         {/* Preload para melhorar performance */}
@@ -647,6 +815,108 @@ const Bible: React.FC = () => {
               <ChevronRight size={20} className="ml-1" />
             </button>
           </div>
+          
+          {/* Seção de conteúdo para SEO */}
+          {currentBookData && (
+            <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+              <h2 className="text-2xl font-bold mb-6">Sobre {currentBookData.name}</h2>
+              
+              {(() => {
+                const bookDesc = getBookDescription(currentBookData.abbrev);
+                if (bookDesc) {
+                  return (
+                    <div className="prose dark:prose-invert max-w-none space-y-6">
+                      <div>
+                        <h3 className="text-xl font-semibold">Visão Geral</h3>
+                        <p>{bookDesc.overview}</p>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold">Informações Básicas</h3>
+                        <ul className="list-none space-y-2">
+                          <li><strong>Autor:</strong> {bookDesc.author}</li>
+                          <li><strong>Data:</strong> {bookDesc.date}</li>
+                          <li><strong>Categoria:</strong> {bookDesc.category}</li>
+                          <li><strong>Tema Principal:</strong> {bookDesc.theme}</li>
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold">Propósito</h3>
+                        <p>{bookDesc.purpose}</p>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold">Contexto Histórico</h3>
+                        <p>{bookDesc.historicalContext}</p>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold">Significado Teológico</h3>
+                        <p>{bookDesc.theologicalSignificance}</p>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold">Aplicação Prática</h3>
+                        <p>{bookDesc.practicalApplication}</p>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold">Versículos-Chave</h3>
+                        <ul className="list-none space-y-2">
+                          {bookDesc.keyVerses.map((verse, index) => (
+                            <li key={index} className="italic">"{verse}"</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold">Personagens Principais</h3>
+                        <ul className="list-disc list-inside">
+                          {bookDesc.mainCharacters.map((character, index) => (
+                            <li key={index}>{character}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold">Estrutura do Livro</h3>
+                        <ul className="list-disc list-inside">
+                          {bookDesc.outline.map((section, index) => (
+                            <li key={index}>{section}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  );
+                }
+
+                // Fallback para livros que ainda não têm descrição detalhada
+                return (
+                  <div className="prose dark:prose-invert max-w-none">
+                    <p>
+                      O livro de {currentBookData.name} é uma parte importante da Bíblia Sagrada. 
+                      Nesta página, você pode ler {currentBookData.name} capítulo {selectedChapter} na versão {bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion}.
+                    </p>
+                    
+                    <h3 className="text-lg font-semibold mt-4">Estudo Bíblico de {currentBookData.name}</h3>
+                    <p>
+                      Estudar {currentBookData.name} pode trazer revelações importantes para sua vida espiritual. 
+                      Este livro contém {currentBookData.chapters.length} capítulos e está disponível em diversas traduções da Bíblia.
+                    </p>
+                    
+                    <h3 className="text-lg font-semibold mt-4">Como Utilizar Esta Ferramenta</h3>
+                    <ul>
+                      <li>Navegue facilmente entre capítulos e versículos de {currentBookData.name}</li>
+                      <li>Compare diferentes versões da Bíblia</li>
+                      <li>Compartilhe versículos específicos com amigos</li>
+                      <li>Estude a palavra de Deus em qualquer dispositivo</li>
+                    </ul>
+                  </div>
+                );
+              })()}
+            </div>
+          )}
         </div>
       )}
     </div>
