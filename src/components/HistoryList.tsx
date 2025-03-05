@@ -3,14 +3,14 @@ import { History } from 'lucide-react';
 import type { SavedGuidance } from '../types';
 
 interface HistoryListProps {
-  history: SavedGuidance[];
+  items: SavedGuidance[];
   onDelete: (id: number) => void;
-  onNewConsultation: () => void;
+  onNewConsultation?: () => void;
   formatDate: (date: string) => string;
 }
 
 export const HistoryList: React.FC<HistoryListProps> = ({
-  history,
+  items,
   onDelete,
   onNewConsultation,
   formatDate
@@ -21,19 +21,21 @@ export const HistoryList: React.FC<HistoryListProps> = ({
       <h2 className="text-xl font-semibold">Histórico de Consultas</h2>
     </div>
     
-    {history.length === 0 ? (
+    {items.length === 0 ? (
       <div className="text-center py-8 text-gray-500 dark:text-gray-400">
         <p>Você ainda não salvou nenhuma consulta.</p>
-        <button
-          onClick={onNewConsultation}
-          className="mt-4 text-blue-600 dark:text-blue-400 hover:underline"
-        >
-          Fazer uma nova consulta
-        </button>
+        {onNewConsultation && (
+          <button
+            onClick={onNewConsultation}
+            className="mt-4 text-blue-600 dark:text-blue-400 hover:underline"
+          >
+            Fazer uma nova consulta
+          </button>
+        )}
       </div>
     ) : (
       <div className="space-y-6">
-        {history.map((item) => (
+        {items.map((item) => (
           <div key={item.id} className="border dark:border-gray-700 rounded-lg p-4">
             <div className="flex justify-between items-start mb-3">
               <div>
