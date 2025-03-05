@@ -1,0 +1,102 @@
+==== PROMPTS DE TESTE PARA VERSESDATABASE ====
+
+1. EMOÇÕES BÁSICAS
+------------------
+"Estou me sentindo muito ansioso e com medo do futuro"
+"Hoje estou triste e sozinho"
+"Sinto muita raiva e frustração"
+"Estou feliz e agradecido"
+"Me sinto culpado por algo que fiz"
+"Preciso de paz interior"
+
+2. EMOÇÕES COMBINADAS
+--------------------
+"Estou ansioso com meu trabalho mas também esperançoso"
+"Sinto culpa e preciso de perdão, mas tenho medo de me aproximar de Deus"
+"Estou em paz mas preciso de sabedoria para uma decisão"
+"Me sinto triste mas confiante que Deus tem um propósito"
+"Tenho medo mas quero ser forte"
+
+3. SITUAÇÕES ESPECÍFICAS
+-----------------------
+"Preciso tomar uma decisão importante e não sei o que fazer"
+"Perdi alguém muito importante e estou de luto"
+"Estou começando um novo projeto e preciso de direção"
+"Vou fazer uma cirurgia e estou com medo"
+"Tenho uma entrevista de emprego importante"
+
+4. CRISES DE FÉ
+--------------
+"Às vezes sinto que Deus está distante"
+"Tenho muitas dúvidas sobre minha fé"
+"Não sinto mais a presença de Deus como antes"
+"Por que Deus permite o sofrimento?"
+"Estou questionando minhas crenças"
+
+5. BUSCA DE PROPÓSITO
+--------------------
+"Qual é o propósito de Deus para minha vida?"
+"Não sei qual caminho seguir"
+"Preciso encontrar minha vocação"
+"Quero saber qual é a vontade de Deus"
+"Me sinto perdido na vida"
+
+6. RELACIONAMENTOS
+-----------------
+"Preciso perdoar alguém mas está difícil"
+"Estou tendo problemas no meu casamento"
+"Me sinto rejeitado pelos outros"
+"Conflitos familiares me deixam angustiado"
+"Como amar pessoas difíceis?"
+
+7. SITUAÇÕES DO DIA A DIA
+------------------------
+"Estresse no trabalho está me consumindo"
+"Preocupado com as contas e finanças"
+"Problemas com os filhos me deixam ansioso"
+"Pressão dos estudos está muito grande"
+"Rotina está me deixando exausto"
+
+8. BUSCA POR CURA
+----------------
+"Preciso de cura emocional"
+"Tenho traumas do passado que me perseguem"
+"Quero me libertar de vícios"
+"Como superar uma depressão?"
+"Preciso de restauração interior"
+
+9. MOMENTOS DE TRANSIÇÃO
+-----------------------
+"Estou passando por mudanças difíceis"
+"Preciso recomeçar minha vida"
+"Medo de mudanças no trabalho"
+"Como lidar com um novo começo?"
+"Mudança de cidade está me deixando ansioso"
+
+10. BUSCA POR CRESCIMENTO
+------------------------
+"Quero crescer espiritualmente"
+"Preciso de mais sabedoria"
+"Como posso fortalecer minha fé?"
+"Desejo ser mais parecido com Jesus"
+"Como desenvolver mais confiança em Deus?"
+
+==== INSTRUÇÕES DE USO ====
+
+1. Use estes prompts para testar:
+- Detecção de categorias de sentimentos
+- Relevância dos versículos retornados
+- Adequação das citações de apoio
+- Pertinência das dicas práticas
+
+2. Observe:
+- Quais categorias precisam de mais versículos
+- Quais emoções não estão sendo bem detectadas
+- Onde as recomendações podem ser mais precisas
+- Consistência das respostas
+
+3. Registre:
+- Respostas inesperadas
+- Categorias não detectadas
+- Combinações de emoções não tratadas
+- Sugestões de melhoria 

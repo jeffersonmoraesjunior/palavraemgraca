@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Book, Share, Heart, Search } from 'lucide-react';
 import { DailyVerse, FeelingInput, GuidanceDisplay, HistoryList } from '../components';
-import type { AIResponse, SavedGuidance } from '../types';
-import { getDailyVerse, getPersonalizedGuidance } from '../utils/ai';
+import type { SavedGuidance } from '../types';
+import { getRandomVerse as getDailyVerse, getPersonalizedGuidance, AIResponse } from '../data/versesDatabase';
 
 interface HomeProps {
   theme: { isDark: boolean; fontSize: number };
@@ -340,7 +340,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
         )}
         
         {/* Seção de recursos da Bíblia */}
-        <section className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-10">
+        {/* <section className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-10">
           <h2 className="text-2xl font-semibold mb-4 text-indigo-600 dark:text-indigo-400">Recursos Bíblicos</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <div className="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg flex flex-col items-center text-center">
@@ -383,7 +383,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
               </Link>
             </div>
           </div>
-        </section>
+        </section> */}
         
         {/* Seção de conteúdo SEO */}
         <section className="mt-16 bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
