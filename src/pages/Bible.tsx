@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
+import { getBookDescription } from '../data/bibleBookDescriptions';
 
 // Tipos para a estrutura da Bíblia
 interface BibleVerse {
@@ -818,36 +819,102 @@ const Bible: React.FC = () => {
           {/* Seção de conteúdo para SEO */}
           {currentBookData && (
             <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-              <h2 className="text-xl font-bold mb-4">Sobre {currentBookData.name}</h2>
-              <div className="prose dark:prose-invert max-w-none">
-                <p>
-                  O livro de {currentBookData.name} é uma parte importante da Bíblia Sagrada. 
-                  Nesta página, você pode ler {currentBookData.name} capítulo {selectedChapter} na versão {bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion}.
-                </p>
-                
-                <h3 className="text-lg font-semibold mt-4">Estudo Bíblico de {currentBookData.name}</h3>
-                <p>
-                  Estudar {currentBookData.name} pode trazer revelações importantes para sua vida espiritual. 
-                  Este livro contém {currentBookData.chapters.length} capítulos e está disponível em diversas traduções da Bíblia.
-                </p>
-                
-                <h3 className="text-lg font-semibold mt-4">Como Utilizar Esta Ferramenta</h3>
-                <p>
-                  Nossa ferramenta de leitura bíblica permite que você:
-                </p>
-                <ul>
-                  <li>Navegue facilmente entre capítulos e versículos de {currentBookData.name}</li>
-                  <li>Compare diferentes versões da Bíblia</li>
-                  <li>Compartilhe versículos específicos com amigos</li>
-                  <li>Estude a palavra de Deus em qualquer dispositivo</li>
-                </ul>
-                
-                <h3 className="text-lg font-semibold mt-4">Versículos Populares de {currentBookData.name}</h3>
-                <p>
-                  {currentBookData.name} contém diversos versículos inspiradores que têm ajudado pessoas em todo o mundo.
-                  Explore o capítulo {selectedChapter} acima para descobrir palavras de sabedoria, conforto e orientação.
-                </p>
-              </div>
+              <h2 className="text-2xl font-bold mb-6">Sobre {currentBookData.name}</h2>
+              
+              {(() => {
+                const bookDesc = getBookDescription(currentBookData.abbrev);
+                if (bookDesc) {
+                  return (
+                    <div className="prose dark:prose-invert max-w-none space-y-6">
+                      <div>
+                        <h3 className="text-xl font-semibold">Visão Geral</h3>
+                        <p>{bookDesc.overview}</p>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold">Informações Básicas</h3>
+                        <ul className="list-none space-y-2">
+                          <li><strong>Autor:</strong> {bookDesc.author}</li>
+                          <li><strong>Data:</strong> {bookDesc.date}</li>
+                          <li><strong>Categoria:</strong> {bookDesc.category}</li>
+                          <li><strong>Tema Principal:</strong> {bookDesc.theme}</li>
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold">Propósito</h3>
+                        <p>{bookDesc.purpose}</p>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold">Contexto Histórico</h3>
+                        <p>{bookDesc.historicalContext}</p>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold">Significado Teológico</h3>
+                        <p>{bookDesc.theologicalSignificance}</p>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold">Aplicação Prática</h3>
+                        <p>{bookDesc.practicalApplication}</p>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold">Versículos-Chave</h3>
+                        <ul className="list-none space-y-2">
+                          {bookDesc.keyVerses.map((verse, index) => (
+                            <li key={index} className="italic">"{verse}"</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold">Personagens Principais</h3>
+                        <ul className="list-disc list-inside">
+                          {bookDesc.mainCharacters.map((character, index) => (
+                            <li key={index}>{character}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold">Estrutura do Livro</h3>
+                        <ul className="list-disc list-inside">
+                          {bookDesc.outline.map((section, index) => (
+                            <li key={index}>{section}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  );
+                }
+
+                // Fallback para livros que ainda não têm descrição detalhada
+                return (
+                  <div className="prose dark:prose-invert max-w-none">
+                    <p>
+                      O livro de {currentBookData.name} é uma parte importante da Bíblia Sagrada. 
+                      Nesta página, você pode ler {currentBookData.name} capítulo {selectedChapter} na versão {bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion}.
+                    </p>
+                    
+                    <h3 className="text-lg font-semibold mt-4">Estudo Bíblico de {currentBookData.name}</h3>
+                    <p>
+                      Estudar {currentBookData.name} pode trazer revelações importantes para sua vida espiritual. 
+                      Este livro contém {currentBookData.chapters.length} capítulos e está disponível em diversas traduções da Bíblia.
+                    </p>
+                    
+                    <h3 className="text-lg font-semibold mt-4">Como Utilizar Esta Ferramenta</h3>
+                    <ul>
+                      <li>Navegue facilmente entre capítulos e versículos de {currentBookData.name}</li>
+                      <li>Compare diferentes versões da Bíblia</li>
+                      <li>Compartilhe versículos específicos com amigos</li>
+                      <li>Estude a palavra de Deus em qualquer dispositivo</li>
+                    </ul>
+                  </div>
+                );
+              })()}
             </div>
           )}
         </div>
