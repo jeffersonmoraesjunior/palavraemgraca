@@ -31,7 +31,21 @@ export const FEELING_CATEGORIES = {
   PURPOSE: ['propósito', 'sentido', 'direção', 'chamado', 'vocação', 'missão', 'objetivo', 'destino', 'significado', 'razão', 'motivação'],
   WISDOM: ['sabedoria', 'discernimento', 'entendimento', 'conhecimento', 'compreensão', 'prudência', 'sensatez', 'juízo', 'orientação', 'direção'],
   HEALING: ['cura', 'restauração', 'recuperação', 'renovação', 'libertação', 'transformação', 'saúde', 'bem-estar', 'restabelecimento', 'regeneração'],
-  TRUST: ['confiança', 'fé', 'segurança', 'certeza', 'convicção', 'crença', 'dependência', 'entrega', 'abandono', 'rendição']
+  TRUST: ['confiança', 'fé', 'segurança', 'certeza', 'convicção', 'crença', 'dependência', 'entrega', 'abandono', 'rendição'],
+  PATIENCE: ['paciência', 'espera', 'aguardo', 'perseverança', 'persistência', 'constância', 'calma', 'tolerância'],
+  IDENTITY: ['identidade', 'quem sou', 'propósito de vida', 'chamado', 'vocação', 'significado', 'valor próprio', 'autoestima'],
+  WORSHIP: ['adoração', 'louvor', 'gratidão', 'exaltação', 'glorificar', 'celebração', 'alegria no senhor', 'presença de deus'],
+  TEMPTATION: ['tentação', 'provação', 'teste', 'desafio', 'luta', 'batalha', 'resistência', 'fraqueza'],
+  VICTORY: ['vitória', 'conquista', 'superação', 'triunfo', 'vencedor', 'sucesso', 'realização', 'alcance'],
+  CHANGE: ['mudança', 'transformação', 'novo', 'diferente', 'transição', 'adaptação', 'ajuste', 'renovação'],
+  FRIENDSHIP: ['amizade', 'companheirismo', 'relacionamento', 'parceria', 'camaradagem', 'união', 'vínculo', 'conexão'],
+  GROWTH: ['crescimento', 'desenvolvimento', 'progresso', 'evolução', 'amadurecimento', 'aprendizado', 'transformação'],
+  WORTH: ['valor', 'autoestima', 'dignidade', 'importância', 'significado', 'merecimento', 'aceitação'],
+  REST: ['descanso', 'repouso', 'relaxamento', 'tranquilidade', 'quietude', 'serenidade', 'calma'],
+  COMMITMENT: ['compromisso', 'dedicação', 'fidelidade', 'lealdade', 'perseverança', 'constância', 'firmeza'],
+  HUMILITY: ['humildade', 'mansidão', 'simplicidade', 'modéstia', 'submissão', 'docilidade', 'brandura'],
+  LEARNING: ['aprendizado', 'estudo', 'conhecimento', 'compreensão', 'entendimento', 'instrução', 'sabedoria prática'],
+  RELATIONSHIPS: ['relacionamentos', 'convivência', 'interação', 'conexão', 'vínculos', 'amizade', 'comunhão']
 };
 
 // Banco de dados de versículos
@@ -777,6 +791,157 @@ export const VERSES_DATABASE: Verse[] = [
     text: "Mas os que esperam no Senhor renovam as suas forças, sobem com asas como águias, correm e não se cansam, caminham e não se fatigam.",
     reference: "Isaías 40:31",
     categories: ["STRENGTH", "HOPE", "TRUST"]
+  },
+  {
+    text: "Portanto, meus amados irmãos, sede firmes e constantes, sempre abundantes na obra do Senhor, sabendo que o vosso trabalho não é vão no Senhor.",
+    reference: "1 Coríntios 15:58",
+    categories: ["STRENGTH", "PURPOSE", "HOPE"]
+  },
+  {
+    text: "E não nos cansemos de fazer o bem, porque a seu tempo ceifaremos, se não houvermos desfalecido.",
+    reference: "Gálatas 6:9",
+    categories: ["STRENGTH", "HOPE", "PURPOSE"]
+  },
+  {
+    text: "Sabendo que a provação da vossa fé produz paciência. Tenha, porém, a paciência a sua obra perfeita, para que sejais perfeitos e completos, sem faltar em coisa alguma.",
+    reference: "Tiago 1:3-4",
+    categories: ["STRENGTH", "FAITH_CRISIS", "WISDOM"]
+  },
+
+  // Versículos para MOMENTOS DE DECISÃO
+  {
+    text: "Confia no Senhor de todo o teu coração, e não te estribes no teu próprio entendimento. Reconhece-o em todos os teus caminhos, e ele endireitará as tuas veredas.",
+    reference: "Provérbios 3:5-6",
+    categories: ["WISDOM", "TRUST", "CONFUSION"]
+  },
+  {
+    text: "Se algum de vós tem falta de sabedoria, peça-a a Deus, que a todos dá liberalmente, e o não lança em rosto, e ser-lhe-á dada.",
+    reference: "Tiago 1:5",
+    categories: ["WISDOM", "CONFUSION", "FAITH_CRISIS"]
+  },
+  {
+    text: "E, se vos parecer mal aos vossos olhos servir ao Senhor, escolhei hoje a quem sirvais... porém eu e a minha casa serviremos ao Senhor.",
+    reference: "Josué 24:15",
+    categories: ["PURPOSE", "FAITH_CRISIS", "WISDOM"]
+  },
+
+  // Versículos para RELACIONAMENTOS
+  {
+    text: "Suportando-vos uns aos outros, e perdoando-vos uns aos outros, se alguém tiver queixa contra outro; assim como Cristo vos perdoou, assim fazei vós também.",
+    reference: "Colossenses 3:13",
+    categories: ["FORGIVENESS", "LOVE", "ANGER"]
+  },
+  {
+    text: "Melhor é serem dois do que um, porque têm melhor paga do seu trabalho. Porque se um cair, o outro levanta o seu companheiro; mas ai do que estiver só; pois, caindo, não haverá outro que o levante.",
+    reference: "Eclesiastes 4:9-10",
+    categories: ["LOVE", "LONELINESS", "STRENGTH"]
+  },
+  {
+    text: "O amigo ama em todo o tempo; e para a angústia nasce o irmão.",
+    reference: "Provérbios 17:17",
+    categories: ["LOVE", "FRIENDSHIP", "TRUST"]
+  },
+
+  // Versículos para MOMENTOS DE MUDANÇA
+  {
+    text: "Não te mandei eu? Esforça-te, e tem bom ânimo; não temas, nem te espantes; porque o Senhor teu Deus é contigo, por onde quer que andares.",
+    reference: "Josué 1:9",
+    categories: ["STRENGTH", "FEAR", "CHANGE"]
+  },
+  {
+    text: "Eis que faço uma coisa nova, e agora sairá à luz; porventura não a percebeis? Eis que porei um caminho no deserto, e rios no ermo.",
+    reference: "Isaías 43:19",
+    categories: ["HOPE", "CHANGE", "TRUST"]
+  },
+  {
+    text: "Esquecendo-me das coisas que atrás ficam, e avançando para as que estão diante de mim, prossigo para o alvo, pelo prêmio da soberana vocação de Deus em Cristo Jesus.",
+    reference: "Filipenses 3:13-14",
+    categories: ["PURPOSE", "HOPE", "CHANGE"]
+  },
+
+  // Versículos para MOMENTOS DE ESPERA
+  {
+    text: "Espera no Senhor, anima-te, e ele fortalecerá o teu coração; espera, pois, no Senhor.",
+    reference: "Salmos 27:14",
+    categories: ["PATIENCE", "TRUST", "HOPE"]
+  },
+  {
+    text: "Mas os que esperam no Senhor renovarão as suas forças, subirão com asas como águias; correrão, e não se cansarão; caminharão, e não se fatigarão.",
+    reference: "Isaías 40:31",
+    categories: ["PATIENCE", "STRENGTH", "HOPE"]
+  },
+  {
+    text: "O Senhor não retarda a sua promessa, ainda que alguns a têm por tardia; mas é longânimo para conosco, não querendo que alguns se percam, senão que todos venham a arrepender-se.",
+    reference: "2 Pedro 3:9",
+    categories: ["PATIENCE", "TRUST", "FAITH_CRISIS"]
+  },
+
+  // Versículos para IDENTIDADE EM CRISTO
+  {
+    text: "Já estou crucificado com Cristo; e vivo, não mais eu, mas Cristo vive em mim; e a vida que agora vivo na carne, vivo-a na fé do Filho de Deus, o qual me amou, e se entregou a si mesmo por mim.",
+    reference: "Gálatas 2:20",
+    categories: ["IDENTITY", "FAITH_CRISIS", "PURPOSE"]
+  },
+  {
+    text: "Mas vós sois a geração eleita, o sacerdócio real, a nação santa, o povo adquirido, para que anuncieis as virtudes daquele que vos chamou das trevas para a sua maravilhosa luz.",
+    reference: "1 Pedro 2:9",
+    categories: ["IDENTITY", "PURPOSE", "HOPE"]
+  },
+  {
+    text: "Porque somos feitura sua, criados em Cristo Jesus para as boas obras, as quais Deus preparou para que andássemos nelas.",
+    reference: "Efésios 2:10",
+    categories: ["IDENTITY", "PURPOSE", "WISDOM"]
+  },
+
+  // Versículos para MOMENTOS DE ADORAÇÃO
+  {
+    text: "Entrai por suas portas com gratidão, e em seus átrios com louvor; louvai-o, e bendizei o seu nome.",
+    reference: "Salmos 100:4",
+    categories: ["GRATITUDE", "JOY", "WORSHIP"]
+  },
+  {
+    text: "Cantai ao Senhor um cântico novo, porque ele tem feito maravilhas; a sua destra e o seu braço santo lhe alcançaram a vitória.",
+    reference: "Salmos 98:1",
+    categories: ["JOY", "WORSHIP", "GRATITUDE"]
+  },
+  {
+    text: "Alegrai-vos sempre no Senhor; outra vez digo, alegrai-vos.",
+    reference: "Filipenses 4:4",
+    categories: ["JOY", "WORSHIP", "FAITH_CRISIS"]
+  },
+
+  // Versículos para MOMENTOS DE TENTAÇÃO
+  {
+    text: "Não veio sobre vós tentação, senão humana; mas fiel é Deus, que não vos deixará tentar acima do que podeis, antes com a tentação dará também o escape, para que a possais suportar.",
+    reference: "1 Coríntios 10:13",
+    categories: ["STRENGTH", "TEMPTATION", "TRUST"]
+  },
+  {
+    text: "Vigiai e orai, para que não entreis em tentação; na verdade, o espírito está pronto, mas a carne é fraca.",
+    reference: "Mateus 26:41",
+    categories: ["TEMPTATION", "WISDOM", "STRENGTH"]
+  },
+  {
+    text: "Sujeitai-vos, pois, a Deus, resisti ao diabo, e ele fugirá de vós.",
+    reference: "Tiago 4:7",
+    categories: ["TEMPTATION", "STRENGTH", "FAITH_CRISIS"]
+  },
+
+  // Versículos para MOMENTOS DE VITÓRIA
+  {
+    text: "Mas em todas estas coisas somos mais do que vencedores, por aquele que nos amou.",
+    reference: "Romanos 8:37",
+    categories: ["VICTORY", "STRENGTH", "HOPE"]
+  },
+  {
+    text: "Graças a Deus, que nos dá a vitória por nosso Senhor Jesus Cristo.",
+    reference: "1 Coríntios 15:57",
+    categories: ["VICTORY", "GRATITUDE", "JOY"]
+  },
+  {
+    text: "Porque todo o que é nascido de Deus vence o mundo; e esta é a vitória que vence o mundo: a nossa fé.",
+    reference: "1 João 5:4",
+    categories: ["VICTORY", "FAITH_CRISIS", "STRENGTH"]
   }
 ];
 
@@ -947,6 +1112,146 @@ export const QUOTES_DATABASE: Quote[] = [
     text: "O propósito da teologia não é satisfazer nossa curiosidade, mas transformar nosso caráter.",
     author: "D.A. Carson",
     categories: ["PURPOSE", "WISDOM"]
+  },
+  {
+    text: "A fé vê o invisível, crê no incrível e recebe o impossível.",
+    author: "Corrie Ten Boom",
+    categories: ["FAITH_CRISIS", "HOPE", "TRUST"]
+  },
+  {
+    text: "Às vezes Deus permite o que odeia para realizar o que ama.",
+    author: "Joni Eareckson Tada",
+    categories: ["TRUST", "PAIN", "FAITH_CRISIS"]
+  },
+  {
+    text: "Quando você não consegue dar mais um passo, Deus não te pede dois.",
+    author: "Joyce Meyer",
+    categories: ["STRENGTH", "TRUST", "ANXIETY"]
+  },
+  {
+    text: "O que você está vivendo não é maior do que a graça que está recebendo.",
+    author: "Hernandes Dias Lopes",
+    categories: ["HOPE", "STRENGTH", "FAITH_CRISIS"]
+  },
+  {
+    text: "Você é mais do que suas lutas, mais do que suas falhas, mais do que suas conquistas. Você é amado por Deus.",
+    author: "Christine Caine",
+    categories: ["IDENTITY", "LOVE", "WORTH"]
+  },
+  {
+    text: "Sua identidade não está no que você faz, mas em quem você é em Cristo.",
+    author: "John Piper",
+    categories: ["IDENTITY", "PURPOSE", "FAITH_CRISIS"]
+  },
+  {
+    text: "Deus não chama os capacitados, Ele capacita os chamados.",
+    author: "Rick Warren",
+    categories: ["PURPOSE", "STRENGTH", "TRUST"]
+  },
+  {
+    text: "Você nunca é inútil demais para ser usado por Deus.",
+    author: "Charles Spurgeon",
+    categories: ["PURPOSE", "WORTH", "HOPE"]
+  },
+  {
+    text: "A mudança é dolorosa, mas nada é tão doloroso quanto ficar preso onde você não pertence.",
+    author: "Beth Moore",
+    categories: ["CHANGE", "GROWTH", "HOPE"]
+  },
+  {
+    text: "Às vezes os maiores momentos de crescimento vêm dos momentos mais difíceis de espera.",
+    author: "Lysa TerKeurst",
+    categories: ["PATIENCE", "GROWTH", "TRUST"]
+  },
+  {
+    text: "Deus está mais interessado em mudar seu coração do que em mudar suas circunstâncias.",
+    author: "Paul David Tripp",
+    categories: ["CHANGE", "GROWTH", "FAITH_CRISIS"]
+  },
+  {
+    text: "O crescimento espiritual não é tentar ser mais forte, mas admitir nossa fraqueza e conhecer mais a força de Deus.",
+    author: "Timothy Keller",
+    categories: ["GROWTH", "STRENGTH", "FAITH_CRISIS"]
+  },
+  {
+    text: "A paz não é a ausência de problemas, mas a presença de Cristo.",
+    author: "Sheila Walsh",
+    categories: ["PEACE", "ANXIETY", "TRUST"]
+  },
+  {
+    text: "Descanse na certeza de que Deus nunca desperdiça uma experiência.",
+    author: "Charles Stanley",
+    categories: ["PEACE", "TRUST", "PURPOSE"]
+  },
+  {
+    text: "Quando a ansiedade bate à porta, deixe a fé atender.",
+    author: "Max Lucado",
+    categories: ["ANXIETY", "FAITH_CRISIS", "PEACE"]
+  },
+  {
+    text: "O descanso verdadeiro não é a ausência de atividade, mas a presença de Deus.",
+    author: "Ann Voskamp",
+    categories: ["PEACE", "REST", "TRUST"]
+  },
+  {
+    text: "Suas circunstâncias são a plataforma de Deus para um milagre.",
+    author: "T.D. Jakes",
+    categories: ["VICTORY", "HOPE", "FAITH_CRISIS"]
+  },
+  {
+    text: "A derrota pode servir como um trampolim para a vitória.",
+    author: "A.W. Tozer",
+    categories: ["VICTORY", "HOPE", "STRENGTH"]
+  },
+  {
+    text: "Não é o tamanho da sua fé que importa, mas o tamanho do seu Deus.",
+    author: "Mark Batterson",
+    categories: ["FAITH_CRISIS", "TRUST", "VICTORY"]
+  },
+  {
+    text: "Sua história de superação pode ser o capítulo de esperança no livro da vida de alguém.",
+    author: "Steven Furtick",
+    categories: ["VICTORY", "HOPE", "PURPOSE"]
+  },
+  {
+    text: "O amor de Deus não é baseado em nosso desempenho, mas em Seu caráter.",
+    author: "David Jeremiah",
+    categories: ["LOVE", "WORTH", "IDENTITY"]
+  },
+  {
+    text: "O perdão é libertar um prisioneiro e descobrir que o prisioneiro era você.",
+    author: "Lewis B. Smedes",
+    categories: ["FORGIVENESS", "HEALING", "LOVE"]
+  },
+  {
+    text: "Amar como Cristo é escolher amar especialmente quando não sentimos vontade.",
+    author: "Gary Chapman",
+    categories: ["LOVE", "STRENGTH", "RELATIONSHIPS"]
+  },
+  {
+    text: "O amor não é um sentimento a ser mantido, mas um compromisso a ser cumprido.",
+    author: "Elisabeth Elliot",
+    categories: ["LOVE", "COMMITMENT", "RELATIONSHIPS"]
+  },
+  {
+    text: "A sabedoria não é apenas conhecer a verdade, mas viver a verdade que conhecemos.",
+    author: "Ravi Zacharias",
+    categories: ["WISDOM", "PURPOSE", "GROWTH"]
+  },
+  {
+    text: "Às vezes Deus permite perguntas sem resposta para nos ensinar a confiar sem entender.",
+    author: "Charles Swindoll",
+    categories: ["WISDOM", "TRUST", "FAITH_CRISIS"]
+  },
+  {
+    text: "A maior sabedoria é saber que precisamos de mais sabedoria.",
+    author: "Chuck Swindoll",
+    categories: ["WISDOM", "HUMILITY", "GROWTH"]
+  },
+  {
+    text: "O discernimento não é saber a diferença entre certo e errado, é saber a diferença entre certo e quase certo.",
+    author: "Charles Spurgeon",
+    categories: ["WISDOM", "CONFUSION", "FAITH_CRISIS"]
   }
 ];
 
@@ -1096,6 +1401,118 @@ export const TIPS_DATABASE: Tip[] = [
   {
     text: "Estabeleça uma rotina de autocuidado espiritual que inclua oração, leitura bíblica e momentos de silêncio.",
     categories: ["HEALING", "WISDOM"]
+  },
+  {
+    text: "Crie um 'diário de gratidão espiritual' onde você registra experiências diárias com Deus e lições aprendidas.",
+    categories: ["GROWTH", "GRATITUDE", "WISDOM"]
+  },
+  {
+    text: "Estabeleça um 'tempo de qualidade' diário com Deus, mesmo que seja curto, mas seja consistente.",
+    categories: ["GROWTH", "FAITH_CRISIS", "WORSHIP"]
+  },
+  {
+    text: "Encontre um mentor espiritual ou parceiro de oração para compartilhar sua jornada de fé.",
+    categories: ["GROWTH", "FRIENDSHIP", "WISDOM"]
+  },
+  {
+    text: "Crie uma playlist de louvor personalizada para diferentes momentos do seu dia.",
+    categories: ["WORSHIP", "JOY", "PEACE"]
+  },
+  {
+    text: "Pratique a técnica 4-7-8: inspire por 4 segundos, segure por 7, expire por 8, enquanto medita em um versículo.",
+    categories: ["ANXIETY", "PEACE", "WISDOM"]
+  },
+  {
+    text: "Crie cartões com versículos específicos para ansiedade e os mantenha sempre à mão.",
+    categories: ["ANXIETY", "FAITH_CRISIS", "PEACE"]
+  },
+  {
+    text: "Estabeleça limites saudáveis com mídias sociais e notícias que podem aumentar sua ansiedade.",
+    categories: ["ANXIETY", "PEACE", "WISDOM"]
+  },
+  {
+    text: "Desenvolva uma rotina noturna relaxante que inclua oração e gratidão.",
+    categories: ["ANXIETY", "PEACE", "REST"]
+  },
+  {
+    text: "Pratique a arte de ouvir ativamente, sem interromper ou julgar, como Jesus fazia.",
+    categories: ["RELATIONSHIPS", "LOVE", "WISDOM"]
+  },
+  {
+    text: "Antes de responder em conflitos, faça uma pausa para orar e buscar a perspectiva de Deus.",
+    categories: ["RELATIONSHIPS", "PEACE", "WISDOM"]
+  },
+  {
+    text: "Estabeleça um tempo regular para cultivar amizades cristãs significativas.",
+    categories: ["RELATIONSHIPS", "FRIENDSHIP", "GROWTH"]
+  },
+  {
+    text: "Pratique atos intencionais de bondade, mesmo com pessoas difíceis.",
+    categories: ["RELATIONSHIPS", "LOVE", "STRENGTH"]
+  },
+  {
+    text: "Mantenha um diário das promessas de Deus para tempos de transição.",
+    categories: ["CHANGE", "TRUST", "HOPE"]
+  },
+  {
+    text: "Crie uma lista de 'âncoras espirituais' - verdades imutáveis para se apoiar durante mudanças.",
+    categories: ["CHANGE", "FAITH_CRISIS", "TRUST"]
+  },
+  {
+    text: "Estabeleça pequenas rotinas diárias que te ajudem a manter estabilidade em meio a mudanças.",
+    categories: ["CHANGE", "PEACE", "WISDOM"]
+  },
+  {
+    text: "Encontre maneiras de servir aos outros mesmo durante seus próprios períodos de transição.",
+    categories: ["CHANGE", "PURPOSE", "GROWTH"]
+  },
+  {
+    text: "Escreva e declare diariamente verdades bíblicas sobre sua identidade em Cristo.",
+    categories: ["IDENTITY", "WORTH", "FAITH_CRISIS"]
+  },
+  {
+    text: "Crie um 'mural de identidade' com versículos e promessas sobre quem você é em Cristo.",
+    categories: ["IDENTITY", "WORTH", "HOPE"]
+  },
+  {
+    text: "Pratique substituir pensamentos negativos por verdades bíblicas sobre sua identidade.",
+    categories: ["IDENTITY", "HEALING", "WISDOM"]
+  },
+  {
+    text: "Mantenha um registro de como Deus tem sido fiel em sua vida para fortalecer sua identidade Nele.",
+    categories: ["IDENTITY", "GRATITUDE", "TRUST"]
+  },
+  {
+    text: "Desenvolva uma 'estratégia de batalha espiritual' personalizada com versículos e orações específicas.",
+    categories: ["VICTORY", "STRENGTH", "FAITH_CRISIS"]
+  },
+  {
+    text: "Celebre pequenas vitórias diárias e mantenha um registro delas.",
+    categories: ["VICTORY", "JOY", "GRATITUDE"]
+  },
+  {
+    text: "Crie uma rede de apoio para compartilhar tanto lutas quanto vitórias.",
+    categories: ["VICTORY", "FRIENDSHIP", "STRENGTH"]
+  },
+  {
+    text: "Estabeleça metas espirituais realistas e celebre seu progresso.",
+    categories: ["VICTORY", "GROWTH", "PURPOSE"]
+  },
+  {
+    text: "Antes de decisões importantes, dedique um tempo específico para jejum e oração.",
+    categories: ["WISDOM", "TRUST", "FAITH_CRISIS"]
+  },
+  {
+    text: "Mantenha um diário de 'lições aprendidas' para crescer em sabedoria.",
+    categories: ["WISDOM", "GROWTH", "LEARNING"]
+  },
+  {
+    text: "Busque conselhos de pessoas maduras na fé antes de tomar decisões significativas.",
+    categories: ["WISDOM", "RELATIONSHIPS", "TRUST"]
+  },
+  {
+    text: "Desenvolva o hábito de refletir diariamente sobre como aplicar a Palavra em situações práticas.",
+    categories: ["WISDOM", "GROWTH", "PURPOSE"]
   }
 ];
 
@@ -1213,18 +1630,15 @@ export function getVerseByCategories(categories: string[]): string {
   
   // Filtra versículos que correspondem às categorias
   let matchingVerses = VERSES_DATABASE.filter(verse => 
-    primaryCategories.every(category => verse.categories.includes(category))
+    primaryCategories.some(category => verse.categories.includes(category))
   );
-  
-  if (matchingVerses.length === 0) {
-    matchingVerses = VERSES_DATABASE.filter(verse => 
-      primaryCategories.some(category => verse.categories.includes(category))
-    );
-  }
   
   if (matchingVerses.length === 0) {
     return getRandomVerse();
   }
+  
+  // Aplica sistema de aprendizado para ajustar relevância
+  matchingVerses = adjustRelevance(matchingVerses, categories, 'verse');
   
   // Filtra versículos recentes
   const session = getSession();
@@ -1239,14 +1653,7 @@ export function getVerseByCategories(categories: string[]): string {
     availableVerses = matchingVerses;
   }
   
-  // Prioriza versículos com mais categorias em comum
-  availableVerses.sort((a, b) => {
-    const aMatches = primaryCategories.filter(cat => a.categories.includes(cat)).length;
-    const bMatches = primaryCategories.filter(cat => b.categories.includes(cat)).length;
-    return bMatches - aMatches;
-  });
-  
-  // Seleciona um versículo aleatório entre os mais relevantes
+  // Seleciona um dos versículos mais relevantes
   const topVerses = availableVerses.slice(0, 3);
   const randomIndex = Math.floor(Math.random() * topVerses.length);
   const verse = topVerses[randomIndex];
@@ -1274,9 +1681,12 @@ export function getQuoteByCategories(categories: string[]): string {
     return `${quote.text} - ${quote.author}`;
   }
   
+  // Aplica sistema de aprendizado para ajustar relevância
+  const sortedQuotes = adjustRelevance(matchingQuotes, categories, 'quote');
+  
   // Filtra citações recentes
   const session = getSession();
-  let availableQuotes = matchingQuotes.filter(quote => 
+  let availableQuotes = sortedQuotes.filter(quote => 
     !session.recentQuotes.includes(quote.author)
   );
   
@@ -1284,11 +1694,13 @@ export function getQuoteByCategories(categories: string[]): string {
   if (availableQuotes.length === 0) {
     session.recentQuotes = [];
     updateSession(session);
-    availableQuotes = matchingQuotes;
+    availableQuotes = sortedQuotes;
   }
   
-  const randomIndex = Math.floor(Math.random() * availableQuotes.length);
-  const quote = availableQuotes[randomIndex];
+  // Seleciona uma das citações mais relevantes
+  const topQuotes = availableQuotes.slice(0, 3);
+  const randomIndex = Math.floor(Math.random() * topQuotes.length);
+  const quote = topQuotes[randomIndex];
   
   // Registra a citação usada
   addRecentItem('quotes', quote.author);
@@ -1307,9 +1719,12 @@ export function getTipsByCategories(categories: string[], count: number = 3): st
     tip.categories.some(category => categories.includes(category))
   );
   
+  // Aplica sistema de aprendizado para ajustar relevância
+  const sortedTips = adjustRelevance(matchingTips, categories, 'tip');
+  
   // Filtra dicas recentes
   const session = getSession();
-  let availableTips = matchingTips.filter(tip => 
+  let availableTips = sortedTips.filter(tip => 
     !session.recentTips.includes(tip.text)
   );
   
@@ -1327,12 +1742,11 @@ export function getTipsByCategories(categories: string[], count: number = 3): st
   if (availableTips.length < count) {
     session.recentTips = [];
     updateSession(session);
-    availableTips = matchingTips;
+    availableTips = sortedTips;
   }
   
-  // Embaralha as dicas e seleciona o número solicitado
-  const shuffledTips = [...availableTips].sort(() => Math.random() - 0.5);
-  const selectedTips = shuffledTips.slice(0, count);
+  // Seleciona as dicas mais relevantes
+  const selectedTips = availableTips.slice(0, count);
   
   // Registra as dicas usadas
   selectedTips.forEach(tip => addRecentItem('tips', tip.text));
@@ -1345,31 +1759,42 @@ export interface AIResponse {
   verse: string;
   support: string;
   tips: string[];
+  categories: string[]; // Adicionado para feedback
+  verseRef: string;    // Adicionado para feedback
+  quoteAuthor: string; // Adicionado para feedback
+  tipIds: string[];    // Adicionado para feedback
 }
 
 /**
  * Obtém orientação personalizada com base nos sentimentos do usuário
  * @param feeling Texto descrevendo os sentimentos do usuário
- * @returns Objeto com versículo, citação de apoio e dicas práticas
+ * @returns Objeto com versículo, citação de apoio, dicas práticas e metadados para feedback
  */
 export function getPersonalizedGuidance(feeling: string): AIResponse {
   try {
     // Detecta categorias de sentimentos no texto
     const categories = detectFeelingCategories(feeling);
     
-    // Obtém um versículo relevante para as categorias detectadas
+    // Obtém um versículo relevante
     const verse = getVerseByCategories(categories);
+    const verseRef = verse.match(/\((.*?)\)$/)?.[1] || '';
     
-    // Obtém uma citação relevante para as categorias detectadas
+    // Obtém uma citação relevante
     const support = getQuoteByCategories(categories);
+    const quoteAuthor = support.split(' - ')?.[1] || '';
     
-    // Obtém dicas práticas relevantes para as categorias detectadas
+    // Obtém dicas práticas
     const tips = getTipsByCategories(categories, 3);
     
     return {
       verse,
       support,
-      tips
+      tips,
+      // Metadados para feedback
+      categories,
+      verseRef,
+      quoteAuthor,
+      tipIds: tips
     };
   } catch (error) {
     console.error('Error generating personalized guidance:', error);
@@ -1380,7 +1805,216 @@ export function getPersonalizedGuidance(feeling: string): AIResponse {
         "Faça uma pausa para respirar profundamente",
         "Dedique um momento para oração",
         "Escreva seus sentimentos em um diário"
+      ],
+      categories: ['ANXIETY'],
+      verseRef: "Filipenses 4:6-7",
+      quoteAuthor: "Max Lucado",
+      tipIds: [
+        "Faça uma pausa para respirar profundamente",
+        "Dedique um momento para oração",
+        "Escreva seus sentimentos em um diário"
       ]
     };
   }
-} 
+}
+
+// Interfaces para o sistema de aprendizado
+export interface UserFeedback {
+  verseRef: string;
+  quoteAuthor: string;
+  tipId: string;
+  sentiment: string[];
+  rating: number; // 1-5
+  helpful: boolean;
+  timestamp: number;
+}
+
+export interface LearningMetrics {
+  categoryCorrelations: {[key: string]: {[key: string]: number}};
+  verseEffectiveness: {[key: string]: number};
+  quoteEffectiveness: {[key: string]: number};
+  tipEffectiveness: {[key: string]: number};
+}
+
+export interface UserProfile {
+  id: string;
+  preferences: {[key: string]: number};
+  history: UserFeedback[];
+  learningMetrics: LearningMetrics;
+}
+
+// Chaves para armazenamento
+const LEARNING_DATA_KEY = 'amigosDeDeus_learning';
+const USER_PROFILE_KEY = 'amigosDeDeus_userProfile';
+
+/**
+ * Gerencia o sistema de aprendizado
+ */
+function getLearningData(): LearningMetrics {
+  try {
+    const data = localStorage.getItem(LEARNING_DATA_KEY);
+    return data ? JSON.parse(data) : {
+      categoryCorrelations: {},
+      verseEffectiveness: {},
+      quoteEffectiveness: {},
+      tipEffectiveness: {}
+    };
+  } catch {
+    return {
+      categoryCorrelations: {},
+      verseEffectiveness: {},
+      quoteEffectiveness: {},
+      tipEffectiveness: {}
+    };
+  }
+}
+
+function getUserProfile(): UserProfile {
+  try {
+    const profile = localStorage.getItem(USER_PROFILE_KEY);
+    if (profile) {
+      return JSON.parse(profile);
+    }
+  } catch {}
+  
+  // Cria novo perfil se não existir
+  const newProfile: UserProfile = {
+    id: Math.random().toString(36).substring(2),
+    preferences: {},
+    history: [],
+    learningMetrics: getLearningData()
+  };
+  
+  try {
+    localStorage.setItem(USER_PROFILE_KEY, JSON.stringify(newProfile));
+  } catch (error) {
+    console.warn('Erro ao salvar perfil:', error);
+  }
+  
+  return newProfile;
+}
+
+function updateLearningMetrics(feedback: UserFeedback) {
+  const learningData = getLearningData();
+  const profile = getUserProfile();
+  
+  // Atualiza correlações entre categorias
+  feedback.sentiment.forEach(cat1 => {
+    if (!learningData.categoryCorrelations[cat1]) {
+      learningData.categoryCorrelations[cat1] = {};
+    }
+    
+    feedback.sentiment.forEach(cat2 => {
+      if (cat1 !== cat2) {
+        learningData.categoryCorrelations[cat1][cat2] = 
+          (learningData.categoryCorrelations[cat1][cat2] || 0) + (feedback.helpful ? 1 : -0.5);
+      }
+    });
+  });
+  
+  // Atualiza efetividade dos conteúdos
+  const effectiveness = feedback.helpful ? 1 : -0.5;
+  learningData.verseEffectiveness[feedback.verseRef] = 
+    (learningData.verseEffectiveness[feedback.verseRef] || 0) + effectiveness;
+  learningData.quoteEffectiveness[feedback.quoteAuthor] = 
+    (learningData.quoteEffectiveness[feedback.quoteAuthor] || 0) + effectiveness;
+  learningData.tipEffectiveness[feedback.tipId] = 
+    (learningData.tipEffectiveness[feedback.tipId] || 0) + effectiveness;
+  
+  // Atualiza preferências do usuário
+  feedback.sentiment.forEach(category => {
+    profile.preferences[category] = 
+      (profile.preferences[category] || 0) + (feedback.helpful ? 1 : -0.5);
+  });
+  
+  // Adiciona ao histórico
+  profile.history.push(feedback);
+  if (profile.history.length > 100) {
+    profile.history.shift(); // Mantém apenas os 100 mais recentes
+  }
+  
+  // Atualiza métricas de aprendizado do perfil
+  profile.learningMetrics = learningData;
+  
+  try {
+    localStorage.setItem(LEARNING_DATA_KEY, JSON.stringify(learningData));
+    localStorage.setItem(USER_PROFILE_KEY, JSON.stringify(profile));
+  } catch (error) {
+    console.warn('Erro ao salvar dados de aprendizado:', error);
+  }
+}
+
+/**
+ * Ajusta a relevância dos conteúdos com base no aprendizado
+ */
+function adjustRelevance(items: Array<any>, categories: string[], type: 'verse' | 'quote' | 'tip'): Array<any> {
+  const learningData = getLearningData();
+  const profile = getUserProfile();
+  
+  return items.sort((a, b) => {
+    let scoreA = 0;
+    let scoreB = 0;
+    
+    // Pontuação baseada na efetividade histórica
+    if (type === 'verse') {
+      scoreA += learningData.verseEffectiveness[a.reference] || 0;
+      scoreB += learningData.verseEffectiveness[b.reference] || 0;
+    } else if (type === 'quote') {
+      scoreA += learningData.quoteEffectiveness[a.author] || 0;
+      scoreB += learningData.quoteEffectiveness[b.author] || 0;
+    } else {
+      scoreA += learningData.tipEffectiveness[a.text] || 0;
+      scoreB += learningData.tipEffectiveness[b.text] || 0;
+    }
+    
+    // Pontuação baseada nas correlações de categoria
+    categories.forEach(mainCat => {
+      a.categories.forEach(itemCat => {
+        if (learningData.categoryCorrelations[mainCat]?.[itemCat]) {
+          scoreA += learningData.categoryCorrelations[mainCat][itemCat];
+        }
+      });
+      
+      b.categories.forEach(itemCat => {
+        if (learningData.categoryCorrelations[mainCat]?.[itemCat]) {
+          scoreB += learningData.categoryCorrelations[mainCat][itemCat];
+        }
+      });
+    });
+    
+    // Pontuação baseada nas preferências do usuário
+    a.categories.forEach(cat => {
+      scoreA += profile.preferences[cat] || 0;
+    });
+    
+    b.categories.forEach(cat => {
+      scoreB += profile.preferences[cat] || 0;
+    });
+    
+    return scoreB - scoreA;
+  });
+}
+
+/**
+ * Registra feedback do usuário sobre o conteúdo recebido
+ */
+export function provideFeedback(
+  verseRef: string,
+  quoteAuthor: string,
+  tipId: string,
+  sentiment: string[],
+  rating: number,
+  helpful: boolean
+) {
+  const feedback: UserFeedback = {
+    verseRef,
+    quoteAuthor,
+    tipId,
+    sentiment,
+    rating,
+    helpful,
+    timestamp: Date.now()
+  };
+  
+  updateLearningMetrics(feedback);
+}
