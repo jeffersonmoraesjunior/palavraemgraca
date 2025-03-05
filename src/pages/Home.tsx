@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import { Book } from 'lucide-react';
 import { DailyVerse, FeelingInput, GuidanceDisplay, HistoryList } from '../components';
 import type { AIResponse, SavedGuidance } from '../types';
 import { getDailyVerse, getPersonalizedGuidance } from '../utils/ai';
@@ -111,7 +113,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
 
   const shareGuidance = () => {
     if (guidance) {
-      const text = `Versículo: ${guidance.verse}\n\nMensagem: ${guidance.support}\n\nCompartilhado de Amigo de Deus`;
+      const text = `Versículo: ${guidance.verse}\n\nMensagem: ${guidance.support}\n\nCompartilhado de Amigos de Deus`;
       
       if (navigator.share) {
         navigator.share({
@@ -140,32 +142,32 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
   return (
     <>
       <Helmet>
-        <title>Amigo de Deus | Conforto Espiritual Diário</title>
-        <meta name="description" content="Receba versículos bíblicos e palavras de conforto personalizadas para o seu momento. Orientação espiritual diária baseada na Bíblia." />
+        <title>Amigos de Deus - Conforto e Orientação Espiritual</title>
+        <meta name="description" content="Receba orientação espiritual personalizada baseada na Bíblia para ajudar nos momentos difíceis. Conforto através da palavra de Deus." />
         <meta name="keywords" content="versículos bíblicos, conforto espiritual, palavra de Deus, orientação espiritual, versículo do dia, aplicativo cristão, mensagem bíblica" />
-        <link rel="canonical" href="https://amigodedeus.com.br/" />
+        <link rel="canonical" href="https://amigosdedeus.com.br/" />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://amigodedeus.com.br/" />
-        <meta property="og:title" content="Amigo de Deus | Conforto Espiritual Diário" />
+        <meta property="og:url" content="https://amigosdedeus.com.br/" />
+        <meta property="og:title" content="Amigos de Deus | Conforto Espiritual Diário" />
         <meta property="og:description" content="Receba versículos bíblicos e palavras de conforto personalizadas para o seu momento. Orientação espiritual diária baseada na Bíblia." />
-        <meta property="og:image" content="https://amigodedeus.com.br/og-image.jpg" />
+        <meta property="og:image" content="https://amigosdedeus.com.br/og-image.jpg" />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://amigodedeus.com.br/" />
-        <meta name="twitter:title" content="Amigo de Deus | Conforto Espiritual Diário" />
+        <meta name="twitter:url" content="https://amigosdedeus.com.br/" />
+        <meta name="twitter:title" content="Amigos de Deus | Conforto Espiritual Diário" />
         <meta name="twitter:description" content="Receba versículos bíblicos e palavras de conforto personalizadas para o seu momento. Orientação espiritual diária baseada na Bíblia." />
-        <meta name="twitter:image" content="https://amigodedeus.com.br/twitter-image.jpg" />
+        <meta name="twitter:image" content="https://amigosdedeus.com.br/twitter-image.jpg" />
         
         {/* Schema.org markup para melhor SEO */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            "name": "Amigo de Deus",
-            "url": "https://amigodedeus.com.br",
+            "name": "Amigos de Deus",
+            "url": "https://amigosdedeus.com.br",
             "description": "Aplicativo cristão que oferece versículos bíblicos personalizados e orientação espiritual diária.",
             "applicationCategory": "SpiritualityApplication",
             "operatingSystem": "Web",
@@ -176,8 +178,8 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
             },
             "author": {
               "@type": "Organization",
-              "name": "Amigo de Deus",
-              "url": "https://amigodedeus.com.br"
+              "name": "Amigos de Deus",
+              "url": "https://amigosdedeus.com.br"
             }
           })}
         </script>
@@ -185,17 +187,31 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
 
       <div className="space-y-8">
         <section className="text-center mb-10">
-          <h1 className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">Amigo de Deus</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <h1 className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">Amigos de Deus</h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-6">
             Receba conforto e orientação espiritual através da Palavra de Deus, personalizada para o seu momento.
           </p>
+          
+          {/* Link para a Bíblia */}
+          <div className="flex justify-center mt-6">
+            <Link 
+              to="/biblia/ntlh/gn/1"
+              className="flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-md transition-colors"
+            >
+              <Book size={20} className="mr-2" />
+              Acessar a Bíblia Sagrada
+            </Link>
+          </div>
         </section>
 
-        <DailyVerse 
-          verse={dailyVerse} 
-          loading={loading} 
-          onRefresh={handleDailyVerse} 
-        />
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 text-center">Versículo do Dia</h2>
+          <DailyVerse 
+            verse={dailyVerse} 
+            loading={loading && !dailyVerse} 
+            onRefresh={handleDailyVerse} 
+          />
+        </section>
 
         <div className="mb-6 flex border-b dark:border-gray-700">
           <button
@@ -251,14 +267,27 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
         )}
 
         <section className="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-6 mt-10">
-          <h2 className="text-2xl font-semibold mb-4 text-indigo-600 dark:text-indigo-400">Sobre o Amigo de Deus</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-indigo-600 dark:text-indigo-400">Sobre o Amigos de Deus</h2>
           <p className="mb-4 text-gray-600 dark:text-gray-300">
-            O Amigo de Deus é um aplicativo cristão dedicado a trazer conforto e orientação espiritual através de versículos bíblicos personalizados para seu dia a dia.
+            O Amigos de Deus é um aplicativo cristão dedicado a trazer conforto e orientação espiritual através de versículos bíblicos personalizados para seu dia a dia.
           </p>
           <div className="flex justify-center mt-4">
             <a href="/sobre" className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
               Saiba Mais
             </a>
+          </div>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 text-center">Versículo do Dia</h2>
+          <div className="flex justify-center mb-8">
+            <Link 
+              to="/biblia/ntlh/gn/1"
+              className="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors"
+            >
+              <Book size={18} className="mr-2" />
+              Acessar a Bíblia Sagrada
+            </Link>
           </div>
         </section>
       </div>
