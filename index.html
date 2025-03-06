@@ -81,17 +81,55 @@
     <!-- End Google Tag Manager -->
 
     <title>Caixinha de Promessas | Conforto Espiritual Diário</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: rgb(249, 250, 251); /* bg-gray-50 */
+      }
+
+      #root:empty {
+        display: flex;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(249, 250, 251); /* bg-gray-50 */
+      }
+      
+      #root:empty::after {
+        content: "";
+        width: 40px;
+        height: 40px;
+        border: 4px solid #e2e8f0;
+        border-top-color: #3b82f6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: rgb(17, 24, 39); /* bg-gray-900 */
+        }
+
+        #root:empty {
+          background-color: rgb(17, 24, 39); /* bg-gray-900 */
+        }
+
+        #root:empty::after {
+          border-color: #1f2937;
+          border-top-color: #60a5fa;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="root">
-      <!-- Conteúdo de fallback enquanto o React carrega -->
-      <div style="text-align: center; padding: 20px">
-        <h1>Carregando...</h1>
-        <p>
-          Se esta mensagem persistir, pode haver um problema com o JavaScript.
-        </p>
-      </div>
-    </div>
+    <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
     <!-- Google Tag Manager (noscript) -->
@@ -105,20 +143,27 @@
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Service Worker Registration - Simplificado -->
+    <!-- Service Worker Registration -->
     <script>
-      if (
-        "serviceWorker" in navigator &&
-        window.location.hostname !== "localhost"
-      ) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/sw.js")
-            .then((registration) => {
-              console.log("SW registered: ", registration);
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          // Só registra o service worker em produção
+          if (window.location.hostname === 'localhost' || 
+              window.location.hostname === '127.0.0.1') {
+            console.log('Service Worker não registrado em desenvolvimento');
+            return;
+          }
+
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('Service Worker registrado com sucesso');
             })
-            .catch((error) => {
-              console.warn("SW registration failed: ", error);
+            .catch(error => {
+              // Silenciosamente falha em desenvolvimento
+              if (error.message.includes('Receiving end does not exist')) {
+                return;
+              }
+              console.warn('Falha ao registrar Service Worker:', error);
             });
         });
       }

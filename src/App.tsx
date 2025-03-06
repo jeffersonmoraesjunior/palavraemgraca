@@ -51,13 +51,10 @@ function App() {
   };
 
   const handleCookieConsent = (preferences: { analytics: boolean; marketing: boolean }) => {
-    // Aqui você pode implementar a lógica para gerenciar os cookies com base nas preferências
     if (preferences.analytics) {
-      // Inicializar analytics
       console.log('Analytics enabled');
     }
     if (preferences.marketing) {
-      // Inicializar cookies de marketing
       console.log('Marketing cookies enabled');
     }
   };

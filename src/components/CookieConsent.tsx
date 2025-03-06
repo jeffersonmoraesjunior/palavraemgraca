@@ -24,7 +24,7 @@ const CookieConsent: React.FC<CookieConsentProps> = ({ onAccept }) => {
     setIsVisible(false);
   };
 
-  const handleReject = () => {
+  const handleClose = () => {
     const preferences = { analytics: false, marketing: false };
     localStorage.setItem('cookieConsent', JSON.stringify(preferences));
     onAccept(preferences);
@@ -43,10 +43,10 @@ const CookieConsent: React.FC<CookieConsentProps> = ({ onAccept }) => {
       </p>
       <div className="flex justify-end gap-2">
         <button
-          onClick={handleReject}
+          onClick={handleClose}
           className="px-3 py-1.5 text-xs text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
         >
-          Recusar
+          Fechar
         </button>
         <button
           onClick={handleAccept}
