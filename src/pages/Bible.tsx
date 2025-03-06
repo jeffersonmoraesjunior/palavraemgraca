@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 import { getBookDescription } from '../data/bibleBookDescriptions';
+import Breadcrumb from '../components/Breadcrumb';
 
 // Tipos para a estrutura da Bíblia
 interface BibleVerse {
@@ -564,60 +565,46 @@ const Bible: React.FC = () => {
     };
   };
 
-  // Função para construir dados de breadcrumb para SEO
-  const buildBreadcrumbData = () => {
+  // Função para gerar os itens do breadcrumb
+  const getBreadcrumbItems = () => {
     const items = [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Início",
-        "item": window.location.origin
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Bíblia",
-        "item": `${window.location.origin}/biblia`
-      }
+      { name: 'Início', path: '/', isLast: false },
+      { name: 'Bíblia', path: '/biblia', isLast: false }
     ];
 
     if (selectedVersion) {
       const versionName = bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion;
       items.push({
-        "@type": "ListItem",
-        "position": 3,
-        "name": versionName,
-        "item": `${window.location.origin}/biblia/${selectedVersion.toLowerCase()}`
+        name: versionName,
+        path: `/biblia/${selectedVersion.toLowerCase()}`,
+        isLast: false
       });
 
       if (currentBookData) {
         items.push({
-          "@type": "ListItem",
-          "position": 4,
-          "name": currentBookData.name,
-          "item": `${window.location.origin}/biblia/${selectedVersion.toLowerCase()}/${normalizeForUrl(currentBookData.abbrev)}`
+          name: currentBookData.name,
+          path: `/biblia/${selectedVersion.toLowerCase()}/${normalizeForUrl(currentBookData.abbrev)}`,
+          isLast: !selectedChapter
         });
 
         if (selectedChapter) {
           items.push({
-            "@type": "ListItem",
-            "position": 5,
-            "name": `Capítulo ${selectedChapter}`,
-            "item": `${window.location.origin}/biblia/${selectedVersion.toLowerCase()}/${normalizeForUrl(currentBookData.abbrev)}/${selectedChapter}`
+            name: `Capítulo ${selectedChapter}`,
+            path: `/biblia/${selectedVersion.toLowerCase()}/${normalizeForUrl(currentBookData.abbrev)}/${selectedChapter}`,
+            isLast: true
           });
         }
+      } else {
+        items[items.length - 1].isLast = true;
       }
+    } else {
+      items[1].isLast = true;
     }
 
-    return {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": items
-    };
+    return items;
   };
 
   const schemaData = buildSchemaData();
-  const breadcrumbData = buildBreadcrumbData();
 
   // Componente customizado para o select de livros
   const CustomBookSelect = () => {
@@ -700,19 +687,10 @@ const Bible: React.FC = () => {
         <script type="application/ld+json">
           {JSON.stringify(buildSchemaData())}
         </script>
-        
-        {/* Breadcrumbs estruturados para SEO */}
-        <script type="application/ld+json">
-          {JSON.stringify(buildBreadcrumbData())}
-        </script>
-        
-        {/* Preload para melhorar performance */}
-        <link rel="preload" href={`/bible/${selectedVersion}.json`} as="fetch" crossOrigin="anonymous" />
-        
-        {/* Preconnect para domínios externos */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </Helmet>
+
+      {/* Adiciona o componente Breadcrumb */}
+      <Breadcrumb items={getBreadcrumbItems()} />
 
       <h1 className="text-3xl font-bold mb-6 text-center">Bíblia Sagrada</h1>
 

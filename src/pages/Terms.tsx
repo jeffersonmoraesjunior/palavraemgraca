@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import Breadcrumb from '../components/Breadcrumb';
 
 const Terms: React.FC = () => {
   useEffect(() => {
@@ -8,11 +9,15 @@ const Terms: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const lastUpdated = new Date().toLocaleDateString('pt-BR', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
-  });
+  const lastUpdated = '01 de Março de 2024';
+
+  // Função para gerar os itens do breadcrumb
+  const getBreadcrumbItems = () => {
+    return [
+      { name: 'Início', path: '/', isLast: false },
+      { name: 'Termos de Uso', path: '/termos', isLast: true }
+    ];
+  };
 
   return (
     <>
@@ -56,22 +61,7 @@ const Terms: React.FC = () => {
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-4 py-8">
-        {/* Breadcrumbs para melhor navegação e SEO */}
-        <nav className="flex mb-6 text-sm" aria-label="Breadcrumb">
-          <ol className="inline-flex items-center space-x-1 md:space-x-3">
-            <li className="inline-flex items-center">
-              <Link to="/" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
-                Início
-              </Link>
-            </li>
-            <li>
-              <div className="flex items-center">
-                <span className="mx-2 text-gray-400">/</span>
-                <span className="text-blue-600 dark:text-blue-400" aria-current="page">Termos de Uso</span>
-              </div>
-            </li>
-          </ol>
-        </nav>
+        <Breadcrumb items={getBreadcrumbItems()} />
 
         <h1 className="text-3xl font-bold mb-6 text-center">Termos de Uso</h1>
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-8 text-center">Última atualização: {lastUpdated}</p>

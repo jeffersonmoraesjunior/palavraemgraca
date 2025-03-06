@@ -5,6 +5,7 @@ import { Book, Share, Heart, Search } from 'lucide-react';
 import { DailyVerse, FeelingInput, GuidanceDisplay, HistoryList } from '../components';
 import type { SavedGuidance } from '../types';
 import { getRandomVerse as getDailyVerse, getPersonalizedGuidance, AIResponse } from '../data/versesDatabase';
+import Breadcrumb from '../components/Breadcrumb';
 
 interface HomeProps {
   theme: { isDark: boolean; fontSize: number };
@@ -163,8 +164,15 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
     }
   };
 
+  // Função para gerar os itens do breadcrumb
+  const getBreadcrumbItems = () => {
+    return [
+      { name: 'Início', path: '/', isLast: true }
+    ];
+  };
+
   return (
-    <>
+    <div className="py-6">
       <Helmet>
         <title>Amigos de Deus - Conforto e Orientação Espiritual Personalizada</title>
         <meta name="description" content="Receba orientação espiritual personalizada baseada na Bíblia para ajudar nos momentos difíceis. Conforto através da palavra de Deus para ansiedade, tristeza e dúvidas." />
@@ -233,6 +241,8 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
           })}
         </script>
       </Helmet>
+
+      <Breadcrumb items={getBreadcrumbItems()} />
 
       <div className="space-y-8">
         <section className="text-center mb-10">
@@ -519,7 +529,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
           </div>
         </section>
       </div>
-    </>
+    </div>
   );
 };
 

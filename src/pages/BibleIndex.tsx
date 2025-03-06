@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import { Link, useParams } from 'react-router-dom';
+import Breadcrumb from '../components/Breadcrumb';
 
 interface BibleBook {
   abbrev: string;
@@ -200,6 +201,21 @@ const BibleIndex: React.FC = () => {
     }
   };
 
+  // Função para gerar os itens do breadcrumb
+  const getBreadcrumbItems = () => {
+    const items = [
+      { name: 'Início', path: '/', isLast: false },
+      { name: 'Bíblia', path: '/biblia', isLast: false },
+      { 
+        name: 'Índice', 
+        path: `/biblia/indice${selectedVersion ? `/${selectedVersion.toLowerCase()}` : ''}`,
+        isLast: true 
+      }
+    ];
+
+    return items;
+  };
+
   return (
     <div className="py-6">
       <Helmet>
@@ -223,6 +239,8 @@ const BibleIndex: React.FC = () => {
           {JSON.stringify(schemaData)}
         </script>
       </Helmet>
+
+      <Breadcrumb items={getBreadcrumbItems()} />
 
       <h1 className="text-3xl font-bold mb-6 text-center">Índice da Bíblia Sagrada</h1>
       
