@@ -52,10 +52,10 @@ function App() {
 
   const handleCookieConsent = (preferences: { analytics: boolean; marketing: boolean }) => {
     if (preferences.analytics) {
-      console.log('Analytics enabled');
+      // Inicializar analytics
     }
     if (preferences.marketing) {
-      console.log('Marketing cookies enabled');
+      // Inicializar cookies de marketing
     }
   };
 

@@ -37,9 +37,6 @@ const Bible: React.FC = () => {
     chapter?: string;
   }>();
   
-  // Log para depuração
-  console.log('Current URL params:', { version, book, chapter });
-  
   // Referência para o versículo selecionado
   const selectedVerseRef = useRef<HTMLDivElement>(null);
   
@@ -89,10 +86,6 @@ const Bible: React.FC = () => {
       setSelectedVersion(version.toUpperCase());
     }
     if (book) {
-      // Garantir que o livro selecionado seja atualizado corretamente
-      console.log('Book from URL:', book);
-      
-      // Se os dados da Bíblia estiverem carregados, tenta encontrar o livro correspondente
       if (bibleData.length > 0) {
         // Primeiro, tenta encontrar o livro diretamente pela abreviação
         let foundBook = bibleData.find(b => normalizeForUrl(b.abbrev) === book);
@@ -106,7 +99,6 @@ const Bible: React.FC = () => {
         }
         
         if (foundBook) {
-          console.log('Found book from URL:', foundBook.abbrev, foundBook.name);
           setSelectedBook(foundBook.abbrev);
         } else {
           // Se não encontrar o livro, usa o valor da URL como está
