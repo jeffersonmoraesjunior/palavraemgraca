@@ -5,6 +5,7 @@ import { Book, Share, Heart, Search } from 'lucide-react';
 import { DailyVerse, FeelingInput, GuidanceDisplay, HistoryList } from '../components';
 import type { SavedGuidance } from '../types';
 import { getRandomVerse as getDailyVerse, getPersonalizedGuidance, AIResponse } from '../data/versesDatabase';
+import Breadcrumb from '../components/Breadcrumb';
 
 interface HomeProps {
   theme: { isDark: boolean; fontSize: number };
@@ -163,8 +164,15 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
     }
   };
 
+  // Função para gerar os itens do breadcrumb
+  const getBreadcrumbItems = () => {
+    return [
+      { name: 'Início', path: '/', isLast: true }
+    ];
+  };
+
   return (
-    <>
+    <div className="py-6">
       <Helmet>
         <title>Amigos de Deus - Conforto e Orientação Espiritual Personalizada</title>
         <meta name="description" content="Receba orientação espiritual personalizada baseada na Bíblia para ajudar nos momentos difíceis. Conforto através da palavra de Deus para ansiedade, tristeza e dúvidas." />
@@ -234,6 +242,8 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
         </script>
       </Helmet>
 
+      <Breadcrumb items={getBreadcrumbItems()} />
+
       <div className="space-y-8">
         <section className="text-center mb-10">
           <h1 className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">Amigos de Deus</h1>
@@ -250,13 +260,13 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
               <Book size={20} className="mr-2" />
               Acessar a Bíblia Sagrada
             </Link>
-            <Link 
+            {/* <Link 
               to="/sobre"
               className="flex items-center bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-md transition-colors"
             >
               <Heart size={20} className="mr-2" />
               Sobre o Projeto
-            </Link>
+            </Link> */}
           </div>
         </section>
 
@@ -519,7 +529,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
           </div>
         </section>
       </div>
-    </>
+    </div>
   );
 };
 

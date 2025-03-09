@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 import { getBookDescription } from '../data/bibleBookDescriptions';
+import Breadcrumb from '../components/Breadcrumb';
+import ShareButton from '../components/ShareButton';
 
 // Tipos para a estrutura da Bíblia
 interface BibleVerse {
@@ -34,9 +36,6 @@ const Bible: React.FC = () => {
     book?: string; 
     chapter?: string;
   }>();
-  
-  // Log para depuração
-  console.log('Current URL params:', { version, book, chapter });
   
   // Referência para o versículo selecionado
   const selectedVerseRef = useRef<HTMLDivElement>(null);
@@ -87,10 +86,6 @@ const Bible: React.FC = () => {
       setSelectedVersion(version.toUpperCase());
     }
     if (book) {
-      // Garantir que o livro selecionado seja atualizado corretamente
-      console.log('Book from URL:', book);
-      
-      // Se os dados da Bíblia estiverem carregados, tenta encontrar o livro correspondente
       if (bibleData.length > 0) {
         // Primeiro, tenta encontrar o livro diretamente pela abreviação
         let foundBook = bibleData.find(b => normalizeForUrl(b.abbrev) === book);
@@ -104,7 +99,6 @@ const Bible: React.FC = () => {
         }
         
         if (foundBook) {
-          console.log('Found book from URL:', foundBook.abbrev, foundBook.name);
           setSelectedBook(foundBook.abbrev);
         } else {
           // Se não encontrar o livro, usa o valor da URL como está
@@ -391,44 +385,38 @@ const Bible: React.FC = () => {
 
   // Renderizar versículos do capítulo atual
   const renderVerses = () => {
-    if (!currentBookData || !currentBookData.chapters || !currentBookData.chapters[selectedChapter - 1]) {
-      return <p>Nenhum versículo disponível.</p>;
+    if (!currentBookData || !currentBookData.chapters[selectedChapter - 1]) {
+      return null;
     }
 
-    const verses = currentBookData.chapters[selectedChapter - 1];
-    
-    return (
-      <div className="space-y-2">
-        {verses.map((verse, index) => {
-          const verseNumber = index + 1;
-          const isSelected = selectedVerse === verseNumber;
-          
-          return (
-            <div 
-              key={verseNumber} 
-              className={`flex p-2 rounded-md transition-colors ${
-                isSelected 
-                  ? 'bg-blue-100 dark:bg-blue-900 border-l-4 border-blue-500' 
-                  : 'hover:bg-gray-100 dark:hover:bg-gray-800'
-              }`}
-              ref={isSelected ? selectedVerseRef : null}
-              onClick={() => handleVerseClick(verseNumber)}
-            >
-              <span 
-                className={`text-sm font-semibold mr-2 w-6 flex-shrink-0 ${
-                  isSelected 
-                    ? 'text-blue-700 dark:text-blue-300' 
-                    : 'text-blue-600 dark:text-blue-400'
-                }`}
-              >
-                {verseNumber}
-              </span>
-              <p className="text-gray-800 dark:text-gray-200">{verse}</p>
-            </div>
-          );
-        })}
-      </div>
-    );
+    return currentBookData.chapters[selectedChapter - 1].map((verse, index) => {
+      const verseNumber = index + 1;
+      const isSelected = selectedVerse === verseNumber;
+      
+      return (
+        <div
+          key={verseNumber}
+          ref={isSelected ? selectedVerseRef : null}
+          className={`py-2 flex items-start gap-2 ${
+            isSelected ? 'bg-blue-100 dark:bg-blue-900 border-l-4 border-blue-500' : ''
+          }`}
+          onClick={() => handleVerseClick(verseNumber)}
+        >
+          <span className="text-sm font-medium text-blue-600 dark:text-blue-400 min-w-[1.5rem] mt-1 pr-3">
+            {verseNumber}
+          </span>
+          <div className="flex-1 flex items-start justify-between gap-2">
+            <p className="text-gray-700 dark:text-gray-300">{verse}</p>
+            {isSelected && (
+              <ShareButton 
+                text={verse}
+                reference={`${currentBookData.name} ${selectedChapter}:${verseNumber}`}
+              />
+            )}
+          </div>
+        </div>
+      );
+    });
   };
 
   // Renderizar seletor de capítulos
@@ -564,60 +552,46 @@ const Bible: React.FC = () => {
     };
   };
 
-  // Função para construir dados de breadcrumb para SEO
-  const buildBreadcrumbData = () => {
+  // Função para gerar os itens do breadcrumb
+  const getBreadcrumbItems = () => {
     const items = [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Início",
-        "item": window.location.origin
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Bíblia",
-        "item": `${window.location.origin}/biblia`
-      }
+      { name: 'Início', path: '/', isLast: false },
+      { name: 'Bíblia', path: '/biblia', isLast: false }
     ];
 
     if (selectedVersion) {
       const versionName = bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion;
       items.push({
-        "@type": "ListItem",
-        "position": 3,
-        "name": versionName,
-        "item": `${window.location.origin}/biblia/${selectedVersion.toLowerCase()}`
+        name: versionName,
+        path: `/biblia/${selectedVersion.toLowerCase()}`,
+        isLast: false
       });
 
       if (currentBookData) {
         items.push({
-          "@type": "ListItem",
-          "position": 4,
-          "name": currentBookData.name,
-          "item": `${window.location.origin}/biblia/${selectedVersion.toLowerCase()}/${normalizeForUrl(currentBookData.abbrev)}`
+          name: currentBookData.name,
+          path: `/biblia/${selectedVersion.toLowerCase()}/${normalizeForUrl(currentBookData.abbrev)}`,
+          isLast: !selectedChapter
         });
 
         if (selectedChapter) {
           items.push({
-            "@type": "ListItem",
-            "position": 5,
-            "name": `Capítulo ${selectedChapter}`,
-            "item": `${window.location.origin}/biblia/${selectedVersion.toLowerCase()}/${normalizeForUrl(currentBookData.abbrev)}/${selectedChapter}`
+            name: `Capítulo ${selectedChapter}`,
+            path: `/biblia/${selectedVersion.toLowerCase()}/${normalizeForUrl(currentBookData.abbrev)}/${selectedChapter}`,
+            isLast: true
           });
         }
+      } else {
+        items[items.length - 1].isLast = true;
       }
+    } else {
+      items[1].isLast = true;
     }
 
-    return {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": items
-    };
+    return items;
   };
 
   const schemaData = buildSchemaData();
-  const breadcrumbData = buildBreadcrumbData();
 
   // Componente customizado para o select de livros
   const CustomBookSelect = () => {
@@ -700,19 +674,10 @@ const Bible: React.FC = () => {
         <script type="application/ld+json">
           {JSON.stringify(buildSchemaData())}
         </script>
-        
-        {/* Breadcrumbs estruturados para SEO */}
-        <script type="application/ld+json">
-          {JSON.stringify(buildBreadcrumbData())}
-        </script>
-        
-        {/* Preload para melhorar performance */}
-        <link rel="preload" href={`/bible/${selectedVersion}.json`} as="fetch" crossOrigin="anonymous" />
-        
-        {/* Preconnect para domínios externos */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </Helmet>
+
+      {/* Adiciona o componente Breadcrumb */}
+      <Breadcrumb items={getBreadcrumbItems()} />
 
       <h1 className="text-3xl font-bold mb-6 text-center">Bíblia Sagrada</h1>
 

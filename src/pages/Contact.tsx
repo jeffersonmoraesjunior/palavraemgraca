@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import Breadcrumb from '../components/Breadcrumb';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -97,6 +98,14 @@ const Contact: React.FC = () => {
     }
   };
 
+  // Função para gerar os itens do breadcrumb
+  const getBreadcrumbItems = () => {
+    return [
+      { name: 'Início', path: '/', isLast: false },
+      { name: 'Contato', path: '/contato', isLast: true }
+    ];
+  };
+
   return (
     <>
       <Helmet>
@@ -147,22 +156,7 @@ const Contact: React.FC = () => {
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-4 py-8">
-        {/* Breadcrumbs para melhor navegação e SEO */}
-        <nav className="flex mb-6 text-sm" aria-label="Breadcrumb">
-          <ol className="inline-flex items-center space-x-1 md:space-x-3">
-            <li className="inline-flex items-center">
-              <Link to="/" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
-                Início
-              </Link>
-            </li>
-            <li>
-              <div className="flex items-center">
-                <span className="mx-2 text-gray-400">/</span>
-                <span className="text-blue-600 dark:text-blue-400" aria-current="page">Contato</span>
-              </div>
-            </li>
-          </ol>
-        </nav>
+        <Breadcrumb items={getBreadcrumbItems()} />
 
         <h1 className="text-3xl font-bold mb-6 text-center">Entre em Contato</h1>
         
