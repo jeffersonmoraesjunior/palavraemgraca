@@ -4,6 +4,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 import { getBookDescription } from '../data/bibleBookDescriptions';
 import Breadcrumb from '../components/Breadcrumb';
+import ShareButton from '../components/ShareButton';
 
 // Tipos para a estrutura da Bíblia
 interface BibleVerse {
@@ -392,44 +393,38 @@ const Bible: React.FC = () => {
 
   // Renderizar versículos do capítulo atual
   const renderVerses = () => {
-    if (!currentBookData || !currentBookData.chapters || !currentBookData.chapters[selectedChapter - 1]) {
-      return <p>Nenhum versículo disponível.</p>;
+    if (!currentBookData || !currentBookData.chapters[selectedChapter - 1]) {
+      return null;
     }
 
-    const verses = currentBookData.chapters[selectedChapter - 1];
-    
-    return (
-      <div className="space-y-2">
-        {verses.map((verse, index) => {
-          const verseNumber = index + 1;
-          const isSelected = selectedVerse === verseNumber;
-          
-          return (
-            <div 
-              key={verseNumber} 
-              className={`flex p-2 rounded-md transition-colors ${
-                isSelected 
-                  ? 'bg-blue-100 dark:bg-blue-900 border-l-4 border-blue-500' 
-                  : 'hover:bg-gray-100 dark:hover:bg-gray-800'
-              }`}
-              ref={isSelected ? selectedVerseRef : null}
-              onClick={() => handleVerseClick(verseNumber)}
-            >
-              <span 
-                className={`text-sm font-semibold mr-2 w-6 flex-shrink-0 ${
-                  isSelected 
-                    ? 'text-blue-700 dark:text-blue-300' 
-                    : 'text-blue-600 dark:text-blue-400'
-                }`}
-              >
-                {verseNumber}
-              </span>
-              <p className="text-gray-800 dark:text-gray-200">{verse}</p>
-            </div>
-          );
-        })}
-      </div>
-    );
+    return currentBookData.chapters[selectedChapter - 1].map((verse, index) => {
+      const verseNumber = index + 1;
+      const isSelected = selectedVerse === verseNumber;
+      
+      return (
+        <div
+          key={verseNumber}
+          ref={isSelected ? selectedVerseRef : null}
+          className={`py-2 flex items-start gap-2 ${
+            isSelected ? 'bg-blue-100 dark:bg-blue-900 border-l-4 border-blue-500' : ''
+          }`}
+          onClick={() => handleVerseClick(verseNumber)}
+        >
+          <span className="text-sm font-medium text-blue-600 dark:text-blue-400 min-w-[1.5rem] mt-1 pr-3">
+            {verseNumber}
+          </span>
+          <div className="flex-1 flex items-start justify-between gap-2">
+            <p className="text-gray-700 dark:text-gray-300">{verse}</p>
+            {isSelected && (
+              <ShareButton 
+                text={verse}
+                reference={`${currentBookData.name} ${selectedChapter}:${verseNumber}`}
+              />
+            )}
+          </div>
+        </div>
+      );
+    });
   };
 
   // Renderizar seletor de capítulos
