@@ -260,13 +260,13 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
               <Book size={20} className="mr-2" />
               Acessar a Bíblia Sagrada
             </Link>
-            <Link 
+            {/* <Link 
               to="/sobre"
               className="flex items-center bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-md transition-colors"
             >
               <Heart size={20} className="mr-2" />
               Sobre o Projeto
-            </Link>
+            </Link> */}
           </div>
         </section>
 
