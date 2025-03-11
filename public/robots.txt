@@ -29,16 +29,16 @@ Disallow: /_error
 Sitemap: https://palavraemgraca.com.br/sitemap.xml
 
 # Bible Version Specific Sitemaps
-Sitemap: https://palavraemgraca.com.br/acf-sitemap.xml
-Sitemap: https://palavraemgraca.com.br/ara-sitemap.xml
-Sitemap: https://palavraemgraca.com.br/arc-sitemap.xml
-Sitemap: https://palavraemgraca.com.br/as21-sitemap.xml
-Sitemap: https://palavraemgraca.com.br/jfaa-sitemap.xml
-Sitemap: https://palavraemgraca.com.br/kja-sitemap.xml
-Sitemap: https://palavraemgraca.com.br/kjf-sitemap.xml
-Sitemap: https://palavraemgraca.com.br/naa-sitemap.xml
-Sitemap: https://palavraemgraca.com.br/nbv-sitemap.xml
-Sitemap: https://palavraemgraca.com.br/ntlh-sitemap.xml
-Sitemap: https://palavraemgraca.com.br/nvi-sitemap.xml
-Sitemap: https://palavraemgraca.com.br/nvt-sitemap.xml
-Sitemap: https://palavraemgraca.com.br/tb-sitemap.xml 
+Sitemap: https://palavraemgraca.com.br/bible-sitemaps/acf-sitemap.xml
+Sitemap: https://palavraemgraca.com.br/bible-sitemaps/ara-sitemap.xml
+Sitemap: https://palavraemgraca.com.br/bible-sitemaps/arc-sitemap.xml
+Sitemap: https://palavraemgraca.com.br/bible-sitemaps/as21-sitemap.xml
+Sitemap: https://palavraemgraca.com.br/bible-sitemaps/jfaa-sitemap.xml
+Sitemap: https://palavraemgraca.com.br/bible-sitemaps/kja-sitemap.xml
+Sitemap: https://palavraemgraca.com.br/bible-sitemaps/kjf-sitemap.xml
+Sitemap: https://palavraemgraca.com.br/bible-sitemaps/naa-sitemap.xml
+Sitemap: https://palavraemgraca.com.br/bible-sitemaps/nbv-sitemap.xml
+Sitemap: https://palavraemgraca.com.br/bible-sitemaps/ntlh-sitemap.xml
+Sitemap: https://palavraemgraca.com.br/bible-sitemaps/nvi-sitemap.xml
+Sitemap: https://palavraemgraca.com.br/bible-sitemaps/nvt-sitemap.xml
+Sitemap: https://palavraemgraca.com.br/bible-sitemaps/tb-sitemap.xml 

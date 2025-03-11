@@ -49,6 +49,8 @@ const VERSION_INFO = {
 function generateVersionSitemap(version, bibleData) {
   const versionLower = version.toLowerCase();
   const versionPriority = VERSION_INFO[version]?.priority || "0.7";
+  const today = new Date().toISOString().split('T')[0]; // Data atual no formato YYYY-MM-DD
+  
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 `;
@@ -56,6 +58,7 @@ function generateVersionSitemap(version, bibleData) {
   // Adicionar a página de índice da versão
   sitemap += `  <url>
     <loc>${SITE_URL}/biblia/indice/${versionLower}</loc>
+    <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -76,6 +79,7 @@ function generateVersionSitemap(version, bibleData) {
       // Adicionar a página do capítulo
       sitemap += `  <url>
     <loc>${SITE_URL}/biblia/${versionLower}/${book.abbrev}/${chapterNumber}</loc>
+    <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

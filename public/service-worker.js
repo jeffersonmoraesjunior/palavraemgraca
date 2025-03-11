@@ -1,5 +1,5 @@
 // Nome do cache
-const CACHE_NAME = 'caixinha-promessas-v1';
+const CACHE_NAME = 'palavra-em-graca-v1';
 
 // Arquivos para armazenar em cache
 const urlsToCache = [

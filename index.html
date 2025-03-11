@@ -18,6 +18,10 @@
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://palavraemgraca.com.br" />
+    
+    <!-- Idioma e região -->
+    <link rel="alternate" href="https://palavraemgraca.com.br" hreflang="pt-br" />
+    <link rel="alternate" href="https://palavraemgraca.com.br" hreflang="x-default" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -30,7 +34,8 @@
       property="og:description"
       content="Receba versículos bíblicos e palavras de conforto personalizadas para o seu momento. Orientação espiritual diária baseada na Bíblia."
     />
-    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:image" content="https://palavraemgraca.com.br/og-image.jpg" />
+    <meta property="og:locale" content="pt_BR" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -43,12 +48,14 @@
       property="twitter:description"
       content="Receba versículos bíblicos e palavras de conforto personalizadas para o seu momento. Orientação espiritual diária baseada na Bíblia."
     />
-    <meta property="twitter:image" content="/og-image.jpg" />
+    <meta property="twitter:image" content="https://palavraemgraca.com.br/twitter-image.jpg" />
 
     <!-- PWA support -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#4f46e5" />
     <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
     <!-- Structured Data / JSON-LD -->
     <script type="application/ld+json">
@@ -59,9 +66,21 @@
         "description": "Receba versículos bíblicos e palavras de conforto personalizadas para o seu momento.",
         "url": "https://palavraemgraca.com.br",
         "applicationCategory": "SpiritualityApplication",
+        "inLanguage": "pt-BR",
         "offers": {
           "@type": "Offer",
-          "price": "0"
+          "price": "0",
+          "priceCurrency": "BRL"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Palavra em Graça",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://palavraemgraca.com.br/logo.svg",
+            "width": "192",
+            "height": "192"
+          }
         }
       }
     </script>
@@ -81,6 +100,10 @@
     <!-- End Google Tag Manager -->
 
     <title>Palavra em Graça | Conforto Espiritual Diário</title>
+    
+    <!-- Preload de recursos críticos -->
+    <link rel="preload" href="/bible.svg" as="image" type="image/svg+xml" />
+    
     <style>
       body {
         margin: 0;

@@ -1,5 +1,5 @@
 // Service Worker básico para o Palavra em Graça
-const CACHE_NAME = 'caixinha-promessas-v1';
+const CACHE_NAME = 'palavra-em-graca-v1';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',

@@ -186,6 +186,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
         <meta property="og:title" content="Palavra em Graça | Conforto Espiritual Diário" />
         <meta property="og:description" content="Receba versículos bíblicos e palavras de conforto personalizadas para o seu momento. Orientação espiritual diária baseada na Bíblia." />
         <meta property="og:image" content="https://palavraemgraca.com.br/og-image.jpg" />
+        <meta property="og:locale" content="pt_BR" />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -208,6 +209,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
             "description": "Aplicativo cristão que oferece versículos bíblicos personalizados e orientação espiritual diária.",
             "applicationCategory": "SpiritualityApplication",
             "operatingSystem": "Web",
+            "inLanguage": "pt-BR",
             "offers": {
               "@type": "Offer",
               "price": "0",
@@ -283,10 +285,16 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
               <span className="text-sm">Compartilhar</span>
             </button>
           </div>
-          <DailyVerse 
-            verse={dailyVerse} 
-            loading={loading && !dailyVerse} 
-          />
+          <div itemScope itemType="https://schema.org/CreativeWork">
+            <meta itemProp="author" content="Bíblia Sagrada" />
+            <DailyVerse 
+              verse={dailyVerse} 
+              loading={loading && !dailyVerse} 
+            />
+            {dailyVerse && (
+              <div className="hidden" itemProp="text">{dailyVerse}</div>
+            )}
+          </div>
         </section>
 
         <div className="mb-6 flex border-b dark:border-gray-700">
