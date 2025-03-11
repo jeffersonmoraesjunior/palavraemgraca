@@ -223,7 +223,7 @@ export const dataService = {
       
       // Filtrar citações que não foram usadas recentemente
       const availableQuotes = quotes.filter(quote => 
-        !recentQuotes.includes(quote.author)
+        !recentQuotes.includes(quote.text)
       );
       
       // Se todas as citações já foram usadas recentemente, usar todas
@@ -231,7 +231,7 @@ export const dataService = {
       
       const randomIndex = Math.floor(Math.random() * quotesToSelectFrom.length);
       const quote = quotesToSelectFrom[randomIndex];
-      addRecentItem('quotes', quote.author);
+      addRecentItem('quotes', quote.text);
       return `"${quote.text}" - ${quote.author}`;
     }
     
@@ -248,21 +248,22 @@ export const dataService = {
     
     // Filtrar citações que não foram usadas recentemente
     const availableQuotes = matchingQuotes.filter(quote => 
-      !recentQuotes.includes(quote.author)
+      !recentQuotes.includes(quote.text)
     );
     
     // Se todas as citações já foram usadas recentemente, usar todas as citações correspondentes
     const quotesToSelectFrom = availableQuotes.length > 0 ? availableQuotes : matchingQuotes;
     
-    // Selecionar aleatoriamente entre as citações disponíveis
-    const randomIndex = Math.floor(Math.random() * Math.min(5, quotesToSelectFrom.length));
-    const selectedQuote = quotesToSelectFrom[randomIndex];
+    // Selecionar aleatoriamente entre as citações mais relevantes
+    const topQuotes = quotesToSelectFrom.slice(0, 5);
+    const randomIndex = Math.floor(Math.random() * topQuotes.length);
+    const selectedQuote = topQuotes[randomIndex];
     
-    addRecentItem('quotes', selectedQuote.author);
+    addRecentItem('quotes', selectedQuote.text);
     return `"${selectedQuote.text}" - ${selectedQuote.author}`;
   },
   
-  getTipsByCategories: async (categories: string[], count: number = 3): Promise<string[]> => {
+  getTipsByCategories: async (categories: string[]): Promise<string[]> => {
     const tips = await loadData<Tip>('tips', '/data/tips.json');
     
     // Filtrar dicas que contêm pelo menos uma das categorias
@@ -272,22 +273,32 @@ export const dataService = {
     
     if (matchingTips.length === 0) {
       // Selecionar aleatoriamente se não houver correspondência
-      const results: string[] = [];
-      const usedIndices = new Set<number>();
+      const session = getSession();
+      const recentTips = session.recentTips;
       
-      for (let i = 0; i < Math.min(count, tips.length); i++) {
-        let randomIndex: number;
-        do {
-          randomIndex = Math.floor(Math.random() * tips.length);
-        } while (usedIndices.has(randomIndex));
+      // Filtrar dicas que não foram usadas recentemente
+      const availableTips = tips.filter(tip => 
+        !recentTips.includes(tip.text)
+      );
+      
+      // Se todas as dicas já foram usadas recentemente, usar todas
+      const tipsToSelectFrom = availableTips.length > 0 ? availableTips : tips;
+      
+      // Selecionar 3 dicas aleatórias
+      const selectedTips: string[] = [];
+      const maxTips = Math.min(3, tipsToSelectFrom.length);
+      
+      while (selectedTips.length < maxTips) {
+        const randomIndex = Math.floor(Math.random() * tipsToSelectFrom.length);
+        const tip = tipsToSelectFrom[randomIndex];
         
-        usedIndices.add(randomIndex);
-        const tip = tips[randomIndex];
-        results.push(tip.text);
-        addRecentItem('tips', tip.text.substring(0, 30));
+        if (!selectedTips.includes(tip.text)) {
+          selectedTips.push(tip.text);
+          addRecentItem('tips', tip.text);
+        }
       }
       
-      return results;
+      return selectedTips;
     }
     
     // Ordenar por relevância (número de categorias correspondentes)
@@ -303,55 +314,28 @@ export const dataService = {
     
     // Filtrar dicas que não foram usadas recentemente
     const availableTips = matchingTips.filter(tip => 
-      !recentTips.includes(tip.text.substring(0, 30))
+      !recentTips.includes(tip.text)
     );
     
     // Se todas as dicas já foram usadas recentemente, usar todas as dicas correspondentes
     const tipsToSelectFrom = availableTips.length > 0 ? availableTips : matchingTips;
     
-    // Selecionar aleatoriamente entre as dicas disponíveis
-    const selectedTips: Tip[] = [];
-    const usedIndices = new Set<number>();
+    // Selecionar 3 dicas aleatórias entre as mais relevantes
+    const selectedTips: string[] = [];
+    const maxTips = Math.min(3, tipsToSelectFrom.length);
+    const topTips = tipsToSelectFrom.slice(0, Math.max(5, maxTips * 2));
     
-    // Tentar selecionar o número solicitado de dicas
-    for (let i = 0; i < Math.min(count, tipsToSelectFrom.length); i++) {
-      let randomIndex: number;
-      let attempts = 0;
-      const maxAttempts = tipsToSelectFrom.length * 2; // Evitar loop infinito
+    while (selectedTips.length < maxTips) {
+      const randomIndex = Math.floor(Math.random() * topTips.length);
+      const tip = topTips[randomIndex];
       
-      do {
-        randomIndex = Math.floor(Math.random() * tipsToSelectFrom.length);
-        attempts++;
-        if (attempts > maxAttempts) break; // Segurança contra loop infinito
-      } while (usedIndices.has(randomIndex));
-      
-      usedIndices.add(randomIndex);
-      selectedTips.push(tipsToSelectFrom[randomIndex]);
-    }
-    
-    // Se não houver dicas suficientes, adicionar algumas aleatórias
-    if (selectedTips.length < count) {
-      const remainingTips = tips.filter(tip => 
-        !selectedTips.some(selected => selected.text === tip.text) &&
-        !recentTips.includes(tip.text.substring(0, 30))
-      );
-      
-      const additionalCount = count - selectedTips.length;
-      
-      for (let i = 0; i < Math.min(additionalCount, remainingTips.length); i++) {
-        const randomIndex = Math.floor(Math.random() * remainingTips.length);
-        selectedTips.push(remainingTips[randomIndex]);
-        remainingTips.splice(randomIndex, 1);
+      if (!selectedTips.includes(tip.text)) {
+        selectedTips.push(tip.text);
+        addRecentItem('tips', tip.text);
       }
     }
     
-    // Registrar na sessão e retornar
-    const results = selectedTips.map(tip => {
-      addRecentItem('tips', tip.text.substring(0, 30));
-      return tip.text;
-    });
-    
-    return results;
+    return selectedTips;
   },
   
   getPersonalizedGuidance: async (feeling: string): Promise<AIResponse> => {
@@ -376,7 +360,7 @@ export const dataService = {
     const quoteAuthor = quoteMatch ? quoteMatch[2] : '';
     
     // Obter dicas
-    const tips = await dataService.getTipsByCategories(effectiveCategories, 3);
+    const tips = await dataService.getTipsByCategories(effectiveCategories);
     
     return {
       verse,

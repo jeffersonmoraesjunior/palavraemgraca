@@ -1,38 +1,8 @@
 // Definição de tipos para o sistema de dados
 
-// Categorias de sentimentos
-export const FEELING_CATEGORIES = {
-  ANXIETY: ["ansiedade", "preocupação", "nervoso", "tenso", "estresse", "medo", "pânico", "aflito"],
-  SADNESS: ["tristeza", "depressão", "melancolia", "desânimo", "abatido", "desesperança", "luto", "chorar"],
-  ANGER: ["raiva", "irritação", "frustração", "ódio", "ressentimento", "indignação", "fúria", "bravo"],
-  JOY: ["alegria", "felicidade", "contentamento", "satisfação", "prazer", "entusiasmo", "animado", "feliz"],
-  GRATITUDE: ["gratidão", "agradecimento", "reconhecimento", "apreciação", "grato"],
-  CONFUSION: ["confusão", "dúvida", "incerteza", "indecisão", "perplexidade", "perdido"],
-  HOPE: ["esperança", "expectativa", "otimismo", "confiança", "fé", "acreditar"],
-  LOVE: ["amor", "carinho", "afeto", "compaixão", "empatia", "cuidado", "amar"],
-  LONELINESS: ["solidão", "abandono", "isolamento", "rejeição", "sozinho", "desamparado"],
-  FAITH_CRISIS: ["crise de fé", "dúvida espiritual", "questionamento", "distante de Deus", "vazio espiritual"],
-  PEACE: ["paz", "tranquilidade", "serenidade", "calma", "sossego", "quietude"],
-  STRENGTH: ["força", "coragem", "determinação", "perseverança", "resistência", "firmeza"],
-  HEALING: ["cura", "recuperação", "restauração", "renovação", "saúde", "bem-estar"],
-  FORGIVENESS: ["perdão", "reconciliação", "libertação", "soltar", "perdoar"],
-  TRUST: ["confiança", "segurança", "certeza", "fé", "acreditar", "confiar"],
-  PURPOSE: ["propósito", "significado", "direção", "sentido", "missão", "chamado"],
-  WISDOM: ["sabedoria", "discernimento", "entendimento", "conhecimento", "prudência"],
-  HUMILITY: ["humildade", "mansidão", "modéstia", "simplicidade", "humilde"],
-  PATIENCE: ["paciência", "espera", "perseverança", "tolerância", "calma", "aguardar"],
-  COMMITMENT: ["compromisso", "dedicação", "fidelidade", "lealdade", "persistência"],
-  GROWTH: ["crescimento", "desenvolvimento", "progresso", "amadurecimento", "evolução"],
-  IDENTITY: ["identidade", "quem sou", "valor pessoal", "autoconhecimento", "autoimagem"],
-  WORTH: ["valor", "dignidade", "importância", "preciosidade", "autoestima"],
-  REST: ["descanso", "repouso", "relaxamento", "alívio", "pausa", "descansar"],
-  VICTORY: ["vitória", "conquista", "superação", "triunfo", "sucesso", "vencer"],
-  WORSHIP: ["adoração", "louvor", "reverência", "devoção", "culto", "adorar"],
-  LEARNING: ["aprendizado", "ensino", "instrução", "educação", "conhecimento"],
-  TRUTH: ["verdade", "realidade", "autenticidade", "sinceridade", "honestidade"],
-  COURAGE: ["coragem", "bravura", "ousadia", "valentia", "audácia", "destemor"],
-  CHANGE: ["mudança", "transformação", "renovação", "conversão", "reforma"]
-};
+// Importação das categorias de sentimentos
+import FEELING_CATEGORIES from '../../public/data/categories.json';
+export { FEELING_CATEGORIES };
 
 // Interface para versículos
 export interface Verse {

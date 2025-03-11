@@ -646,5 +646,45 @@
   {
     "text": "Pratique 'Ancoragem Espiritual': escolha um versículo ou nome de Deus como ponto de foco em momentos de ansiedade.",
     "categories": ["ANXIETY", "PEACE"]
+  },
+  {
+    "text": "Ligue imediatamente para o CVV (Centro de Valorização da Vida) - 188. É gratuito, 24h e eles estão preparados para te ouvir e ajudar.",
+    "categories": ["CRISIS", "DESPAIR", "HEALING"]
+  },
+  {
+    "text": "Não tome nenhuma decisão definitiva quando estiver se sentindo assim. Esses sentimentos são temporários, mesmo que pareçam permanentes agora.",
+    "categories": ["CRISIS", "DESPAIR", "HOPE"]
+  },
+  {
+    "text": "Procure ajuda profissional - um psicólogo ou psiquiatra. Não há vergonha em buscar auxílio, isso mostra força e coragem.",
+    "categories": ["CRISIS", "HEALING", "STRENGTH"]
+  },
+  {
+    "text": "Conte para alguém em quem você confia como está se sentindo. Não enfrente isso sozinho(a). Permita que outros te ajudem.",
+    "categories": ["CRISIS", "CONNECTION", "TRUST"]
+  },
+  {
+    "text": "Faça uma lista de pessoas que você pode ligar quando se sentir assim. Mantenha essa lista sempre à mão.",
+    "categories": ["CRISIS", "HOPE", "CONNECTION"]
+  },
+  {
+    "text": "Lembre-se: sua vida tem valor. Você é importante e faz diferença no mundo, mesmo que não consiga ver isso agora.",
+    "categories": ["CRISIS", "WORTH", "IDENTITY"]
+  },
+  {
+    "text": "Estabeleça pequenas metas diárias. Às vezes, apenas levantar da cama ou tomar um banho já é uma vitória.",
+    "categories": ["CRISIS", "HOPE", "STRENGTH"]
+  },
+  {
+    "text": "Mantenha um diário de gratidão, anotando uma coisa boa, por menor que seja, que aconteceu em cada dia.",
+    "categories": ["CRISIS", "GRATITUDE", "HEALING"]
+  },
+  {
+    "text": "Evite isolamento. Mesmo que não queira falar sobre seus sentimentos, estar perto de pessoas que te amam pode ajudar.",
+    "categories": ["CRISIS", "CONNECTION", "HEALING"]
+  },
+  {
+    "text": "Pratique técnicas de respiração profunda quando os pensamentos negativos surgirem. Inspire por 4 segundos, segure por 4, expire por 4.",
+    "categories": ["CRISIS", "PEACE", "ANXIETY"]
   }
 ]

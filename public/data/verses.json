@@ -27,7 +27,7 @@
   {
     "text": "O Senhor está perto dos que têm o coração quebrantado e salva os de espírito abatido.",
     "reference": "Salmos 34:18",
-    "categories": ["SADNESS"]
+    "categories": ["CRISIS", "DESPAIR", "HEALING"]
   },
   {
     "text": "Ele enxugará dos seus olhos toda lágrima; e não haverá mais morte, nem haverá mais pranto, nem lamento, nem dor; porque já as primeiras coisas são passadas.",
@@ -67,7 +67,7 @@
   {
     "text": "Porque eu bem sei os planos que estou projetando para vós, diz o Senhor; planos de paz, e não de mal, para vos dar um futuro e uma esperança.",
     "reference": "Jeremias 29:11",
-    "categories": ["HOPE", "PURPOSE"]
+    "categories": ["CRISIS", "HOPE", "PURPOSE"]
   },
   {
     "text": "O amor é paciente, é benigno; o amor não arde em ciúmes, não se ufana, não se ensoberbece.",
@@ -82,7 +82,7 @@
   {
     "text": "Ainda que eu ande pelo vale da sombra da morte, não temerei mal algum, porque tu estás comigo; a tua vara e o teu cajado me consolam.",
     "reference": "Salmos 23:4",
-    "categories": ["FAITH_CRISIS", "TRUST"]
+    "categories": ["CRISIS", "FEAR", "TRUST"]
   },
   {
     "text": "Deixo-vos a paz, a minha paz vos dou; não vo-la dou como o mundo a dá. Não se turbe o vosso coração, nem se atemorize.",
@@ -110,9 +110,9 @@
     "categories": ["WISDOM", "GROWTH"]
   },
   {
-    "text": "Eu te louvarei, porque de um modo terrível e tão maravilhoso fui formado.",
+    "text": "Eu te louvarei, porque de um modo terrível e tão maravilhoso fui formado; maravilhosas são as tuas obras, e a minha alma o sabe muito bem.",
     "reference": "Salmos 139:14",
-    "categories": ["WORTH", "IDENTITY"]
+    "categories": ["WORTH", "IDENTITY", "CRISIS"]
   },
   {
     "text": "Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento.",
@@ -132,7 +132,7 @@
   {
     "text": "Mas os que esperam no Senhor renovarão as suas forças; subirão com asas como águias; correrão, e não se cansarão; andarão, e não se fatigarão.",
     "reference": "Isaías 40:31",
-    "categories": ["STRENGTH", "HOPE"]
+    "categories": ["CRISIS", "HOPE", "STRENGTH"]
   },
   {
     "text": "Cria em mim, ó Deus, um coração puro e renova em mim um espírito reto.",
@@ -145,9 +145,9 @@
     "categories": ["WORTH", "FAITH_CRISIS"]
   },
   {
-    "text": "O Senhor é a minha luz e a minha salvação; a quem temerei?",
+    "text": "O Senhor é a minha luz e a minha salvação; a quem temerei? O Senhor é a fortaleza da minha vida; de quem me recearei?",
     "reference": "Salmos 27:1",
-    "categories": ["FEAR", "TRUST"]
+    "categories": ["CRISIS", "STRENGTH", "COURAGE"]
   },
   {
     "text": "Antes, sede uns para com os outros benignos, misericordiosos, perdoando-vos uns aos outros, como também Deus vos perdoou em Cristo.",
@@ -220,9 +220,9 @@
     "categories": ["STRENGTH", "HOPE"]
   },
   {
-    "text": "Porque sou eu que conheço os planos que tenho para vocês, diz o Senhor, planos de fazê-los prosperar e não de causar dano.",
+    "text": "Porque eu bem sei os planos que tenho para vocês, diz o Senhor, planos de fazê-los prosperar e não de causar dano, planos de dar-lhes esperança e um futuro.",
     "reference": "Jeremias 29:11",
-    "categories": ["HOPE", "PURPOSE"]
+    "categories": ["CRISIS", "HOPE", "PURPOSE"]
   },
   {
     "text": "Mas tu, ó Senhor, és um escudo para mim, a minha glória, e o que exalta a minha cabeça.",
@@ -245,9 +245,9 @@
     "categories": ["LOVE", "GROWTH"]
   },
   {
-    "text": "Mas aqueles que esperam no Senhor renovam as suas forças. Voam alto como águias; correm e não ficam exaustos, andam e não se cansam.",
-    "reference": "Isaías 40:31",
-    "categories": ["STRENGTH", "HOPE"]
+    "text": "Mesmo quando eu andar por um vale de trevas e morte, não temerei perigo algum, pois tu estás comigo; a tua vara e o teu cajado me protegem.",
+    "reference": "Salmos 23:4",
+    "categories": ["CRISIS", "FEAR", "TRUST"]
   },
   {
     "text": "Portanto, se alguém está em Cristo, é nova criação. As coisas antigas já passaram; eis que surgiram coisas novas!",
@@ -698,5 +698,35 @@
     "text": "Porque eu sou o Senhor, o teu Deus, que te toma pela tua mão direita e te diz: Não temas, que eu te ajudo.",
     "reference": "Isaías 41:13",
     "categories": ["FEAR", "TRUST"]
+  },
+  {
+    "text": "Ele sara os quebrantados de coração e cura suas feridas.",
+    "reference": "Salmos 147:3",
+    "categories": ["CRISIS", "HEALING", "HOPE"]
+  },
+  {
+    "text": "Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei.",
+    "reference": "Mateus 11:28",
+    "categories": ["CRISIS", "PEACE", "REST"]
+  },
+  {
+    "text": "O Senhor é a minha luz e a minha salvação; a quem temerei? O Senhor é a fortaleza da minha vida; de quem me recearei?",
+    "reference": "Salmos 27:1",
+    "categories": ["CRISIS", "STRENGTH", "COURAGE"]
+  },
+  {
+    "text": "Porque eu bem sei os pensamentos que tenho a vosso respeito, diz o Senhor; pensamentos de paz, e não de mal, para vos dar o fim que esperais.",
+    "reference": "Jeremias 29:11",
+    "categories": ["CRISIS", "HOPE", "PURPOSE"]
+  },
+  {
+    "text": "Lança o teu cuidado sobre o Senhor, e ele te susterá; nunca permitirá que o justo seja abalado.",
+    "reference": "Salmos 55:22",
+    "categories": ["CRISIS", "TRUST", "PEACE"]
+  },
+  {
+    "text": "Porque eu estou bem certo de que nem a morte, nem a vida, nem os anjos, nem os principados, nem as potestades, nem o presente, nem o porvir, nem a altura, nem a profundidade, nem alguma outra criatura nos poderá separar do amor de Deus, que está em Cristo Jesus nosso Senhor.",
+    "reference": "Romanos 8:38-39",
+    "categories": ["CRISIS", "LOVE", "FAITH"]
   }
 ]
