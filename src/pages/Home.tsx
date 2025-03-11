@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { Book, Share, Heart, Search } from 'lucide-react';
 import { DailyVerse, FeelingInput, GuidanceDisplay, HistoryList } from '../components';
 import type { SavedGuidance } from '../types';
-import { getRandomVerse as getDailyVerse, getPersonalizedGuidance, AIResponse } from '../data/versesDatabase';
+import { dataService } from '../data/dataService';
+import { AIResponse } from '../data/types';
 import Breadcrumb from '../components/Breadcrumb';
 
 interface HomeProps {
@@ -18,13 +19,16 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
       const saved = localStorage.getItem('dailyVerse');
       const savedDate = localStorage.getItem('dailyVerseDate');
       
-      // Se temos um versículo salvo e ele foi obtido hoje, use-o
-      if (saved && savedDate === new Date().toDateString()) {
-        return saved;
+      // Check if we have a saved verse from today
+      if (saved && savedDate) {
+        const today = new Date().toLocaleDateString();
+        if (savedDate === today) {
+          return saved;
+        }
       }
       return '';
     } catch (error) {
-      console.warn('Erro ao carregar versículo do localStorage:', error);
+      console.error('Error loading daily verse from localStorage:', error);
       return '';
     }
   });
@@ -63,18 +67,15 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
 
   // Handler functions
   const handleDailyVerse = async () => {
-    setLoading(true);
     try {
-      const verse = await getDailyVerse();
+      const verse = await dataService.getRandomVerse();
       setDailyVerse(verse);
       
-      // Salvar o versículo e a data
+      // Save to localStorage with today's date
       localStorage.setItem('dailyVerse', verse);
-      localStorage.setItem('dailyVerseDate', new Date().toDateString());
+      localStorage.setItem('dailyVerseDate', new Date().toLocaleDateString());
     } catch (error) {
-      console.error('Erro ao obter versículo diário:', error);
-    } finally {
-      setLoading(false);
+      console.error('Error fetching daily verse:', error);
     }
   };
 
@@ -83,10 +84,10 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
     
     setLoading(true);
     try {
-      const response = await getPersonalizedGuidance(feeling);
+      const response = await dataService.getPersonalizedGuidance(feeling);
       setGuidance(response);
     } catch (error) {
-      console.error('Erro ao obter orientação:', error);
+      console.error('Error fetching guidance:', error);
     } finally {
       setLoading(false);
     }
@@ -114,10 +115,10 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
 
   const shareGuidance = (platform?: 'whatsapp' | 'copy') => {
     if (guidance) {
-      const text = `Versículo: ${guidance.verse}\n\nMensagem: ${guidance.support}\n\nCompartilhado de Amigos de Deus`;
+      const text = `Versículo: ${guidance.verse} ${guidance.verseRef ? `(${guidance.verseRef})` : ''}\n\nMensagem: ${guidance.support} ${guidance.quoteAuthor ? `- ${guidance.quoteAuthor}` : ''}\n\nCompartilhado de Amigos de Deus`;
       
       if (platform === 'whatsapp') {
-        const encodedText = encodeURIComponent(`*Versículo:* ${guidance.verse}\n\n*Mensagem:* ${guidance.support}\n\nCompartilhado de Amigos de Deus`);
+        const encodedText = encodeURIComponent(`*Versículo:* ${guidance.verse} ${guidance.verseRef ? `(${guidance.verseRef})` : ''}\n\n*Mensagem:* ${guidance.support} ${guidance.quoteAuthor ? `- ${guidance.quoteAuthor}` : ''}\n\nCompartilhado de Amigos de Deus`);
         window.open(`https://wa.me/?text=${encodedText}`, '_blank');
         return;
       }
@@ -327,7 +328,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
                   onSave={saveGuidance}
                   onShare={(platform) => {
                     if (platform === 'whatsapp') {
-                      const text = encodeURIComponent(`*Versículo:* ${guidance.verse}\n\n*Mensagem:* ${guidance.support}\n\nCompartilhado de Amigos de Deus`);
+                      const text = encodeURIComponent(`*Versículo:* ${guidance.verse} ${guidance.verseRef ? `(${guidance.verseRef})` : ''}\n\n*Mensagem:* ${guidance.support} ${guidance.quoteAuthor ? `- ${guidance.quoteAuthor}` : ''}\n\nCompartilhado de Amigos de Deus`);
                       window.open(`https://wa.me/?text=${text}`, '_blank');
                     } else {
                       shareGuidance();

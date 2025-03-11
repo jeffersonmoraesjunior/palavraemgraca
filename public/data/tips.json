@@ -1,0 +1,690 @@
+﻿[
+  {
+    "text": "Pratique a respiração profunda e consciente enquanto medita em um versículo bíblico sobre paz ou confiança.",
+    "categories": ["ANXIETY", "PEACE"]
+  },
+  {
+    "text": "Mantenha um diário de gratidão, anotando pelo menos 3 bênçãos diárias, por menores que pareçam.",
+    "categories": ["GRATITUDE", "JOY"]
+  },
+  {
+    "text": "Quando se sentir sobrecarregado, faça uma pausa para orar e entregar suas preocupações a Deus.",
+    "categories": ["ANXIETY", "TRUST"]
+  },
+  {
+    "text": "Busque aconselhamento pastoral ou profissional quando necessário - isso não é sinal de fraqueza, mas de sabedoria.",
+    "categories": ["HEALING", "WISDOM"]
+  },
+  {
+    "text": "Estabeleça uma rotina diária de leitura bíblica e oração, mesmo que seja por apenas 10 minutos.",
+    "categories": ["FAITH_CRISIS", "STRENGTH"]
+  },
+  {
+    "text": "Ao sentir raiva, pratique contar até 10 e fazer uma breve oração antes de reagir.",
+    "categories": ["ANGER", "PEACE"]
+  },
+  {
+    "text": "Encontre um grupo de apoio ou comunidade de fé onde você possa compartilhar suas lutas e receber encorajamento.",
+    "categories": ["LONELINESS", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Pratique o perdão como um presente para si mesmo, não apenas para os outros.",
+    "categories": ["FORGIVENESS", "HEALING"]
+  },
+  {
+    "text": "Reserve um tempo para estar em silêncio e simplesmente escutar a Deus.",
+    "categories": ["CONFUSION", "PEACE"]
+  },
+  {
+    "text": "Memorize versículos bíblicos que falem diretamente às suas lutas atuais.",
+    "categories": ["ANXIETY", "STRENGTH"]
+  },
+  {
+    "text": "Pratique a gentileza intencional - faça algo bom por alguém sem esperar nada em troca.",
+    "categories": ["SADNESS", "JOY"]
+  },
+  {
+    "text": "Limite o consumo de notícias e mídias sociais que aumentam sua ansiedade ou negatividade.",
+    "categories": ["ANXIETY", "PEACE"]
+  },
+  {
+    "text": "Crie uma playlist de músicas de adoração que elevem seu espírito nos momentos difíceis.",
+    "categories": ["SADNESS", "WORSHIP"]
+  },
+  {
+    "text": "Pratique a gratidão mesmo nas circunstâncias difíceis, buscando lições e crescimento.",
+    "categories": ["GRATITUDE", "GROWTH"]
+  },
+  {
+    "text": "Cuide de sua saúde física com exercícios regulares, alimentação saudável e sono adequado.",
+    "categories": ["ANXIETY", "HEALING"]
+  },
+  {
+    "text": "Estabeleça limites saudáveis em relacionamentos que drenam sua energia emocional.",
+    "categories": ["RELATIONSHIPS", "WORTH"]
+  },
+  {
+    "text": "Pratique o contentamento, focando no que você tem em vez do que lhe falta.",
+    "categories": ["GRATITUDE", "JOY"]
+  },
+  {
+    "text": "Quando se sentir sobrecarregado, divida grandes tarefas em passos menores e mais gerenciáveis.",
+    "categories": ["ANXIETY", "WISDOM"]
+  },
+  {
+    "text": "Busque beleza na criação de Deus como um lembrete de Sua presença e cuidado.",
+    "categories": ["FAITH_CRISIS", "PEACE"]
+  },
+  {
+    "text": "Pratique a hospitalidade como uma forma de combater a solidão e construir comunidade.",
+    "categories": ["LONELINESS", "LOVE"]
+  },
+  {
+    "text": "Escreva cartas de encorajamento para outros que estão passando por dificuldades.",
+    "categories": ["SADNESS", "PURPOSE"]
+  },
+  {
+    "text": "Aprenda a identificar pensamentos negativos e substituí-los por verdades bíblicas.",
+    "categories": ["ANXIETY", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Pratique o jejum como uma forma de focar sua atenção em Deus e suas prioridades.",
+    "categories": ["FAITH_CRISIS", "STRENGTH"]
+  },
+  {
+    "text": "Encontre maneiras de servir aos outros como um antídoto para o egocentrismo e a tristeza.",
+    "categories": ["SADNESS", "PURPOSE"]
+  },
+  {
+    "text": "Cultive amizades profundas onde você possa ser autêntico sobre suas lutas e alegrias.",
+    "categories": ["LONELINESS", "RELATIONSHIPS"]
+  },
+  {
+    "text": "Mantenha um 'diário de vitórias' registrando pequenas conquistas diárias e momentos de superação.",
+    "categories": ["GROWTH", "GRATITUDE"]
+  },
+  {
+    "text": "Antes de dormir, faça um exercício de perdão consciente, liberando mágoas e ressentimentos do dia.",
+    "categories": ["FORGIVENESS", "PEACE"]
+  },
+  {
+    "text": "Estabeleça um 'tempo de silêncio' diário para reflexão e autoexame à luz da Palavra.",
+    "categories": ["WISDOM", "GROWTH"]
+  },
+  {
+    "text": "Crie uma rotina de 'check-in emocional' com Deus, compartilhando honestamente seus sentimentos em oração.",
+    "categories": ["HEALING", "CONNECTION"]
+  },
+  {
+    "text": "Pratique o exercício de 'três bênçãos': a cada noite, identifique três momentos em que viu a mão de Deus agindo.",
+    "categories": ["GRATITUDE", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Desenvolva o hábito de 'pausas sagradas': pequenos momentos durante o dia para reconexão com Deus.",
+    "categories": ["WORSHIP", "PEACE"]
+  },
+  {
+    "text": "Mantenha um 'jardim de versículos': colecione e medite em versículos específicos para diferentes situações emocionais.",
+    "categories": ["STRENGTH", "WISDOM"]
+  },
+  {
+    "text": "Pratique o exercício de 'reescrita mental': substitua pensamentos negativos por verdades bíblicas específicas.",
+    "categories": ["ANXIETY", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Estabeleça 'limites saudáveis' em suas relações, aprendendo a dizer 'não' quando necessário.",
+    "categories": ["CHARACTER", "WORTH"]
+  },
+  {
+    "text": "Crie um 'ritual de gratidão' matinal, começando o dia reconhecendo as bênçãos de Deus.",
+    "categories": ["GRATITUDE", "JOY"]
+  },
+  {
+    "text": "Pratique a 'escuta ativa' em suas orações, reservando momentos de silêncio para ouvir a voz de Deus.",
+    "categories": ["WORSHIP", "WISDOM"]
+  },
+  {
+    "text": "Desenvolva um 'plano de ação espiritual' para momentos de crise, com versículos, contatos e estratégias específicas.",
+    "categories": ["FAITH_CRISIS", "STRENGTH"]
+  },
+  {
+    "text": "Mantenha um 'diário de aprendizado', registrando lições espirituais extraídas das dificuldades.",
+    "categories": ["GROWTH", "WISDOM"]
+  },
+  {
+    "text": "Pratique o exercício de 'amor intencional': escolha diariamente uma pessoa para demonstrar amor de forma prática.",
+    "categories": ["LOVE", "ACTION"]
+  },
+  {
+    "text": "Estabeleça uma 'rotina de renovação': momentos específicos para recarregar-se espiritualmente.",
+    "categories": ["STRENGTH", "WORSHIP"]
+  },
+  {
+    "text": "Crie um 'círculo de apoio' com pessoas que possam orar e compartilhar sua jornada espiritual.",
+    "categories": ["CONNECTION", "GROWTH"]
+  },
+  {
+    "text": "Pratique o 'jejum de críticas': escolha um dia para abster-se de qualquer forma de crítica ou julgamento.",
+    "categories": ["CHARACTER", "HUMILITY"]
+  },
+  {
+    "text": "Desenvolva um 'ritual de perdão semanal', revisando relacionamentos e situações que precisam de cura.",
+    "categories": ["FORGIVENESS", "HEALING"]
+  },
+  {
+    "text": "Mantenha um 'diário de identidade', registrando verdades bíblicas sobre quem você é em Cristo.",
+    "categories": ["IDENTITY", "WORTH"]
+  },
+  {
+    "text": "Pratique a 'gratidão antecipada', agradecendo a Deus por bênçãos futuras como ato de fé.",
+    "categories": ["FAITH_CRISIS", "TRUST"]
+  },
+  {
+    "text": "Estabeleça 'momentos de celebração' para reconhecer e agradecer as pequenas vitórias diárias.",
+    "categories": ["JOY", "GRATITUDE"]
+  },
+  {
+    "text": "Crie um 'plano de paz', identificando atividades e lugares que te aproximam de Deus.",
+    "categories": ["PEACE", "CONNECTION"]
+  },
+  {
+    "text": "Pratique o exercício de 'presença consciente', focando na presença de Deus em atividades cotidianas.",
+    "categories": ["WORSHIP", "PEACE"]
+  },
+  {
+    "text": "Desenvolva uma 'lista de propósito', alinhando suas atividades diárias com seus valores cristãos.",
+    "categories": ["PURPOSE", "CHARACTER"]
+  },
+  {
+    "text": "Estabeleça um 'ritual de coragem', enfrentando pequenos medos diários com oração e confiança.",
+    "categories": ["FEAR", "STRENGTH"]
+  },
+  {
+    "text": "Crie um 'diário de superação', documentando como Deus o ajudou a vencer desafios passados.",
+    "categories": ["STRENGTH", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Desenvolva uma 'prática de discernimento', buscando sabedoria divina antes de tomar decisões importantes.",
+    "categories": ["WISDOM", "TRUST"]
+  },
+  {
+    "text": "Mantenha um 'registro de cura', anotando progressos em sua jornada de recuperação emocional e espiritual.",
+    "categories": ["HEALING", "GROWTH"]
+  },
+  {
+    "text": "Pratique o exercício de 'conexão intencional', dedicando tempo para fortalecer relacionamentos significativos.",
+    "categories": ["LONELINESS", "CONNECTION"]
+  },
+  {
+    "text": "Estabeleça uma 'rotina de amor-próprio', baseada em verdades bíblicas sobre seu valor em Cristo.",
+    "categories": ["WORTH", "IDENTITY"]
+  },
+  {
+    "text": "Crie um 'ritual de perdão semanal', liberando mágoas e ressentimentos através da oração.",
+    "categories": ["FORGIVENESS", "PEACE"]
+  },
+  {
+    "text": "Desenvolva um 'plano de ação para momentos de confusão', com passos práticos e versículos-chave.",
+    "categories": ["CONFUSION", "WISDOM"]
+  },
+  {
+    "text": "Mantenha um 'diário de esperança', registrando promessas bíblicas e sinais da fidelidade de Deus.",
+    "categories": ["HOPE", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Pratique o 'exercício da empatia', buscando compreender e amar os outros como Cristo ama.",
+    "categories": ["LOVE", "CHARACTER"]
+  },
+  {
+    "text": "Estabeleça uma 'prática de contentamento', focando nas bênçãos presentes em vez das ausentes.",
+    "categories": ["GRATITUDE", "JOY"]
+  },
+  {
+    "text": "Crie um 'ritual de adoração pessoal', expressando sua devoção a Deus de maneira única e significativa.",
+    "categories": ["WORSHIP", "CONNECTION"]
+  },
+  {
+    "text": "Desenvolva um 'plano de crescimento espiritual', estabelecendo metas e práticas para amadurecimento na fé.",
+    "categories": ["GROWTH", "PURPOSE"]
+  },
+  {
+    "text": "Mantenha um 'diário de propósito', alinhando seus dons e talentos com o chamado de Deus.",
+    "categories": ["PURPOSE", "WORTH"]
+  },
+  {
+    "text": "Pratique o 'exercício da serenidade', entregando a Deus o que não pode controlar.",
+    "categories": ["ANXIETY", "PEACE"]
+  },
+  {
+    "text": "Estabeleça uma 'rotina de processamento da tristeza', permitindo-se sentir e curar com Deus.",
+    "categories": ["SADNESS", "HEALING"]
+  },
+  {
+    "text": "Crie um 'plano de gestão da raiva', com estratégias bíblicas para lidar com emoções intensas.",
+    "categories": ["ANGER", "WISDOM"]
+  },
+  {
+    "text": "Desenvolva um 'ritual de sabedoria', dedicando tempo para estudar e meditar na Palavra diariamente.",
+    "categories": ["WISDOM", "GROWTH"]
+  },
+  {
+    "text": "Estabeleça uma 'prática de confiança', entregando a Deus uma preocupação por dia em oração.",
+    "categories": ["TRUST", "ANXIETY"]
+  },
+  {
+    "text": "Crie um 'diário de adoração', registrando momentos especiais de encontro com Deus.",
+    "categories": ["WORSHIP", "JOY"]
+  },
+  {
+    "text": "Mantenha um 'registro de crescimento', documentando pequenas vitórias e aprendizados diários.",
+    "categories": ["GROWTH", "GRATITUDE"]
+  },
+  {
+    "text": "Pratique o 'exercício do valor', listando características que refletem sua identidade em Cristo.",
+    "categories": ["WORTH", "IDENTITY"]
+  },
+  {
+    "text": "Estabeleça um 'ritual de paz', criando momentos de silêncio e reflexão em meio à rotina.",
+    "categories": ["PEACE", "ANXIETY"]
+  },
+  {
+    "text": "Desenvolva uma 'prática de propósito', alinhando suas atividades com o chamado divino.",
+    "categories": ["PURPOSE", "WISDOM"]
+  },
+  {
+    "text": "Crie um 'plano de cura', identificando áreas que precisam de restauração e buscando ajuda apropriada.",
+    "categories": ["HEALING", "GROWTH"]
+  },
+  {
+    "text": "Mantenha um 'diário de força', registrando versículos que te fortalecem em momentos difíceis.",
+    "categories": ["STRENGTH", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Pratique o 'exercício da alegria', encontrando motivos para celebrar mesmo em circunstâncias desafiadoras.",
+    "categories": ["JOY", "STRENGTH"]
+  },
+  {
+    "text": "Estabeleça uma 'rotina de gratidão', listando três bênçãos diferentes a cada dia.",
+    "categories": ["GRATITUDE", "PEACE"]
+  },
+  {
+    "text": "Desenvolva um 'plano de conexão', buscando maneiras de fortalecer laços comunitários.",
+    "categories": ["LONELINESS", "LOVE"]
+  },
+  {
+    "text": "Crie um 'ritual de esperança', compartilhando testemunhos de fé com outros.",
+    "categories": ["HOPE", "WITNESS"]
+  },
+  {
+    "text": "Mantenha um 'registro de amor', documentando atos de bondade recebidos e praticados.",
+    "categories": ["LOVE", "GRATITUDE"]
+  },
+  {
+    "text": "Pratique o 'exercício do perdão', liberando uma mágoa por dia através da oração.",
+    "categories": ["FORGIVENESS", "HEALING"]
+  },
+  {
+    "text": "Estabeleça uma 'prática de clareza', buscando direção divina em momentos de confusão.",
+    "categories": ["CONFUSION", "TRUST"]
+  },
+  {
+    "text": "Desenvolva um 'ritual de coragem', enfrentando um pequeno medo por dia com fé.",
+    "categories": ["FEAR", "STRENGTH"]
+  },
+  {
+    "text": "Crie um 'plano de conforto', preparando versículos e práticas para momentos de tristeza.",
+    "categories": ["SADNESS", "HOPE"]
+  },
+  {
+    "text": "Mantenha um 'diário de fé', registrando momentos de dúvida e como Deus se revelou neles.",
+    "categories": ["FAITH_CRISIS", "GROWTH"]
+  },
+  {
+    "text": "Pratique o 'exercício da calma', desenvolvendo respostas pacíficas para situações irritantes.",
+    "categories": ["ANGER", "PEACE"]
+  },
+  {
+    "text": "Estabeleça uma 'rotina de adoração', incluindo momentos de louvor em suas atividades diárias.",
+    "categories": ["WORSHIP", "JOY"]
+  },
+  {
+    "text": "Desenvolva uma 'prática de valor', reconhecendo seu preço aos olhos de Deus.",
+    "categories": ["WORTH", "IDENTITY"]
+  },
+  {
+    "text": "Estabeleça um 'ritual de sabedoria prática', aplicando princípios bíblicos em decisões diárias.",
+    "categories": ["WISDOM", "ACTION"]
+  },
+  {
+    "text": "Crie um 'diário de vitórias sobre a ansiedade', registrando como Deus te ajudou em cada situação.",
+    "categories": ["ANXIETY", "STRENGTH"]
+  },
+  {
+    "text": "Mantenha uma 'prática de processamento da tristeza', permitindo-se lamentar com esperança.",
+    "categories": ["SADNESS", "HEALING"]
+  },
+  {
+    "text": "Desenvolva um 'exercício de gestão da raiva', canalizando emoções intensas em oração.",
+    "categories": ["ANGER", "WORSHIP"]
+  },
+  {
+    "text": "Estabeleça uma 'rotina de celebração', encontrando alegria nas pequenas bênçãos diárias.",
+    "categories": ["JOY", "GRATITUDE"]
+  },
+  {
+    "text": "Crie um 'plano de gratidão intencional', expressando apreciação de formas específicas.",
+    "categories": ["GRATITUDE", "LOVE"]
+  },
+  {
+    "text": "Mantenha um 'registro de clareza', anotando como Deus trouxe direção em momentos confusos.",
+    "categories": ["CONFUSION", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Pratique o 'exercício da esperança ativa', planejando o futuro com confiança em Deus.",
+    "categories": ["HOPE", "PURPOSE"]
+  },
+  {
+    "text": "Desenvolva uma 'prática de amor sacrificial', servindo outros mesmo quando é difícil.",
+    "categories": ["LOVE", "CHARACTER"]
+  },
+  {
+    "text": "Estabeleça um 'ritual de conexão comunitária', combatendo a solidão com relacionamentos significativos.",
+    "categories": ["LONELINESS", "CONNECTION"]
+  },
+  {
+    "text": "Crie um 'plano de fortalecimento da fé', preparando-se para momentos de dúvida.",
+    "categories": ["FAITH_CRISIS", "STRENGTH"]
+  },
+  {
+    "text": "Mantenha uma 'prática de paz intencional', escolhendo responder em vez de reagir.",
+    "categories": ["PEACE", "WISDOM"]
+  },
+  {
+    "text": "Desenvolva um 'exercício de coragem diária', enfrentando medos com a força de Deus.",
+    "categories": ["FEAR", "TRUST"]
+  },
+  {
+    "text": "Estabeleça uma 'rotina de perdão proativo', liberando ofensas antes que criem raízes.",
+    "categories": ["FORGIVENESS", "PEACE"]
+  },
+  {
+    "text": "Crie um 'diário de força espiritual', documentando momentos de superação pela fé.",
+    "categories": ["STRENGTH", "WORSHIP"]
+  },
+  {
+    "text": "Mantenha um 'plano de propósito diário', alinhando cada dia com o chamado de Deus.",
+    "categories": ["PURPOSE", "GROWTH"]
+  },
+  {
+    "text": "Pratique o 'exercício da cura progressiva', dando pequenos passos em direção à restauração.",
+    "categories": ["HEALING", "HOPE"]
+  },
+  {
+    "text": "Desenvolva uma 'prática de confiança ativa', entregando preocupações a Deus em oração.",
+    "categories": ["TRUST", "PEACE"]
+  },
+  {
+    "text": "Estabeleça um 'ritual de adoração pessoal', encontrando formas únicas de expressar devoção.",
+    "categories": ["WORSHIP", "IDENTITY"]
+  },
+  {
+    "text": "Crie um 'plano de crescimento intencional', estabelecendo metas espirituais alcançáveis.",
+    "categories": ["GROWTH", "PURPOSE"]
+  },
+  {
+    "text": "Mantenha uma 'prática de autoestima bíblica', fundamentando seu valor na verdade de Deus.",
+    "categories": ["WORTH", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Desenvolva um 'diário de meditação', escrevendo suas reflexões sobre versículos específicos.",
+    "categories": ["WISDOM", "GROWTH"]
+  },
+  {
+    "text": "Crie uma 'lista de promessas bíblicas', organizadas por temas para diferentes necessidades.",
+    "categories": ["FAITH_CRISIS", "HOPE"]
+  },
+  {
+    "text": "Estabeleça um 'momento de quietude' pela manhã, antes de começar suas atividades.",
+    "categories": ["PEACE", "WORSHIP"]
+  },
+  {
+    "text": "Pratique o 'exercício de gratidão progressiva', agradecendo desde as menores até as maiores bênçãos.",
+    "categories": ["GRATITUDE", "JOY"]
+  },
+  {
+    "text": "Mantenha um 'registro de transformação', documentando mudanças positivas em seu caráter.",
+    "categories": ["CHARACTER", "GROWTH"]
+  },
+  {
+    "text": "Desenvolva uma 'rotina de intercessão', orando regularmente pelos outros.",
+    "categories": ["LOVE", "WORSHIP"]
+  },
+  {
+    "text": "Crie um 'plano de batalha espiritual', com versículos e estratégias para momentos de tentação.",
+    "categories": ["STRENGTH", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Estabeleça 'marcos de progresso', celebrando pequenas vitórias em sua jornada de cura.",
+    "categories": ["HEALING", "HOPE"]
+  },
+  {
+    "text": "Pratique o 'exercício de presença', focando totalmente em cada pessoa com quem interage.",
+    "categories": ["LOVE", "CONNECTION"]
+  },
+  {
+    "text": "Mantenha um 'diário de discernimento', anotando como Deus tem guiado suas decisões.",
+    "categories": ["WISDOM", "TRUST"]
+  },
+  {
+    "text": "Desenvolva uma 'prática de confissão honesta', compartilhando suas lutas com alguém de confiança.",
+    "categories": ["HEALING", "CONNECTION"]
+  },
+  {
+    "text": "Crie uma 'rotina de declarações bíblicas', proclamando verdades sobre sua identidade em Cristo.",
+    "categories": ["IDENTITY", "STRENGTH"]
+  },
+  {
+    "text": "Estabeleça um 'ritual de descanso', reservando tempo para renovação física e espiritual.",
+    "categories": ["PEACE", "HEALING"]
+  },
+  {
+    "text": "Pratique o 'exercício de perspectiva eterna', avaliando situações à luz da eternidade.",
+    "categories": ["WISDOM", "PURPOSE"]
+  },
+  {
+    "text": "Mantenha um 'registro de providências', documentando como Deus tem suprido suas necessidades.",
+    "categories": ["TRUST", "GRATITUDE"]
+  },
+  {
+    "text": "Desenvolva uma 'prática de adoração criativa', usando seus dons para glorificar a Deus.",
+    "categories": ["WORSHIP", "PURPOSE"]
+  },
+  {
+    "text": "Crie um 'plano de ministração', usando suas experiências para ajudar outros.",
+    "categories": ["PURPOSE", "LOVE"]
+  },
+  {
+    "text": "Estabeleça uma 'rotina de edificação', buscando palavras que construam e não destruam.",
+    "categories": ["CHARACTER", "LOVE"]
+  },
+  {
+    "text": "Pratique o 'exercício do perdão progressivo', perdoando em etapas quando for difícil.",
+    "categories": ["FORGIVENESS", "GROWTH"]
+  },
+  {
+    "text": "Mantenha um 'diário de libertação', registrando vitórias sobre medos e ansiedades.",
+    "categories": ["FEAR", "STRENGTH"]
+  },
+  {
+    "text": "Desenvolva uma 'prática de contentamento ativo', escolhendo gratidão em vez de comparação.",
+    "categories": ["GRATITUDE", "PEACE"]
+  },
+  {
+    "text": "Crie um 'ritual de celebração comunitária', compartilhando testemunhos em grupo.",
+    "categories": ["JOY", "CONNECTION"]
+  },
+  {
+    "text": "Estabeleça 'momentos de mentoria', buscando sabedoria com pessoas mais experientes na fé.",
+    "categories": ["GROWTH", "WISDOM"]
+  },
+  {
+    "text": "Pratique a 'oração contemplativa', focando na presença de Deus em silêncio.",
+    "categories": ["WORSHIP", "PEACE"]
+  },
+  {
+    "text": "Desenvolva um 'ritual de estudo bíblico contextualizado', aplicando a Palavra à sua realidade atual.",
+    "categories": ["WISDOM", "GROWTH"]
+  },
+  {
+    "text": "Crie uma 'prática de testemunho diário', compartilhando pequenas evidências da graça de Deus.",
+    "categories": ["WITNESS", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Estabeleça uma 'rotina de autocuidado espiritual', nutrindo sua alma com verdades bíblicas.",
+    "categories": ["WORTH", "HEALING"]
+  },
+  {
+    "text": "Mantenha um 'diário de orações respondidas', fortalecendo sua fé através do registro de bênçãos.",
+    "categories": ["TRUST", "GRATITUDE"]
+  },
+  {
+    "text": "Pratique o 'exercício de empatia ativa', colocando-se verdadeiramente no lugar do outro.",
+    "categories": ["LOVE", "CHARACTER"]
+  },
+  {
+    "text": "Desenvolva uma 'prática de lamento bíblico', expressando dor e tristeza de maneira saudável.",
+    "categories": ["SADNESS", "HEALING"]
+  },
+  {
+    "text": "Crie um 'plano de renovação mental', substituindo mentiras por verdades bíblicas.",
+    "categories": ["ANXIETY", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Estabeleça 'momentos de reflexão guiada', examinando seu coração à luz do Espírito Santo.",
+    "categories": ["WISDOM", "GROWTH"]
+  },
+  {
+    "text": "Mantenha uma 'prática de adoração familiar', envolvendo seus entes queridos no louvor.",
+    "categories": ["WORSHIP", "CONNECTION"]
+  },
+  {
+    "text": "Desenvolva um 'ritual de reconciliação', buscando ativamente restaurar relacionamentos.",
+    "categories": ["FORGIVENESS", "LOVE"]
+  },
+  {
+    "text": "Crie uma 'rotina de encorajamento', fortalecendo outros em sua caminhada de fé.",
+    "categories": ["PURPOSE", "LOVE"]
+  },
+  {
+    "text": "Pratique o 'exercício de gratidão específica', agradecendo por detalhes particulares.",
+    "categories": ["GRATITUDE", "JOY"]
+  },
+  {
+    "text": "Estabeleça uma 'prática de descanso sabático', reservando um dia para renovação completa.",
+    "categories": ["PEACE", "WORSHIP"]
+  },
+  {
+    "text": "Mantenha um 'diário de crescimento em caráter', registrando o desenvolvimento de frutos do Espírito.",
+    "categories": ["CHARACTER", "GROWTH"]
+  },
+  {
+    "text": "Pratique a técnica TRE (Terapia Racional Emotiva) alinhada com versículos: identifique pensamentos negativos, questione-os biblicamente e substitua por verdades da Palavra.",
+    "categories": ["ANXIETY", "WISDOM"]
+  },
+  {
+    "text": "Utilize a técnica de 'Reestruturação Cognitiva Cristã': escreva seus pensamentos automáticos, analise-os à luz da Bíblia e desenvolva perspectivas mais saudáveis.",
+    "categories": ["ANXIETY", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Aplique o 'Diário de Pensamentos com Base Bíblica': registre situações, emoções, pensamentos e as verdades bíblicas correspondentes.",
+    "categories": ["HEALING", "WISDOM"]
+  },
+  {
+    "text": "Pratique a 'Exposição Gradual com Oração': enfrente medos progressivamente, usando a oração como âncora de segurança.",
+    "categories": ["FEAR", "STRENGTH"]
+  },
+  {
+    "text": "Desenvolva um 'Plano de Regulação Emocional Cristão': identifique gatilhos, prepare versículos específicos e estabeleça estratégias de autocuidado.",
+    "categories": ["ANXIETY", "PEACE"]
+  },
+  {
+    "text": "Use a técnica 'RAIN' (Reconhecer, Aceitar, Investigar, Nutrir) em oração: observe suas emoções sem julgamento e busque a perspectiva de Deus.",
+    "categories": ["HEALING", "WISDOM"]
+  },
+  {
+    "text": "Pratique 'Mindfulness Cristão': foque no momento presente enquanto medita em um versículo ou atributo de Deus.",
+    "categories": ["ANXIETY", "PEACE"]
+  },
+  {
+    "text": "Aplique a 'Terapia do Esquema Espiritual': identifique crenças limitantes sobre Deus e substitua por verdades bíblicas.",
+    "categories": ["FAITH_CRISIS", "HEALING"]
+  },
+  {
+    "text": "Utilize o 'Registro de Evidências da Graça': documente provas concretas do amor e cuidado de Deus, combatendo distorções cognitivas.",
+    "categories": ["FAITH_CRISIS", "TRUST"]
+  },
+  {
+    "text": "Desenvolva um 'Protocolo de Autocuidado Integral': equilibre necessidades físicas, emocionais e espirituais com base bíblica.",
+    "categories": ["HEALING", "WORTH"]
+  },
+  {
+    "text": "Pratique a 'Técnica das Três Colunas Cristã': situação, pensamento negativo e verdade bíblica correspondente.",
+    "categories": ["ANXIETY", "WISDOM"]
+  },
+  {
+    "text": "Aplique o 'Método PACE' (Presença, Aceitação, Compaixão, Esperança) em momentos de angústia, conectando cada etapa com aspectos da fé.",
+    "categories": ["SADNESS", "HEALING"]
+  },
+  {
+    "text": "Use a 'Técnica do Observador Compassivo': imagine como Jesus veria sua situação e adote essa perspectiva amorosa.",
+    "categories": ["WORTH", "HEALING"]
+  },
+  {
+    "text": "Desenvolva um 'Diário de Processamento Emocional-Espiritual': conecte suas emoções com salmos correspondentes.",
+    "categories": ["HEALING", "WORSHIP"]
+  },
+  {
+    "text": "Pratique 'Ancoragem Espiritual': escolha um versículo ou nome de Deus como ponto de foco em momentos de ansiedade.",
+    "categories": ["ANXIETY", "PEACE"]
+  },
+  {
+    "text": "Ligue imediatamente para o CVV (Centro de Valorização da Vida) - 188. É gratuito, 24h e eles estão preparados para te ouvir e ajudar.",
+    "categories": ["CRISIS", "DESPAIR", "HEALING"]
+  },
+  {
+    "text": "Não tome nenhuma decisão definitiva quando estiver se sentindo assim. Esses sentimentos são temporários, mesmo que pareçam permanentes agora.",
+    "categories": ["CRISIS", "DESPAIR", "HOPE"]
+  },
+  {
+    "text": "Procure ajuda profissional - um psicólogo ou psiquiatra. Não há vergonha em buscar auxílio, isso mostra força e coragem.",
+    "categories": ["CRISIS", "HEALING", "STRENGTH"]
+  },
+  {
+    "text": "Conte para alguém em quem você confia como está se sentindo. Não enfrente isso sozinho(a). Permita que outros te ajudem.",
+    "categories": ["CRISIS", "CONNECTION", "TRUST"]
+  },
+  {
+    "text": "Faça uma lista de pessoas que você pode ligar quando se sentir assim. Mantenha essa lista sempre à mão.",
+    "categories": ["CRISIS", "HOPE", "CONNECTION"]
+  },
+  {
+    "text": "Lembre-se: sua vida tem valor. Você é importante e faz diferença no mundo, mesmo que não consiga ver isso agora.",
+    "categories": ["CRISIS", "WORTH", "IDENTITY"]
+  },
+  {
+    "text": "Estabeleça pequenas metas diárias. Às vezes, apenas levantar da cama ou tomar um banho já é uma vitória.",
+    "categories": ["CRISIS", "HOPE", "STRENGTH"]
+  },
+  {
+    "text": "Mantenha um diário de gratidão, anotando uma coisa boa, por menor que seja, que aconteceu em cada dia.",
+    "categories": ["CRISIS", "GRATITUDE", "HEALING"]
+  },
+  {
+    "text": "Evite isolamento. Mesmo que não queira falar sobre seus sentimentos, estar perto de pessoas que te amam pode ajudar.",
+    "categories": ["CRISIS", "CONNECTION", "HEALING"]
+  },
+  {
+    "text": "Pratique técnicas de respiração profunda quando os pensamentos negativos surgirem. Inspire por 4 segundos, segure por 4, expire por 4.",
+    "categories": ["CRISIS", "PEACE", "ANXIETY"]
+  }
+]

@@ -56,11 +56,21 @@ export const HistoryList: React.FC<HistoryListProps> = ({
               <div>
                 <h4 className="text-sm font-medium text-blue-600 dark:text-blue-400">Versículo</h4>
                 <p className="text-sm">{item.guidance.verse}</p>
+                {item.guidance.verseRef && (
+                  <p className="text-right text-xs text-blue-500 dark:text-blue-400 mt-1">
+                    {item.guidance.verseRef}
+                  </p>
+                )}
               </div>
               
               <div>
                 <h4 className="text-sm font-medium text-purple-600 dark:text-purple-400">Palavra de Apoio</h4>
                 <p className="text-sm">{item.guidance.support}</p>
+                {item.guidance.quoteAuthor && (
+                  <p className="text-right text-xs text-purple-500 dark:text-purple-400 mt-1">
+                    {item.guidance.quoteAuthor}
+                  </p>
+                )}
               </div>
             </div>
           </div>

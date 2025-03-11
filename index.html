@@ -146,7 +146,12 @@
     <!-- Service Worker Registration -->
     <script>
       if ('serviceWorker' in navigator) {
-        if (process.env.NODE_ENV === 'production') {
+        // Verificar se estamos em produção baseado na URL
+        const isProduction = window.location.hostname !== 'localhost' && 
+                            !window.location.hostname.includes('127.0.0.1') &&
+                            !window.location.hostname.includes('.local');
+        
+        if (isProduction) {
           window.addEventListener('load', () => {
             navigator.serviceWorker.register('/service-worker.js')
               .then(() => {

@@ -4,14 +4,12 @@ import { Book } from 'lucide-react';
 interface DailyVerseProps {
   verse?: string;
   loading?: boolean;
-  onRefresh?: () => void;
   simplified?: boolean;
 }
 
 export const DailyVerse: React.FC<DailyVerseProps> = ({ 
   verse, 
-  loading = false, 
-  onRefresh,
+  loading = false,
   simplified = false
 }) => {
   if (simplified) {
@@ -37,17 +35,6 @@ export const DailyVerse: React.FC<DailyVerseProps> = ({
           <p className="text-gray-500 dark:text-gray-400">Carregando versículo do dia...</p>
         )}
       </div>
-      {onRefresh && (
-        <button
-          onClick={onRefresh}
-          className="ml-2 p-2 text-sm text-blue-600 dark:text-blue-400 hover:underline"
-          aria-label="Atualizar versículo do dia"
-          title="Atualizar versículo do dia"
-          disabled={loading}
-        >
-          Atualizar
-        </button>
-      )}
     </section>
   );
 }; 
