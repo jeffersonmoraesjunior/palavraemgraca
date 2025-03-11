@@ -243,6 +243,40 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
             ]
           })}
         </script>
+        
+        {/* FAQ Schema para a seção de perguntas frequentes */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Como funciona a orientação personalizada?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Nossa ferramenta utiliza inteligência artificial para analisar como você está se sentindo e encontrar versículos bíblicos e mensagens de apoio que sejam relevantes para o seu momento atual. Compartilhe seus sentimentos e receba uma orientação espiritual personalizada baseada na Palavra de Deus."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quais traduções da Bíblia estão disponíveis?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Oferecemos diversas traduções da Bíblia em português, incluindo Nova Tradução na Linguagem de Hoje (NTLH), Almeida Revista e Corrigida (ARC), Nova Versão Internacional (NVI), entre outras. Você pode escolher a tradução que preferir para sua leitura e estudo."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Posso usar o Palavra em Graça offline?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Atualmente, o Palavra em Graça requer conexão com a internet para funcionar completamente. No entanto, estamos trabalhando em recursos offline que permitirão acesso a partes do conteúdo mesmo sem conexão. Fique atento às atualizações!"
+                }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
 
       <Breadcrumb items={getBreadcrumbItems()} />
@@ -508,31 +542,37 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
           <h2 className="text-3xl font-bold mb-6 text-indigo-600 dark:text-indigo-400">Perguntas Frequentes</h2>
           
           <div className="space-y-6">
-            <div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Como funciona a orientação personalizada?</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Nossa ferramenta utiliza inteligência artificial para analisar como você está se sentindo e 
-                encontrar versículos bíblicos e mensagens de apoio que sejam relevantes para o seu momento atual. 
-                Compartilhe seus sentimentos e receba uma orientação espiritual personalizada baseada na Palavra de Deus.
-              </p>
+            <div itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+              <h3 itemProp="name" className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Como funciona a orientação personalizada?</h3>
+              <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                <p itemProp="text" className="text-gray-600 dark:text-gray-300">
+                  Nossa ferramenta utiliza inteligência artificial para analisar como você está se sentindo e 
+                  encontrar versículos bíblicos e mensagens de apoio que sejam relevantes para o seu momento atual. 
+                  Compartilhe seus sentimentos e receba uma orientação espiritual personalizada baseada na Palavra de Deus.
+                </p>
+              </div>
             </div>
             
-            <div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Quais traduções da Bíblia estão disponíveis?</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Oferecemos diversas traduções da Bíblia em português, incluindo Nova Tradução na Linguagem de Hoje (NTLH), 
-                Almeida Revista e Corrigida (ARC), Nova Versão Internacional (NVI), entre outras. Você pode escolher a 
-                tradução que preferir para sua leitura e estudo.
-              </p>
+            <div itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+              <h3 itemProp="name" className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Quais traduções da Bíblia estão disponíveis?</h3>
+              <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                <p itemProp="text" className="text-gray-600 dark:text-gray-300">
+                  Oferecemos diversas traduções da Bíblia em português, incluindo Nova Tradução na Linguagem de Hoje (NTLH), 
+                  Almeida Revista e Corrigida (ARC), Nova Versão Internacional (NVI), entre outras. Você pode escolher a 
+                  tradução que preferir para sua leitura e estudo.
+                </p>
+              </div>
             </div>
             
-            <div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Posso usar o Palavra em Graça offline?</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Atualmente, o Palavra em Graça requer conexão com a internet para funcionar completamente. No entanto, 
-                estamos trabalhando em recursos offline que permitirão acesso a partes do conteúdo mesmo sem conexão. 
-                Fique atento às atualizações!
-              </p>
+            <div itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+              <h3 itemProp="name" className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Posso usar o Palavra em Graça offline?</h3>
+              <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                <p itemProp="text" className="text-gray-600 dark:text-gray-300">
+                  Atualmente, o Palavra em Graça requer conexão com a internet para funcionar completamente. No entanto, 
+                  estamos trabalhando em recursos offline que permitirão acesso a partes do conteúdo mesmo sem conexão. 
+                  Fique atento às atualizações!
+                </p>
+              </div>
             </div>
           </div>
         </section>
