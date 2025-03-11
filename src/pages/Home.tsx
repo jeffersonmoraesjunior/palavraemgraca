@@ -286,7 +286,6 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
           <DailyVerse 
             verse={dailyVerse} 
             loading={loading && !dailyVerse} 
-            onRefresh={handleDailyVerse} 
           />
         </section>
 
