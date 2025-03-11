@@ -51,6 +51,15 @@ const Footer: React.FC = () => {
                   Contato
                 </Link>
               </li>
+              <li>
+                <Link 
+                  to="/sitemap" 
+                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  aria-label="Mapa do Site"
+                >
+                  Mapa do Site
+                </Link>
+              </li>
             </ul>
           </div>
           
