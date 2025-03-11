@@ -48,5 +48,655 @@
     "text": "Deixa a ira, abandona o furor; não te impacientes; isso só leva ao mal.",
     "reference": "Salmos 37:8",
     "categories": ["ANGER"]
+  },
+  {
+    "text": "Alegrai-vos sempre no Senhor; outra vez digo: alegrai-vos.",
+    "reference": "Filipenses 4:4",
+    "categories": ["JOY", "WORSHIP"]
+  },
+  {
+    "text": "Em tudo dai graças, porque esta é a vontade de Deus em Cristo Jesus para convosco.",
+    "reference": "1 Tessalonicenses 5:18",
+    "categories": ["GRATITUDE", "JOY"]
+  },
+  {
+    "text": "Se, porém, algum de vós necessita de sabedoria, peça-a a Deus, que a todos dá liberalmente e não o lança em rosto; e ser-lhe-á dada.",
+    "reference": "Tiago 1:5",
+    "categories": ["CONFUSION", "WISDOM"]
+  },
+  {
+    "text": "Porque eu bem sei os planos que estou projetando para vós, diz o Senhor; planos de paz, e não de mal, para vos dar um futuro e uma esperança.",
+    "reference": "Jeremias 29:11",
+    "categories": ["HOPE", "PURPOSE"]
+  },
+  {
+    "text": "O amor é paciente, é benigno; o amor não arde em ciúmes, não se ufana, não se ensoberbece.",
+    "reference": "1 Coríntios 13:4",
+    "categories": ["LOVE", "CHARACTER"]
+  },
+  {
+    "text": "Melhor é serem dois do que um, porque têm melhor paga do seu trabalho. Porque se um cair, o outro levanta o seu companheiro.",
+    "reference": "Eclesiastes 4:9-10",
+    "categories": ["LONELINESS", "CONNECTION"]
+  },
+  {
+    "text": "Ainda que eu ande pelo vale da sombra da morte, não temerei mal algum, porque tu estás comigo; a tua vara e o teu cajado me consolam.",
+    "reference": "Salmos 23:4",
+    "categories": ["FAITH_CRISIS", "TRUST"]
+  },
+  {
+    "text": "Deixo-vos a paz, a minha paz vos dou; não vo-la dou como o mundo a dá. Não se turbe o vosso coração, nem se atemorize.",
+    "reference": "João 14:27",
+    "categories": ["PEACE", "FEAR"]
+  },
+  {
+    "text": "Porque Deus não nos deu o espírito de temor, mas de fortaleza, e de amor, e de moderação.",
+    "reference": "2 Timóteo 1:7",
+    "categories": ["FEAR", "STRENGTH"]
+  },
+  {
+    "text": "Porque, se perdoardes aos homens as suas ofensas, também vosso Pai celestial vos perdoará.",
+    "reference": "Mateus 6:14",
+    "categories": ["FORGIVENESS", "HEALING"]
+  },
+  {
+    "text": "Posso todas as coisas naquele que me fortalece.",
+    "reference": "Filipenses 4:13",
+    "categories": ["STRENGTH", "FAITH_CRISIS"]
+  },
+  {
+    "text": "O princípio da sabedoria é o temor do Senhor; bom entendimento têm todos os que cumprem os seus mandamentos.",
+    "reference": "Salmos 111:10",
+    "categories": ["WISDOM", "GROWTH"]
+  },
+  {
+    "text": "Eu te louvarei, porque de um modo terrível e tão maravilhoso fui formado.",
+    "reference": "Salmos 139:14",
+    "categories": ["WORTH", "IDENTITY"]
+  },
+  {
+    "text": "Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento.",
+    "reference": "Provérbios 3:5",
+    "categories": ["TRUST", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Cantai ao Senhor um cântico novo, porque ele tem feito maravilhas.",
+    "reference": "Salmos 98:1",
+    "categories": ["WORSHIP", "JOY"]
+  },
+  {
+    "text": "E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados segundo o seu propósito.",
+    "reference": "Romanos 8:28",
+    "categories": ["PURPOSE", "TRUST"]
+  },
+  {
+    "text": "Mas os que esperam no Senhor renovarão as suas forças; subirão com asas como águias; correrão, e não se cansarão; andarão, e não se fatigarão.",
+    "reference": "Isaías 40:31",
+    "categories": ["STRENGTH", "HOPE"]
+  },
+  {
+    "text": "Cria em mim, ó Deus, um coração puro e renova em mim um espírito reto.",
+    "reference": "Salmos 51:10",
+    "categories": ["HEALING", "GROWTH"]
+  },
+  {
+    "text": "Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus.",
+    "reference": "Efésios 2:8",
+    "categories": ["WORTH", "FAITH_CRISIS"]
+  },
+  {
+    "text": "O Senhor é a minha luz e a minha salvação; a quem temerei?",
+    "reference": "Salmos 27:1",
+    "categories": ["FEAR", "TRUST"]
+  },
+  {
+    "text": "Antes, sede uns para com os outros benignos, misericordiosos, perdoando-vos uns aos outros, como também Deus vos perdoou em Cristo.",
+    "reference": "Efésios 4:32",
+    "categories": ["FORGIVENESS", "LOVE"]
+  },
+  {
+    "text": "O coração alegre serve de bom remédio, mas o espírito abatido seca até os ossos.",
+    "reference": "Provérbios 17:22",
+    "categories": ["JOY", "HEALING"]
+  },
+  {
+    "text": "Entrega o teu caminho ao Senhor; confia nele, e ele tudo fará.",
+    "reference": "Salmos 37:5",
+    "categories": ["TRUST", "PEACE"]
+  },
+  {
+    "text": "Como o pai se compadece de seus filhos, assim o Senhor se compadece daqueles que o temem.",
+    "reference": "Salmos 103:13",
+    "categories": ["WORTH", "LOVE"]
+  },
+  {
+    "text": "Mas buscai primeiro o reino de Deus, e a sua justiça, e todas estas coisas vos serão acrescentadas.",
+    "reference": "Mateus 6:33",
+    "categories": ["PURPOSE", "WISDOM"]
+  },
+  {
+    "text": "Revesti-vos, pois, como eleitos de Deus, santos e amados, de entranhas de misericórdia, de benignidade, humildade, mansidão, longanimidade.",
+    "reference": "Colossenses 3:12",
+    "categories": ["CHARACTER", "IDENTITY"]
+  },
+  {
+    "text": "Deleita-te também no Senhor, e ele te concederá o que deseja o teu coração.",
+    "reference": "Salmos 37:4",
+    "categories": ["JOY", "WORSHIP"]
+  },
+  {
+    "text": "Porque os meus pensamentos não são os vossos pensamentos, nem os vossos caminhos os meus caminhos, diz o Senhor.",
+    "reference": "Isaías 55:8",
+    "categories": ["WISDOM", "FAITH_CRISIS"]
+  },
+  {
+    "text": "O Senhor é bom, uma fortaleza no dia da angústia, e conhece os que confiam nele.",
+    "reference": "Naum 1:7",
+    "categories": ["TRUST", "STRENGTH"]
+  },
+  {
+    "text": "Mas o fruto do Espírito é: amor, alegria, paz, longanimidade, benignidade, bondade, fidelidade, mansidão, domínio próprio.",
+    "reference": "Gálatas 5:22-23",
+    "categories": ["CHARACTER", "GROWTH"]
+  },
+  {
+    "text": "Portanto, meus amados irmãos, sede firmes e constantes, sempre abundantes na obra do Senhor.",
+    "reference": "1 Coríntios 15:58",
+    "categories": ["STRENGTH", "PURPOSE"]
+  },
+  {
+    "text": "Porque onde estiver o vosso tesouro, aí estará também o vosso coração.",
+    "reference": "Mateus 6:21",
+    "categories": ["WORTH", "PURPOSE"]
+  },
+  {
+    "text": "O Senhor é a minha força e o meu escudo; nele confiou o meu coração, e fui socorrido.",
+    "reference": "Salmos 28:7",
+    "categories": ["STRENGTH", "TRUST"]
+  },
+  {
+    "text": "Bem-aventurado o homem que suporta a provação; porque, depois de aprovado, receberá a coroa da vida.",
+    "reference": "Tiago 1:12",
+    "categories": ["STRENGTH", "HOPE"]
+  },
+  {
+    "text": "Porque sou eu que conheço os planos que tenho para vocês, diz o Senhor, planos de fazê-los prosperar e não de causar dano.",
+    "reference": "Jeremias 29:11",
+    "categories": ["HOPE", "PURPOSE"]
+  },
+  {
+    "text": "Mas tu, ó Senhor, és um escudo para mim, a minha glória, e o que exalta a minha cabeça.",
+    "reference": "Salmos 3:3",
+    "categories": ["WORTH", "PROTECTION"]
+  },
+  {
+    "text": "Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.",
+    "reference": "João 3:16",
+    "categories": ["LOVE", "WORTH"]
+  },
+  {
+    "text": "Vós sois a luz do mundo. Não se pode esconder uma cidade edificada sobre um monte.",
+    "reference": "Mateus 5:14",
+    "categories": ["PURPOSE", "IDENTITY"]
+  },
+  {
+    "text": "Porque o Senhor repreende aquele a quem ama, assim como o pai ao filho a quem quer bem.",
+    "reference": "Provérbios 3:12",
+    "categories": ["LOVE", "GROWTH"]
+  },
+  {
+    "text": "Mas aqueles que esperam no Senhor renovam as suas forças. Voam alto como águias; correm e não ficam exaustos, andam e não se cansam.",
+    "reference": "Isaías 40:31",
+    "categories": ["STRENGTH", "HOPE"]
+  },
+  {
+    "text": "Portanto, se alguém está em Cristo, é nova criação. As coisas antigas já passaram; eis que surgiram coisas novas!",
+    "reference": "2 Coríntios 5:17",
+    "categories": ["IDENTITY", "HEALING"]
+  },
+  {
+    "text": "O Senhor é o meu pastor; nada me faltará.",
+    "reference": "Salmos 23:1",
+    "categories": ["TRUST", "PEACE"]
+  },
+  {
+    "text": "Porque onde há inveja e sentimento faccioso, aí há perturbação e toda obra má.",
+    "reference": "Tiago 3:16",
+    "categories": ["WISDOM", "PEACE"]
+  },
+  {
+    "text": "Mas a sabedoria que vem do alto é, primeiramente, pura, depois pacífica, moderada, tratável, cheia de misericórdia.",
+    "reference": "Tiago 3:17",
+    "categories": ["WISDOM", "CHARACTER"]
+  },
+  {
+    "text": "Não vos conformeis com este século, mas transformai-vos pela renovação da vossa mente.",
+    "reference": "Romanos 12:2",
+    "categories": ["GROWTH", "WISDOM"]
+  },
+  {
+    "text": "Guardai-vos de fazer as vossas boas obras diante dos homens, para serdes vistos por eles.",
+    "reference": "Mateus 6:1",
+    "categories": ["CHARACTER", "HUMILITY"]
+  },
+  {
+    "text": "Quanto ao mais, irmãos, tudo o que é verdadeiro, tudo o que é honesto, tudo o que é justo, tudo o que é puro, tudo o que é amável, tudo o que é de boa fama, se há alguma virtude, e se há algum louvor, nisso pensai.",
+    "reference": "Filipenses 4:8",
+    "categories": ["WISDOM", "PEACE"]
+  },
+  {
+    "text": "Mas Deus prova o seu amor para conosco em que Cristo morreu por nós, sendo nós ainda pecadores.",
+    "reference": "Romanos 5:8",
+    "categories": ["LOVE", "WORTH"]
+  },
+  {
+    "text": "Porque não nos deu Deus espírito de covardia, mas de poder, de amor e de moderação.",
+    "reference": "2 Timóteo 1:7",
+    "categories": ["STRENGTH", "FEAR"]
+  },
+  {
+    "text": "O temor do Senhor é o princípio do conhecimento; os loucos desprezam a sabedoria e a instrução.",
+    "reference": "Provérbios 1:7",
+    "categories": ["WISDOM", "GROWTH"]
+  },
+  {
+    "text": "Mas os mansos herdarão a terra e se deleitarão na abundância de paz.",
+    "reference": "Salmos 37:11",
+    "categories": ["PEACE", "CHARACTER"]
+  },
+  {
+    "text": "Porque o Senhor dá a sabedoria, e da sua boca vem o conhecimento e o entendimento.",
+    "reference": "Provérbios 2:6",
+    "categories": ["WISDOM", "TRUST"]
+  },
+  {
+    "text": "Mas a vereda dos justos é como a luz da aurora, que vai brilhando mais e mais, até ser dia perfeito.",
+    "reference": "Provérbios 4:18",
+    "categories": ["HOPE", "GROWTH"]
+  },
+  {
+    "text": "Porque o Senhor não rejeitará o seu povo, nem desamparará a sua herança.",
+    "reference": "Salmos 94:14",
+    "categories": ["TRUST", "WORTH"]
+  },
+  {
+    "text": "Bem-aventurados os limpos de coração, porque eles verão a Deus.",
+    "reference": "Mateus 5:8",
+    "categories": ["CHARACTER", "WORSHIP"]
+  },
+  {
+    "text": "Porque dele, e por meio dele, e para ele são todas as coisas. A ele, pois, a glória eternamente. Amém!",
+    "reference": "Romanos 11:36",
+    "categories": ["WORSHIP", "PURPOSE"]
+  },
+  {
+    "text": "E a paz de Deus, que excede todo o entendimento, guardará os vossos corações e os vossos pensamentos em Cristo Jesus.",
+    "reference": "Filipenses 4:7",
+    "categories": ["PEACE", "ANXIETY"]
+  },
+  {
+    "text": "Porque somos feitura dele, criados em Cristo Jesus para boas obras.",
+    "reference": "Efésios 2:10",
+    "categories": ["IDENTITY", "PURPOSE"]
+  },
+  {
+    "text": "O Senhor é a minha rocha, e o meu lugar forte, e o meu libertador; o meu Deus, o meu rochedo, em quem confio.",
+    "reference": "Salmos 18:2",
+    "categories": ["STRENGTH", "TRUST"]
+  },
+  {
+    "text": "Mas os que confiam no Senhor serão como o monte de Sião, que não se abala, mas permanece para sempre.",
+    "reference": "Salmos 125:1",
+    "categories": ["TRUST", "STRENGTH"]
+  },
+  {
+    "text": "Combati o bom combate, acabei a carreira, guardei a fé.",
+    "reference": "2 Timóteo 4:7",
+    "categories": ["STRENGTH", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Ora, a fé é o firme fundamento das coisas que se esperam e a prova das coisas que não se veem.",
+    "reference": "Hebreus 11:1",
+    "categories": ["FAITH_CRISIS", "HOPE"]
+  },
+  {
+    "text": "Tudo posso naquele que me fortalece.",
+    "reference": "Filipenses 4:13",
+    "categories": ["STRENGTH", "TRUST"]
+  },
+  {
+    "text": "O amor seja sem hipocrisia. Aborrecei o mal e apegai-vos ao bem.",
+    "reference": "Romanos 12:9",
+    "categories": ["LOVE", "CHARACTER"]
+  },
+  {
+    "text": "Mas tu, quando orares, entra no teu aposento e, fechando a tua porta, ora a teu Pai que está em secreto.",
+    "reference": "Mateus 6:6",
+    "categories": ["WORSHIP", "CONNECTION"]
+  },
+  {
+    "text": "Instruir-te-ei e ensinar-te-ei o caminho que deves seguir; aconselhar-te-ei, tendo-te sob a minha vista.",
+    "reference": "Salmos 32:8",
+    "categories": ["WISDOM", "GUIDANCE"]
+  },
+  {
+    "text": "Porque onde estiverem dois ou três reunidos em meu nome, aí estou eu no meio deles.",
+    "reference": "Mateus 18:20",
+    "categories": ["CONNECTION", "WORSHIP"]
+  },
+  {
+    "text": "Não to mandei eu? Esforça-te, e tem bom ânimo; não temas, nem te espantes; porque o Senhor, teu Deus, é contigo.",
+    "reference": "Josué 1:9",
+    "categories": ["STRENGTH", "FEAR"]
+  },
+  {
+    "text": "Mas os que se alegram no Senhor renovarão as suas forças; subirão com asas como águias; correrão, e não se cansarão.",
+    "reference": "Isaías 40:31",
+    "categories": ["JOY", "STRENGTH"]
+  },
+  {
+    "text": "Porque o Senhor é bom, e eterna a sua misericórdia; e a sua verdade dura de geração em geração.",
+    "reference": "Salmos 100:5",
+    "categories": ["TRUST", "WORTH"]
+  },
+  {
+    "text": "Bendize, ó minha alma, ao Senhor, e não te esqueças de nenhum de seus benefícios.",
+    "reference": "Salmos 103:2",
+    "categories": ["GRATITUDE", "WORSHIP"]
+  },
+  {
+    "text": "Porque o Senhor não despreza nem aborrece a aflição do aflito, nem esconde dele o seu rosto; antes, quando ele clama, o ouve.",
+    "reference": "Salmos 22:24",
+    "categories": ["SADNESS", "TRUST"]
+  },
+  {
+    "text": "Mas sede uns para com os outros benignos, misericordiosos, perdoando-vos uns aos outros, como também Deus vos perdoou em Cristo.",
+    "reference": "Efésios 4:32",
+    "categories": ["FORGIVENESS", "CHARACTER"]
+  },
+  {
+    "text": "Porque Deus não é injusto para se esquecer da vossa obra e do trabalho de amor que mostrastes para com o seu nome.",
+    "reference": "Hebreus 6:10",
+    "categories": ["WORTH", "PURPOSE"]
+  },
+  {
+    "text": "Aquietai-vos e sabei que eu sou Deus; serei exaltado entre as nações, serei exaltado sobre a terra.",
+    "reference": "Salmos 46:10",
+    "categories": ["PEACE", "WORSHIP"]
+  },
+  {
+    "text": "Mas, buscai primeiro o reino de Deus, e a sua justiça, e todas estas coisas vos serão acrescentadas.",
+    "reference": "Mateus 6:33",
+    "categories": ["PURPOSE", "TRUST"]
+  },
+  {
+    "text": "E conhecereis a verdade, e a verdade vos libertará.",
+    "reference": "João 8:32",
+    "categories": ["WISDOM", "HEALING"]
+  },
+  {
+    "text": "Porque o Senhor ama o juízo e não desampara os seus santos; eles são preservados para sempre.",
+    "reference": "Salmos 37:28",
+    "categories": ["PROTECTION", "LOVE"]
+  },
+  {
+    "text": "Mas a vereda dos justos é como a luz da aurora, que vai brilhando mais e mais, até ser dia perfeito.",
+    "reference": "Provérbios 4:18",
+    "categories": ["HOPE", "GROWTH"]
+  },
+  {
+    "text": "Porque eu sei que o meu Redentor vive, e que por fim se levantará sobre a terra.",
+    "reference": "Jó 19:25",
+    "categories": ["FAITH_CRISIS", "HOPE"]
+  },
+  {
+    "text": "Mas vós sois a geração eleita, o sacerdócio real, a nação santa, o povo adquirido, para que anuncieis as virtudes daquele que vos chamou das trevas para a sua maravilhosa luz.",
+    "reference": "1 Pedro 2:9",
+    "categories": ["IDENTITY", "PURPOSE"]
+  },
+  {
+    "text": "Não se turbe o vosso coração; credes em Deus, crede também em mim.",
+    "reference": "João 14:1",
+    "categories": ["ANXIETY", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Porque o Senhor teu Deus está no meio de ti, poderoso para te salvar; ele se deleitará em ti com alegria; calar-se-á por seu amor, regozijar-se-á em ti com júbilo.",
+    "reference": "Sofonias 3:17",
+    "categories": ["LOVE", "JOY"]
+  },
+  {
+    "text": "Mas os que esperam no Senhor renovarão as suas forças; subirão com asas como águias; correrão, e não se cansarão; andarão, e não se fatigarão.",
+    "reference": "Isaías 40:31",
+    "categories": ["STRENGTH", "HOPE"]
+  },
+  {
+    "text": "Vinde então, e argui-me, diz o Senhor: ainda que os vossos pecados sejam como a escarlata, eles se tornarão brancos como a neve; ainda que sejam vermelhos como o carmesim, se tornarão como a branca lã.",
+    "reference": "Isaías 1:18",
+    "categories": ["FORGIVENESS", "HEALING"]
+  },
+  {
+    "text": "Porque o Senhor não vê como vê o homem. O homem vê o que está diante dos olhos, porém o Senhor olha para o coração.",
+    "reference": "1 Samuel 16:7",
+    "categories": ["WORTH", "IDENTITY"]
+  },
+  {
+    "text": "Mas a sabedoria que do alto vem é, primeiramente pura, depois pacífica, moderada, tratável, cheia de misericórdia e de bons frutos, sem parcialidade, e sem hipocrisia.",
+    "reference": "Tiago 3:17",
+    "categories": ["WISDOM", "CHARACTER"]
+  },
+  {
+    "text": "Não temas, porque eu te remi; chamei-te pelo teu nome, tu és meu.",
+    "reference": "Isaías 43:1",
+    "categories": ["FEAR", "IDENTITY"]
+  },
+  {
+    "text": "Porque o Senhor é justo, ele ama a justiça; os retos verão o seu rosto.",
+    "reference": "Salmos 11:7",
+    "categories": ["CHARACTER", "WORSHIP"]
+  },
+  {
+    "text": "Mas tu és santo, tu que habitas entre os louvores de Israel.",
+    "reference": "Salmos 22:3",
+    "categories": ["WORSHIP", "TRUST"]
+  },
+  {
+    "text": "Porque a palavra de Deus é viva e eficaz, e mais penetrante do que espada alguma de dois gumes, e penetra até à divisão da alma e do espírito.",
+    "reference": "Hebreus 4:12",
+    "categories": ["WISDOM", "GROWTH"]
+  },
+  {
+    "text": "Mas, como está escrito: As coisas que o olho não viu, e o ouvido não ouviu, e não subiram ao coração do homem, são as que Deus preparou para os que o amam.",
+    "reference": "1 Coríntios 2:9",
+    "categories": ["HOPE", "LOVE"]
+  },
+  {
+    "text": "Porque o Senhor é bom; a sua benignidade dura para sempre, e a sua fidelidade de geração em geração.",
+    "reference": "Salmos 100:5",
+    "categories": ["TRUST", "GRATITUDE"]
+  },
+  {
+    "text": "Mas Deus, que é riquíssimo em misericórdia, pelo seu muito amor com que nos amou.",
+    "reference": "Efésios 2:4",
+    "categories": ["LOVE", "WORTH"]
+  },
+  {
+    "text": "Porque o Senhor é a nossa força e o nosso escudo; nele confiou o nosso coração, e fomos socorridos.",
+    "reference": "Salmos 28:7",
+    "categories": ["STRENGTH", "PROTECTION"]
+  },
+  {
+    "text": "Porque eu sou o Senhor teu Deus, que te toma pela tua mão direita e te diz: Não temas, que eu te ajudo.",
+    "reference": "Isaías 41:13",
+    "categories": ["FEAR", "TRUST"]
+  },
+  {
+    "text": "Mas em todas estas coisas somos mais que vencedores, por aquele que nos amou.",
+    "reference": "Romanos 8:37",
+    "categories": ["STRENGTH", "LOVE"]
+  },
+  {
+    "text": "Porque o Senhor é bom, e eterna a sua misericórdia; e a sua verdade dura de geração em geração.",
+    "reference": "Salmos 100:5",
+    "categories": ["TRUST", "CHARACTER"]
+  },
+  {
+    "text": "Porque eu sei que o meu Redentor vive, e que por fim se levantará sobre a terra.",
+    "reference": "Jó 19:25",
+    "categories": ["FAITH_CRISIS", "HOPE"]
+  },
+  {
+    "text": "Mas o Senhor é fiel, o qual vos confirmará e guardará do maligno.",
+    "reference": "2 Tessalonicenses 3:3",
+    "categories": ["PROTECTION", "TRUST"]
+  },
+  {
+    "text": "Ele te declarou, ó homem, o que é bom; e que é o que o Senhor pede de ti, senão que pratiques a justiça, e ames a benignidade, e andes humildemente com o teu Deus?",
+    "reference": "Miquéias 6:8",
+    "categories": ["CHARACTER", "HUMILITY"]
+  },
+  {
+    "text": "Porque os olhos do Senhor estão sobre os justos, e os seus ouvidos atentos às suas orações.",
+    "reference": "1 Pedro 3:12",
+    "categories": ["TRUST", "CONNECTION"]
+  },
+  {
+    "text": "Mas os que se alegram no Senhor renovarão as suas forças; subirão com asas como águias; correrão, e não se cansarão.",
+    "reference": "Isaías 40:31",
+    "categories": ["JOY", "STRENGTH"]
+  },
+  {
+    "text": "Porque grande é a sua misericórdia para conosco, e a fidelidade do Senhor dura para sempre. Aleluia!",
+    "reference": "Salmos 117:2",
+    "categories": ["GRATITUDE", "WORSHIP"]
+  },
+  {
+    "text": "Porque Deus não é injusto para se esquecer da vossa obra e do trabalho do amor que mostrastes para com o seu nome.",
+    "reference": "Hebreus 6:10",
+    "categories": ["WORTH", "PURPOSE"]
+  },
+  {
+    "text": "Mas a vereda dos justos é como a luz da aurora, que vai brilhando mais e mais até ser dia perfeito.",
+    "reference": "Provérbios 4:18",
+    "categories": ["GROWTH", "HOPE"]
+  },
+  {
+    "text": "Porque eu sei os pensamentos que tenho a vosso respeito, diz o Senhor; pensamentos de paz, e não de mal, para vos dar o fim que esperais.",
+    "reference": "Jeremias 29:11",
+    "categories": ["HOPE", "PEACE"]
+  },
+  {
+    "text": "O Senhor é a minha força e o meu escudo; nele confiou o meu coração, e fui socorrido; pelo que o meu coração salta de prazer, e com o meu canto o louvarei.",
+    "reference": "Salmos 28:7",
+    "categories": ["STRENGTH", "WORSHIP"]
+  },
+  {
+    "text": "Porque todo o que é nascido de Deus vence o mundo; e esta é a vitória que vence o mundo: a nossa fé.",
+    "reference": "1 João 5:4",
+    "categories": ["FAITH_CRISIS", "STRENGTH"]
+  },
+  {
+    "text": "Mas, como está escrito: As coisas que o olho não viu, e o ouvido não ouviu, e não subiram ao coração do homem, são as que Deus preparou para os que o amam.",
+    "reference": "1 Coríntios 2:9",
+    "categories": ["LOVE", "HOPE"]
+  },
+  {
+    "text": "Porque o Senhor é bom; a sua misericórdia dura para sempre, e a sua fidelidade de geração em geração.",
+    "reference": "Salmos 100:5",
+    "categories": ["TRUST", "GRATITUDE"]
+  },
+  {
+    "text": "Mas tu, Senhor, és um escudo para mim, a minha glória, e o que exalta a minha cabeça.",
+    "reference": "Salmos 3:3",
+    "categories": ["PROTECTION", "WORTH"]
+  },
+  {
+    "text": "Porque pela graça sois salvos, por meio da fé; e isto não vem de vós; é dom de Deus.",
+    "reference": "Efésios 2:8",
+    "categories": ["WORTH", "FAITH_CRISIS"]
+  },
+  {
+    "text": "Mas o fruto do Espírito é: amor, alegria, paz, longanimidade, benignidade, bondade, fidelidade, mansidão, domínio próprio.",
+    "reference": "Gálatas 5:22-23",
+    "categories": ["CHARACTER", "GROWTH"]
+  },
+  {
+    "text": "Porque Deus é o que opera em vós tanto o querer como o efetuar, segundo a sua boa vontade.",
+    "reference": "Filipenses 2:13",
+    "categories": ["PURPOSE", "STRENGTH"]
+  },
+  {
+    "text": "Sede fortes e corajosos; não temais, nem vos espanteis diante deles; porque o Senhor vosso Deus é quem vai convosco; não vos deixará nem vos desamparará.",
+    "reference": "Deuteronômio 31:6",
+    "categories": ["STRENGTH", "FEAR"]
+  },
+  {
+    "text": "O Senhor é a minha força e o meu cântico; ele se tornou a minha salvação. Este é o meu Deus, portanto eu o louvarei.",
+    "reference": "Êxodo 15:2",
+    "categories": ["WORSHIP", "STRENGTH"]
+  },
+  {
+    "text": "Ensina-nos a contar os nossos dias, de tal maneira que alcancemos corações sábios.",
+    "reference": "Salmos 90:12",
+    "categories": ["WISDOM", "PURPOSE"]
+  },
+  {
+    "text": "Porque os meus pensamentos não são os vossos pensamentos, nem os vossos caminhos os meus caminhos, diz o Senhor.",
+    "reference": "Isaías 55:8",
+    "categories": ["WISDOM", "TRUST"]
+  },
+  {
+    "text": "Mas os que confiam no Senhor são como o monte Sião, que não se abala, mas permanece para sempre.",
+    "reference": "Salmos 125:1",
+    "categories": ["TRUST", "STRENGTH"]
+  },
+  {
+    "text": "Porque o Senhor Deus é sol e escudo; o Senhor dará graça e glória; não negará bem algum aos que andam na retidão.",
+    "reference": "Salmos 84:11",
+    "categories": ["PROTECTION", "WORTH"]
+  },
+  {
+    "text": "Portanto, quer comais quer bebais, ou façais outra qualquer coisa, fazei tudo para glória de Deus.",
+    "reference": "1 Coríntios 10:31",
+    "categories": ["PURPOSE", "WORSHIP"]
+  },
+  {
+    "text": "Porque onde está o teu tesouro, aí estará também o teu coração.",
+    "reference": "Mateus 6:21",
+    "categories": ["WORTH", "CHARACTER"]
+  },
+  {
+    "text": "Mas agora, assim diz o Senhor que te criou, ó Jacó, e que te formou, ó Israel: Não temas, porque eu te remi; chamei-te pelo teu nome, tu és meu.",
+    "reference": "Isaías 43:1",
+    "categories": ["IDENTITY", "FEAR"]
+  },
+  {
+    "text": "Porque a graça de Deus se manifestou, trazendo salvação a todos os homens.",
+    "reference": "Tito 2:11",
+    "categories": ["WORTH", "LOVE"]
+  },
+  {
+    "text": "Mas, como está escrito: Nem olhos viram, nem ouvidos ouviram, nem jamais penetrou em coração humano o que Deus tem preparado para aqueles que o amam.",
+    "reference": "1 Coríntios 2:9",
+    "categories": ["HOPE", "LOVE"]
+  },
+  {
+    "text": "Porque o Senhor é bom; a sua misericórdia dura para sempre, e a sua fidelidade de geração em geração.",
+    "reference": "Salmos 100:5",
+    "categories": ["TRUST", "GRATITUDE"]
+  },
+  {
+    "text": "Mas buscai primeiro o reino de Deus e a sua justiça, e todas estas coisas vos serão acrescentadas.",
+    "reference": "Mateus 6:33",
+    "categories": ["PURPOSE", "TRUST"]
+  },
+  {
+    "text": "Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.",
+    "reference": "João 3:16",
+    "categories": ["LOVE", "WORTH"]
+  },
+  {
+    "text": "Porque eu sou o Senhor, o teu Deus, que te toma pela tua mão direita e te diz: Não temas, que eu te ajudo.",
+    "reference": "Isaías 41:13",
+    "categories": ["FEAR", "TRUST"]
   }
 ]
