@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Você está offline | Palavra em Graça</title>
+  <link rel="icon" type="image/svg+xml" href="/bible.svg" />
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .container {
+      max-width: 600px;
+      padding: 30px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      color: #4f46e5;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      color: #4b5563;
+    }
+    
+    .verse {
+      font-style: italic;
+      padding: 20px;
+      background-color: #eef2ff;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    
+    .verse-ref {
+      display: block;
+      text-align: right;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+    
+    .icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+    }
+    
+    .retry-button {
+      background-color: #4f46e5;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .retry-button:hover {
+      background-color: #4338ca;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #111827;
+        color: #f9fafb;
+      }
+      
+      .container {
+        background-color: #1f2937;
+      }
+      
+      h1 {
+        color: #818cf8;
+      }
+      
+      p {
+        color: #d1d5db;
+      }
+      
+      .verse {
+        background-color: #312e81;
+        color: #e0e7ff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-4.5-8.599M13.5 8.25l-4.5 4.5 4.5 4.5" />
+    </svg>
+    
+    <h1>Você está offline</h1>
+    
+    <p>Parece que você está sem conexão com a internet no momento. Verifique sua conexão e tente novamente.</p>
+    
+    <div class="verse">
+      "Não temas, porque eu sou contigo; não te assombres, porque eu sou teu Deus; eu te fortaleço, e te ajudo, e te sustento com a destra da minha justiça."
+      <span class="verse-ref">Isaías 41:10</span>
+    </div>
+    
+    <p>Enquanto isso, lembre-se que a Palavra de Deus está sempre presente, mesmo quando estamos offline.</p>
+    
+    <button class="retry-button" onclick="window.location.reload()">Tentar novamente</button>
+  </div>
+  
+  <script>
+    // Verifica periodicamente se a conexão foi restaurada
+    window.addEventListener('online', () => {
+      window.location.reload();
+    });
+  </script>
+</body>
+</html> 
