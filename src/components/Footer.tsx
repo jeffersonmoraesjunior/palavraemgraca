@@ -60,6 +60,15 @@ const Footer: React.FC = () => {
                   Mapa do Site
                 </Link>
               </li>
+              <li>
+                <Link 
+                  to="/perguntas" 
+                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  aria-label="Perguntas e Respostas Bíblicas"
+                >
+                  Perguntas e Respostas
+                </Link>
+              </li>
             </ul>
           </div>
           

@@ -74,6 +74,33 @@ const Sitemap: React.FC = () => {
       ]
     },
     {
+      title: 'Perguntas e Respostas',
+      url: '/perguntas',
+      description: 'Respostas para perguntas comuns sobre fé, ansiedade, perdão e outros temas bíblicos',
+      children: [
+        {
+          title: 'Perguntas sobre Ansiedade',
+          url: '/perguntas#category-ansiedade',
+          description: 'O que a Bíblia diz sobre ansiedade e como encontrar paz'
+        },
+        {
+          title: 'Perguntas sobre Tristeza',
+          url: '/perguntas#category-tristeza',
+          description: 'Como lidar com a tristeza segundo a Bíblia'
+        },
+        {
+          title: 'Perguntas sobre Fé',
+          url: '/perguntas#category-fé',
+          description: 'O que é fé e como aumentá-la segundo as Escrituras'
+        },
+        {
+          title: 'Perguntas sobre Perdão',
+          url: '/perguntas#category-perdão',
+          description: 'Como perdoar e por que o perdão é importante'
+        }
+      ]
+    },
+    {
       title: 'Sobre o Projeto',
       url: '/sobre',
       description: 'Conheça mais sobre o projeto Palavra em Graça'

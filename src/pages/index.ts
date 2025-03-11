@@ -6,3 +6,4 @@ export { default as Home } from './Home';
 export { default as Bible } from './Bible';
 export { default as BibleIndex } from './BibleIndex';
 export { default as Sitemap } from './Sitemap'; 
+export { default as VoiceSearch } from './VoiceSearch'; 
