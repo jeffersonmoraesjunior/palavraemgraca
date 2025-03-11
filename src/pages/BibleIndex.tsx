@@ -182,7 +182,7 @@ const BibleIndex: React.FC = () => {
   ];
 
   // Gerar título e descrição para SEO
-  const pageTitle = `Índice da Bíblia Sagrada - ${bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion} | Amigos de Deus`;
+  const pageTitle = `Índice da Bíblia Sagrada - ${bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion} | Palavra em Graça`;
   const pageDescription = `Navegue por todos os livros e capítulos da Bíblia Sagrada na versão ${bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion}. Acesse Antigo e Novo Testamento, Evangelhos, Salmos, Provérbios e mais.`;
 
   // Dados estruturados para SEO

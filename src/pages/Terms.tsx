@@ -22,31 +22,31 @@ const Terms: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Termos de Uso | Caixinha de Promessas - Condições de Utilização</title>
-        <meta name="description" content="Conheça os termos de uso da Caixinha de Promessas. Entenda as condições e regras para utilização do nosso aplicativo de versículos bíblicos personalizados." />
-        <meta name="keywords" content="termos de uso, condições de uso, regras de utilização, caixinha de promessas, aplicativo cristão, termos e condições, acordo de usuário" />
-        <link rel="canonical" href="https://amigodedeus.com.br/termos" />
-        <meta property="og:title" content="Termos de Uso | Caixinha de Promessas - Condições de Utilização" />
-        <meta property="og:description" content="Conheça os termos de uso da Caixinha de Promessas. Entenda as condições e regras para utilização do nosso aplicativo." />
-        <meta property="og:url" content="https://amigodedeus.com.br/termos" />
+        <title>Termos de Uso | Palavra em Graça - Condições de Utilização</title>
+        <meta name="description" content="Conheça os termos de uso do Palavra em Graça. Entenda as condições e regras para utilização do nosso aplicativo de versículos bíblicos personalizados." />
+        <meta name="keywords" content="termos de uso, condições de uso, regras de utilização, palavra em graça, aplicativo cristão, termos e condições, acordo de usuário" />
+        <link rel="canonical" href="https://palavraemgraca.com.br/termos" />
+        <meta property="og:title" content="Termos de Uso | Palavra em Graça - Condições de Utilização" />
+        <meta property="og:description" content="Conheça os termos de uso do Palavra em Graça. Entenda as condições e regras para utilização do nosso aplicativo." />
+        <meta property="og:url" content="https://palavraemgraca.com.br/termos" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://amigodedeus.com.br/og-image-terms.jpg" />
+        <meta property="og:image" content="https://palavraemgraca.com.br/og-image-terms.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Termos de Uso | Caixinha de Promessas - Condições de Utilização" />
-        <meta name="twitter:description" content="Conheça os termos de uso da Caixinha de Promessas. Entenda as condições e regras para utilização do nosso aplicativo." />
-        <meta name="twitter:image" content="https://amigodedeus.com.br/twitter-image-terms.jpg" />
+        <meta name="twitter:title" content="Termos de Uso | Palavra em Graça - Condições de Utilização" />
+        <meta name="twitter:description" content="Conheça os termos de uso do Palavra em Graça. Entenda as condições e regras para utilização do nosso aplicativo." />
+        <meta name="twitter:image" content="https://palavraemgraca.com.br/twitter-image-terms.jpg" />
         
         {/* Schema.org markup para melhor SEO */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "name": "Termos de Uso | Caixinha de Promessas",
-            "description": "Conheça os termos de uso da Caixinha de Promessas. Entenda as condições e regras para utilização do nosso aplicativo.",
+            "name": "Termos de Uso | Palavra em Graça",
+            "description": "Conheça os termos de uso do Palavra em Graça. Entenda as condições e regras para utilização do nosso aplicativo.",
             "publisher": {
               "@type": "Organization",
-              "name": "Caixinha de Promessas",
-              "logo": "https://amigodedeus.com.br/logo.svg"
+              "name": "Palavra em Graça",
+              "logo": "https://palavraemgraca.com.br/logo.svg"
             },
             "dateModified": new Date().toISOString().split('T')[0],
             "mainEntity": {
@@ -89,12 +89,12 @@ const Terms: React.FC = () => {
         <section className="mb-10" id="introducao">
           <h2 className="text-2xl font-semibold mb-4">1. Introdução</h2>
           <p className="mb-4">
-            Bem-vindo à Caixinha de Promessas. Estes Termos de Uso ("Termos") regem seu acesso e uso do aplicativo 
-            Caixinha de Promessas, incluindo quaisquer conteúdos, funcionalidades e serviços oferecidos por meio do 
+            Bem-vindo ao Palavra em Graça. Estes Termos de Uso ("Termos") regem seu acesso e uso do aplicativo 
+            Palavra em Graça, incluindo quaisquer conteúdos, funcionalidades e serviços oferecidos por meio do 
             aplicativo (coletivamente, o "Serviço").
           </p>
           <p className="mb-4">
-            A Caixinha de Promessas é um aplicativo cristão dedicado a trazer conforto e orientação espiritual através 
+            O Palavra em Graça é um aplicativo cristão dedicado a trazer conforto e orientação espiritual através 
             de versículos bíblicos personalizados para seu dia a dia. Nosso objetivo é conectar pessoas à sabedoria 
             bíblica de forma personalizada e significativa.
           </p>
@@ -107,7 +107,7 @@ const Terms: React.FC = () => {
         <section className="mb-10" id="aceitacao">
           <h2 className="text-2xl font-semibold mb-4">2. Aceitação dos Termos</h2>
           <p className="mb-4">
-            Ao utilizar a Caixinha de Promessas, você confirma que:
+            Ao utilizar o Palavra em Graça, você confirma que:
           </p>
           <ul className="list-disc pl-6 mb-4 space-y-2">
             <li>Leu, compreendeu e concorda em cumprir estes Termos;</li>
@@ -153,7 +153,7 @@ const Terms: React.FC = () => {
         <section className="mb-10" id="uso-servico">
           <h2 className="text-2xl font-semibold mb-4">5. Uso do Serviço</h2>
           <p className="mb-4">
-            A Caixinha de Promessas oferece versículos bíblicos e orientações espirituais personalizadas. Ao utilizar nosso Serviço, você concorda em:
+            O Palavra em Graça oferece versículos bíblicos e orientações espirituais personalizadas. Ao utilizar nosso Serviço, você concorda em:
           </p>
           <ul className="list-disc pl-6 mb-4 space-y-2">
             <li>Utilizar o Serviço apenas para fins pessoais e não comerciais, a menos que expressamente autorizado por nós;</li>
@@ -172,7 +172,7 @@ const Terms: React.FC = () => {
           <h2 className="text-2xl font-semibold mb-4">6. Conteúdo e Propriedade Intelectual</h2>
           <p className="mb-4">
             Todo o conteúdo disponibilizado através do Serviço, incluindo textos, gráficos, logotipos, ícones, imagens, 
-            clipes de áudio, downloads digitais e compilações de dados, é de propriedade da Caixinha de Promessas ou de 
+            clipes de áudio, downloads digitais e compilações de dados, é de propriedade do Palavra em Graça ou de 
             seus licenciadores e está protegido por leis de direitos autorais e outras leis de propriedade intelectual.
           </p>
           <p className="mb-4">
@@ -250,7 +250,7 @@ const Terms: React.FC = () => {
             O Serviço é fornecido "como está" e "conforme disponível", sem garantias de qualquer tipo, expressas ou implícitas.
           </p>
           <p className="mb-4">
-            Na extensão máxima permitida por lei, a Caixinha de Promessas e seus diretores, funcionários, parceiros e agentes:
+            Na extensão máxima permitida por lei, o Palavra em Graça e seus diretores, funcionários, parceiros e agentes:
           </p>
           <ul className="list-disc pl-6 mb-4 space-y-2">
             <li>Não garantem que o Serviço atenderá às suas necessidades específicas;</li>
@@ -264,7 +264,7 @@ const Terms: React.FC = () => {
           </p>
           <div className="bg-yellow-50 dark:bg-yellow-900/30 border-l-4 border-yellow-500 p-4 my-6">
             <p className="text-yellow-800 dark:text-yellow-200">
-              <strong>Importante:</strong> A Caixinha de Promessas oferece orientação espiritual baseada em textos bíblicos, 
+              <strong>Importante:</strong> O Palavra em Graça oferece orientação espiritual baseada em textos bíblicos, 
               mas não substitui aconselhamento profissional médico, psicológico, legal ou financeiro. Consulte sempre 
               profissionais qualificados para questões específicas nessas áreas.
             </p>
@@ -308,7 +308,7 @@ const Terms: React.FC = () => {
             inexequível, as demais disposições permanecerão em pleno vigor e efeito.
           </p>
           <p className="mb-4">
-            <strong>Renúncia:</strong> A falha da Caixinha de Promessas em fazer valer qualquer direito ou disposição destes 
+            <strong>Renúncia:</strong> A falha do Palavra em Graça em fazer valer qualquer direito ou disposição destes 
             Termos não constituirá uma renúncia a tal direito ou disposição.
           </p>
           <p className="mb-4">
@@ -317,7 +317,7 @@ const Terms: React.FC = () => {
           </p>
           <p className="mb-4">
             <strong>Acordo Integral:</strong> Estes Termos, juntamente com nossa Política de Privacidade, constituem o acordo 
-            integral entre você e a Caixinha de Promessas em relação ao Serviço.
+            integral entre você e o Palavra em Graça em relação ao Serviço.
           </p>
         </section>
 

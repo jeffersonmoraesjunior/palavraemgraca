@@ -7,8 +7,8 @@ const Footer: React.FC = () => {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center md:text-left">
-            <h2 className="font-semibold text-gray-700 dark:text-gray-300 mb-3">Amigos de Deus</h2>
-            <p>Amigos de Deus &copy; {new Date().getFullYear()}</p>
+            <h2 className="font-semibold text-gray-700 dark:text-gray-300 mb-3">Palavra em Graça</h2>
+            <p>Palavra em Graça &copy; {new Date().getFullYear()}</p>
             <p className="mt-1">Desenvolvido com <span aria-label="amor">❤️</span> para confortar e inspirar</p>
           </div>
           
@@ -49,6 +49,24 @@ const Footer: React.FC = () => {
                   aria-label="Entre em contato"
                 >
                   Contato
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/sitemap" 
+                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  aria-label="Mapa do Site"
+                >
+                  Mapa do Site
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/perguntas" 
+                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  aria-label="Perguntas e Respostas Bíblicas"
+                >
+                  Perguntas e Respostas
                 </Link>
               </li>
             </ul>

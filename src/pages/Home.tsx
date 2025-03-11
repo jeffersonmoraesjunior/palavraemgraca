@@ -115,10 +115,10 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
 
   const shareGuidance = (platform?: 'whatsapp' | 'copy') => {
     if (guidance) {
-      const text = `Versículo: ${guidance.verse} ${guidance.verseRef ? `(${guidance.verseRef})` : ''}\n\nMensagem: ${guidance.support} ${guidance.quoteAuthor ? `- ${guidance.quoteAuthor}` : ''}\n\nCompartilhado de Amigos de Deus`;
+      const text = `Versículo: ${guidance.verse} ${guidance.verseRef ? `(${guidance.verseRef})` : ''}\n\nMensagem: ${guidance.support} ${guidance.quoteAuthor ? `- ${guidance.quoteAuthor}` : ''}\n\nCompartilhado de Palavra em Graça`;
       
       if (platform === 'whatsapp') {
-        const encodedText = encodeURIComponent(`*Versículo:* ${guidance.verse} ${guidance.verseRef ? `(${guidance.verseRef})` : ''}\n\n*Mensagem:* ${guidance.support} ${guidance.quoteAuthor ? `- ${guidance.quoteAuthor}` : ''}\n\nCompartilhado de Amigos de Deus`);
+        const encodedText = encodeURIComponent(`*Versículo:* ${guidance.verse} ${guidance.verseRef ? `(${guidance.verseRef})` : ''}\n\n*Mensagem:* ${guidance.support} ${guidance.quoteAuthor ? `- ${guidance.quoteAuthor}` : ''}\n\nCompartilhado de Palavra em Graça`);
         window.open(`https://wa.me/?text=${encodedText}`, '_blank');
         return;
       }
@@ -150,7 +150,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
   // Função para compartilhar o versículo do dia
   const shareDailyVerse = () => {
     if (dailyVerse) {
-      const text = `Versículo do dia: ${dailyVerse}\n\nCompartilhado de Amigos de Deus`;
+      const text = `Versículo do dia: ${dailyVerse}\n\nCompartilhado de Palavra em Graça`;
       
       if (navigator.share) {
         navigator.share({
@@ -175,24 +175,25 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
   return (
     <div className="py-6">
       <Helmet>
-        <title>Amigos de Deus - Conforto e Orientação Espiritual Personalizada</title>
+        <title>Palavra em Graça - Conforto e Orientação Espiritual Personalizada</title>
         <meta name="description" content="Receba orientação espiritual personalizada baseada na Bíblia para ajudar nos momentos difíceis. Conforto através da palavra de Deus para ansiedade, tristeza e dúvidas." />
         <meta name="keywords" content="versículos bíblicos, conforto espiritual, palavra de Deus, orientação espiritual, versículo do dia, aplicativo cristão, mensagem bíblica, versículos para ansiedade, versículos para depressão, versículos de conforto, estudo bíblico online" />
-        <link rel="canonical" href="https://amigosdedeus.com.br/" />
+        <link rel="canonical" href="https://palavraemgraca.com.br/" />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://amigosdedeus.com.br/" />
-        <meta property="og:title" content="Amigos de Deus | Conforto Espiritual Diário" />
+        <meta property="og:url" content="https://palavraemgraca.com.br/" />
+        <meta property="og:title" content="Palavra em Graça | Conforto Espiritual Diário" />
         <meta property="og:description" content="Receba versículos bíblicos e palavras de conforto personalizadas para o seu momento. Orientação espiritual diária baseada na Bíblia." />
-        <meta property="og:image" content="https://amigosdedeus.com.br/og-image.jpg" />
+        <meta property="og:image" content="https://palavraemgraca.com.br/og-image.jpg" />
+        <meta property="og:locale" content="pt_BR" />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://amigosdedeus.com.br/" />
-        <meta name="twitter:title" content="Amigos de Deus | Conforto Espiritual Diário" />
+        <meta name="twitter:url" content="https://palavraemgraca.com.br/" />
+        <meta name="twitter:title" content="Palavra em Graça | Conforto Espiritual Diário" />
         <meta name="twitter:description" content="Receba versículos bíblicos e palavras de conforto personalizadas para o seu momento. Orientação espiritual diária baseada na Bíblia." />
-        <meta name="twitter:image" content="https://amigosdedeus.com.br/twitter-image.jpg" />
+        <meta name="twitter:image" content="https://palavraemgraca.com.br/twitter-image.jpg" />
         
         {/* Preload e preconnect para melhorar performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -202,12 +203,13 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Amigos de Deus",
-            "url": "https://amigosdedeus.com.br",
+            "@type": "WebSite",
+            "name": "Palavra em Graça",
+            "url": "https://palavraemgraca.com.br",
             "description": "Aplicativo cristão que oferece versículos bíblicos personalizados e orientação espiritual diária.",
             "applicationCategory": "SpiritualityApplication",
             "operatingSystem": "Web",
+            "inLanguage": "pt-BR",
             "offers": {
               "@type": "Offer",
               "price": "0",
@@ -215,11 +217,11 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
             },
             "author": {
               "@type": "Organization",
-              "name": "Amigos de Deus",
-              "url": "https://amigosdedeus.com.br",
+              "name": "Palavra em Graça",
+              "url": "https://palavraemgraca.com.br",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://amigosdedeus.com.br/logo.png",
+                "url": "https://palavraemgraca.com.br/logo.png",
                 "width": "192",
                 "height": "192"
               }
@@ -241,13 +243,47 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
             ]
           })}
         </script>
+        
+        {/* FAQ Schema para a seção de perguntas frequentes */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Como funciona a orientação personalizada?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Nossa ferramenta utiliza inteligência artificial para analisar como você está se sentindo e encontrar versículos bíblicos e mensagens de apoio que sejam relevantes para o seu momento atual. Compartilhe seus sentimentos e receba uma orientação espiritual personalizada baseada na Palavra de Deus."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quais traduções da Bíblia estão disponíveis?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Oferecemos diversas traduções da Bíblia em português, incluindo Nova Tradução na Linguagem de Hoje (NTLH), Almeida Revista e Corrigida (ARC), Nova Versão Internacional (NVI), entre outras. Você pode escolher a tradução que preferir para sua leitura e estudo."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Posso usar o Palavra em Graça offline?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Atualmente, o Palavra em Graça requer conexão com a internet para funcionar completamente. No entanto, estamos trabalhando em recursos offline que permitirão acesso a partes do conteúdo mesmo sem conexão. Fique atento às atualizações!"
+                }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
 
       <Breadcrumb items={getBreadcrumbItems()} />
 
       <div className="space-y-8">
         <section className="text-center mb-10">
-          <h1 className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">Amigos de Deus</h1>
+          <h1 className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">Palavra em Graça</h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-6">
             Receba conforto e orientação espiritual através da Palavra de Deus, personalizada para o seu momento.
           </p>
@@ -283,11 +319,16 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
               <span className="text-sm">Compartilhar</span>
             </button>
           </div>
-          <DailyVerse 
-            verse={dailyVerse} 
-            loading={loading && !dailyVerse} 
-            onRefresh={handleDailyVerse} 
-          />
+          <div itemScope itemType="https://schema.org/CreativeWork">
+            <meta itemProp="author" content="Bíblia Sagrada" />
+            <DailyVerse 
+              verse={dailyVerse} 
+              loading={loading && !dailyVerse} 
+            />
+            {dailyVerse && (
+              <div className="hidden" itemProp="text">{dailyVerse}</div>
+            )}
+          </div>
         </section>
 
         <div className="mb-6 flex border-b dark:border-gray-700">
@@ -328,7 +369,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
                   onSave={saveGuidance}
                   onShare={(platform) => {
                     if (platform === 'whatsapp') {
-                      const text = encodeURIComponent(`*Versículo:* ${guidance.verse} ${guidance.verseRef ? `(${guidance.verseRef})` : ''}\n\n*Mensagem:* ${guidance.support} ${guidance.quoteAuthor ? `- ${guidance.quoteAuthor}` : ''}\n\nCompartilhado de Amigos de Deus`);
+                      const text = encodeURIComponent(`*Versículo:* ${guidance.verse} ${guidance.verseRef ? `(${guidance.verseRef})` : ''}\n\n*Mensagem:* ${guidance.support} ${guidance.quoteAuthor ? `- ${guidance.quoteAuthor}` : ''}\n\nCompartilhado de Palavra em Graça`);
                       window.open(`https://wa.me/?text=${text}`, '_blank');
                     } else {
                       shareGuidance();
@@ -409,7 +450,7 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
                 falam diretamente ao coração e à alma.
               </p>
               <p className="text-gray-600 dark:text-gray-300">
-                O Amigos de Deus foi criado para ajudar você a encontrar orientação personalizada nas escrituras, 
+                O Palavra em Graça foi criado para ajudar você a encontrar orientação personalizada nas escrituras, 
                 conectando seus sentimentos e experiências com versículos relevantes que podem trazer paz, 
                 clareza e direção para sua jornada espiritual.
               </p>
@@ -501,31 +542,37 @@ const Home: React.FC<HomeProps> = ({ theme }) => {
           <h2 className="text-3xl font-bold mb-6 text-indigo-600 dark:text-indigo-400">Perguntas Frequentes</h2>
           
           <div className="space-y-6">
-            <div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Como funciona a orientação personalizada?</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Nossa ferramenta utiliza inteligência artificial para analisar como você está se sentindo e 
-                encontrar versículos bíblicos e mensagens de apoio que sejam relevantes para o seu momento atual. 
-                Compartilhe seus sentimentos e receba uma orientação espiritual personalizada baseada na Palavra de Deus.
-              </p>
+            <div itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+              <h3 itemProp="name" className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Como funciona a orientação personalizada?</h3>
+              <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                <p itemProp="text" className="text-gray-600 dark:text-gray-300">
+                  Nossa ferramenta utiliza inteligência artificial para analisar como você está se sentindo e 
+                  encontrar versículos bíblicos e mensagens de apoio que sejam relevantes para o seu momento atual. 
+                  Compartilhe seus sentimentos e receba uma orientação espiritual personalizada baseada na Palavra de Deus.
+                </p>
+              </div>
             </div>
             
-            <div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Quais traduções da Bíblia estão disponíveis?</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Oferecemos diversas traduções da Bíblia em português, incluindo Nova Tradução na Linguagem de Hoje (NTLH), 
-                Almeida Revista e Corrigida (ARC), Nova Versão Internacional (NVI), entre outras. Você pode escolher a 
-                tradução que preferir para sua leitura e estudo.
-              </p>
+            <div itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+              <h3 itemProp="name" className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Quais traduções da Bíblia estão disponíveis?</h3>
+              <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                <p itemProp="text" className="text-gray-600 dark:text-gray-300">
+                  Oferecemos diversas traduções da Bíblia em português, incluindo Nova Tradução na Linguagem de Hoje (NTLH), 
+                  Almeida Revista e Corrigida (ARC), Nova Versão Internacional (NVI), entre outras. Você pode escolher a 
+                  tradução que preferir para sua leitura e estudo.
+                </p>
+              </div>
             </div>
             
-            <div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Posso usar o Amigos de Deus offline?</h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Atualmente, o Amigos de Deus requer conexão com a internet para funcionar completamente. No entanto, 
-                estamos trabalhando em recursos offline que permitirão acesso a partes do conteúdo mesmo sem conexão. 
-                Fique atento às atualizações!
-              </p>
+            <div itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+              <h3 itemProp="name" className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Posso usar o Palavra em Graça offline?</h3>
+              <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                <p itemProp="text" className="text-gray-600 dark:text-gray-300">
+                  Atualmente, o Palavra em Graça requer conexão com a internet para funcionar completamente. No entanto, 
+                  estamos trabalhando em recursos offline que permitirão acesso a partes do conteúdo mesmo sem conexão. 
+                  Fique atento às atualizações!
+                </p>
+              </div>
             </div>
           </div>
         </section>

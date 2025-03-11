@@ -109,40 +109,40 @@ const Contact: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Entre em Contato | Caixinha de Promessas - Fale Conosco</title>
-        <meta name="description" content="Entre em contato com a equipe da Caixinha de Promessas. Estamos aqui para ouvir suas dúvidas, sugestões, testemunhos e feedback sobre nosso aplicativo de versículos bíblicos personalizados." />
-        <meta name="keywords" content="contato, fale conosco, suporte, caixinha de promessas, dúvidas, sugestões, testemunhos, feedback, atendimento cristão" />
-        <link rel="canonical" href="https://amigodedeus.com.br/contato" />
-        <meta property="og:title" content="Entre em Contato | Caixinha de Promessas - Fale Conosco" />
-        <meta property="og:description" content="Entre em contato com a equipe da Caixinha de Promessas. Estamos aqui para ouvir suas dúvidas, sugestões e feedback." />
-        <meta property="og:url" content="https://amigodedeus.com.br/contato" />
+        <title>Entre em Contato | Palavra em Graça - Fale Conosco</title>
+        <meta name="description" content="Entre em contato com a equipe do Palavra em Graça. Estamos aqui para ouvir suas dúvidas, sugestões, testemunhos e feedback sobre nosso aplicativo de versículos bíblicos personalizados." />
+        <meta name="keywords" content="contato, fale conosco, suporte, palavra em graça, dúvidas, sugestões, testemunhos, feedback, atendimento cristão" />
+        <link rel="canonical" href="https://palavraemgraca.com.br/contato" />
+        <meta property="og:title" content="Entre em Contato | Palavra em Graça - Fale Conosco" />
+        <meta property="og:description" content="Entre em contato com a equipe do Palavra em Graça. Estamos aqui para ouvir suas dúvidas, sugestões e feedback." />
+        <meta property="og:url" content="https://palavraemgraca.com.br/contato" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://amigodedeus.com.br/og-image-contact.jpg" />
+        <meta property="og:image" content="https://palavraemgraca.com.br/og-image-contact.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Entre em Contato | Caixinha de Promessas - Fale Conosco" />
-        <meta name="twitter:description" content="Entre em contato com a equipe da Caixinha de Promessas. Estamos aqui para ouvir suas dúvidas, sugestões e feedback." />
-        <meta name="twitter:image" content="https://amigodedeus.com.br/twitter-image-contact.jpg" />
+        <meta name="twitter:title" content="Entre em Contato | Palavra em Graça - Fale Conosco" />
+        <meta name="twitter:description" content="Entre em contato com a equipe do Palavra em Graça. Estamos aqui para ouvir suas dúvidas, sugestões e feedback." />
+        <meta name="twitter:image" content="https://palavraemgraca.com.br/twitter-image-contact.jpg" />
         
         {/* Schema.org markup para melhor SEO */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ContactPage",
-            "name": "Entre em Contato | Caixinha de Promessas",
-            "description": "Entre em contato com a equipe da Caixinha de Promessas. Estamos aqui para ouvir suas dúvidas, sugestões e feedback.",
+            "name": "Entre em Contato | Palavra em Graça",
+            "description": "Entre em contato com a equipe do Palavra em Graça. Estamos aqui para ouvir suas dúvidas, sugestões e feedback.",
             "publisher": {
               "@type": "Organization",
-              "name": "Caixinha de Promessas",
-              "logo": "https://amigodedeus.com.br/logo.svg"
+              "name": "Palavra em Graça",
+              "logo": "https://palavraemgraca.com.br/logo.svg"
             },
             "mainEntity": {
               "@type": "Organization",
-              "name": "Caixinha de Promessas",
-              "email": "contato@amigodedeus.com.br",
+              "name": "Palavra em Graça",
+              "email": "contato@palavraemgraca.com.br",
               "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "customer service",
-                "email": "contato@amigodedeus.com.br",
+                "email": "contato@palavraemgraca.com.br",
                 "availableLanguage": "Portuguese"
               },
               "sameAs": [
@@ -163,7 +163,7 @@ const Contact: React.FC = () => {
         {/* Introdução com palavras-chave relevantes para SEO */}
         <div className="mb-8 text-center max-w-2xl mx-auto">
           <p className="text-lg">
-            Estamos aqui para ouvir você! Seja para compartilhar um testemunho, tirar dúvidas sobre a Caixinha de Promessas, 
+            Estamos aqui para ouvir você! Seja para compartilhar um testemunho, tirar dúvidas sobre o Palavra em Graça, 
             ou sugerir melhorias para nosso aplicativo de versículos bíblicos personalizados.
           </p>
         </div>
@@ -173,8 +173,8 @@ const Contact: React.FC = () => {
             <section className="mb-8" id="sobre-contato">
               <h2 className="text-2xl font-semibold mb-4">Fale Conosco</h2>
               <p className="mb-4">
-                Estamos sempre abertos para ouvir suas dúvidas, sugestões, testemunhos ou feedback sobre a 
-                Caixinha de Promessas. Sua opinião é muito importante para nós!
+                Estamos sempre abertos para ouvir suas dúvidas, sugestões, testemunhos ou feedback sobre o 
+                Palavra em Graça. Sua opinião é muito importante para nós!
               </p>
               <p className="mb-4">
                 Preencha o formulário ao lado e entraremos em contato o mais breve possível. Normalmente 
@@ -199,7 +199,7 @@ const Contact: React.FC = () => {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 mt-1 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  <span>contato@amigodedeus.com.br</span>
+                  <span>contato@palavraemgraca.com.br</span>
                 </p>
                 <p className="flex items-start">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 mt-1 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -379,7 +379,7 @@ const Contact: React.FC = () => {
             </div>
             <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow-sm">
               <h3 className="font-semibold text-lg mb-2">Como posso compartilhar meu testemunho?</h3>
-              <p>Selecione "Testemunho" no campo de assunto e conte-nos como a Caixinha de Promessas impactou sua vida. Com sua permissão, podemos compartilhar seu testemunho para inspirar outros usuários.</p>
+              <p>Selecione "Testemunho" no campo de assunto e conte-nos como o Palavra em Graça impactou sua vida. Com sua permissão, podemos compartilhar seu testemunho para inspirar outros usuários.</p>
             </div>
           </div>
         </section>

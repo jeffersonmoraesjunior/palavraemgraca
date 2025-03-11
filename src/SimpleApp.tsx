@@ -22,7 +22,7 @@ function SimpleApp() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white p-4">
       <header className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">Caixinha de Promessas</h1>
+        <h1 className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">Palavra em Graça</h1>
         <p className="text-lg mt-2">Conforto espiritual para o seu dia</p>
       </header>
       
@@ -41,7 +41,7 @@ function SimpleApp() {
       </main>
       
       <footer className="mt-12 text-center text-sm text-gray-600 dark:text-gray-400">
-        <p>© {new Date().getFullYear()} Amigos de Deus. Todos os direitos reservados.</p>
+        <p>© {new Date().getFullYear()} Palavra em Graça. Todos os direitos reservados.</p>
       </footer>
     </div>
   );

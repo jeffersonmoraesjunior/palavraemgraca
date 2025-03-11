@@ -4,7 +4,7 @@ import type { JSX } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import App from './App.tsx';
+import App from './App';
 import './index.css';
 
 // Adiciona tipos para as variáveis globais
@@ -74,7 +74,7 @@ function initApp(): void {
     const fallbackElement = document.createElement('div');
     fallbackElement.innerHTML = `
       <div style="text-align: center; padding: 20px;">
-        <h1>Caixinha de Promessas</h1>
+        <h1>Palavra em Graça</h1>
         <p>Desculpe, ocorreu um erro ao carregar o aplicativo.</p>
         <p>Por favor, recarregue a página ou tente novamente mais tarde.</p>
       </div>

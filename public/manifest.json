@@ -1,18 +1,46 @@
 {
-  "name": "Amigos de Deus",
-  "short_name": "Amigos de Deus",
+  "name": "Palavra em Graça",
+  "short_name": "Palavra em Graça",
   "description": "Encontre conforto e orientação através de versículos bíblicos personalizados",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#3B82F6",
   "orientation": "portrait",
+  "lang": "pt-BR",
+  "categories": ["books", "education", "lifestyle", "religious"],
   "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    },
     {
       "src": "/icons/icon.svg",
       "type": "image/svg+xml",
       "sizes": "any",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/home.png",
+      "type": "image/png",
+      "sizes": "1280x720",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshots/mobile.png",
+      "type": "image/png",
+      "sizes": "720x1280",
+      "form_factor": "narrow"
     }
   ]
 } 
