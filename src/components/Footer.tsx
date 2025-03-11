@@ -7,8 +7,8 @@ const Footer: React.FC = () => {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center md:text-left">
-            <h2 className="font-semibold text-gray-700 dark:text-gray-300 mb-3">Amigos de Deus</h2>
-            <p>Amigos de Deus &copy; {new Date().getFullYear()}</p>
+            <h2 className="font-semibold text-gray-700 dark:text-gray-300 mb-3">Palavra em Graça</h2>
+            <p>Palavra em Graça &copy; {new Date().getFullYear()}</p>
             <p className="mt-1">Desenvolvido com <span aria-label="amor">❤️</span> para confortar e inspirar</p>
           </div>
           

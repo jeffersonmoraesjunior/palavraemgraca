@@ -1,6 +1,6 @@
-# Caixinha de Promessas
+# Palavra em Graça
 
-![Caixinha de Promessas](public/bible.svg)
+![Palavra em Graça](public/bible.svg)
 
 Uma aplicação web que oferece versículos bíblicos e palavras de conforto personalizadas para o momento do usuário.
 
@@ -31,8 +31,8 @@ Uma aplicação web que oferece versículos bíblicos e palavras de conforto per
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/caixinha-de-promessas.git
-   cd caixinha-de-promessas
+   git clone https://github.com/seu-usuario/palavra-em-graca.git
+   cd palavra-em-graca
    ```
 
 2. Instale as dependências:
@@ -90,5 +90,5 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou env
 
 ## 📞 Contato
 
-- Website: [amigosdedeus.com.br](https://amigosdedeus.com.br)
-- Email: contato@amigosdedeus.com.br 
+- Website: [palavraemgraca.com.br](https://palavraemgraca.com.br)
+- Email: contato@palavraemgraca.com.br 

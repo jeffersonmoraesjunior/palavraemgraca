@@ -1,4 +1,4 @@
-// Service Worker básico para a Caixinha de Promessas
+// Service Worker básico para o Palavra em Graça
 const CACHE_NAME = 'caixinha-promessas-v1';
 const ASSETS_TO_CACHE = [
   '/',

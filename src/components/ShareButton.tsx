@@ -8,7 +8,7 @@ interface ShareButtonProps {
 
 const ShareButton: React.FC<ShareButtonProps> = ({ text, reference }) => {
   const handleShare = async () => {
-    const shareText = `${text}\n\n${reference}\n\nAmigos de Deus`;
+    const shareText = `${text}\n\n${reference}\n\nPalavra em Graça`;
 
     if (navigator.share) {
       try {

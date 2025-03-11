@@ -20,28 +20,28 @@ const About: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Sobre Nós | Caixinha de Promessas - Conforto Espiritual Diário</title>
-        <meta name="description" content="Conheça a história e a missão da Caixinha de Promessas, um aplicativo cristão dedicado a trazer conforto e orientação espiritual através de versículos bíblicos personalizados para seu dia a dia." />
-        <meta name="keywords" content="caixinha de promessas, aplicativo cristão, versículos bíblicos, orientação espiritual, conforto espiritual, app cristão, devocionais diários" />
-        <link rel="canonical" href="https://amigodedeus.com.br/sobre" />
-        <meta property="og:title" content="Sobre Nós | Caixinha de Promessas - Conforto Espiritual Diário" />
-        <meta property="og:description" content="Conheça a história e a missão da Caixinha de Promessas, um aplicativo cristão dedicado a trazer conforto e orientação espiritual." />
-        <meta property="og:url" content="https://amigodedeus.com.br/sobre" />
+        <title>Sobre Nós | Palavra em Graça - Conforto Espiritual Diário</title>
+        <meta name="description" content="Conheça a história e a missão do Palavra em Graça, um aplicativo cristão dedicado a trazer conforto e orientação espiritual através de versículos bíblicos personalizados para seu dia a dia." />
+        <meta name="keywords" content="palavra em graça, aplicativo cristão, versículos bíblicos, orientação espiritual, conforto espiritual, app cristão, devocionais diários" />
+        <link rel="canonical" href="https://palavraemgraca.com.br/sobre" />
+        <meta property="og:title" content="Sobre Nós | Palavra em Graça - Conforto Espiritual Diário" />
+        <meta property="og:description" content="Conheça a história e a missão do Palavra em Graça, um aplicativo cristão dedicado a trazer conforto e orientação espiritual." />
+        <meta property="og:url" content="https://palavraemgraca.com.br/sobre" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://amigodedeus.com.br/og-image-about.jpg" />
+        <meta property="og:image" content="https://palavraemgraca.com.br/og-image-about.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Sobre Nós | Caixinha de Promessas - Conforto Espiritual Diário" />
-        <meta name="twitter:description" content="Conheça a história e a missão da Caixinha de Promessas, um aplicativo cristão dedicado a trazer conforto e orientação espiritual." />
-        <meta name="twitter:image" content="https://amigodedeus.com.br/twitter-image-about.jpg" />
+        <meta name="twitter:title" content="Sobre Nós | Palavra em Graça - Conforto Espiritual Diário" />
+        <meta name="twitter:description" content="Conheça a história e a missão do Palavra em Graça, um aplicativo cristão dedicado a trazer conforto e orientação espiritual." />
+        <meta name="twitter:image" content="https://palavraemgraca.com.br/twitter-image-about.jpg" />
         
         {/* Schema.org markup para melhor SEO */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "Caixinha de Promessas",
-            "url": "https://amigodedeus.com.br",
-            "logo": "https://amigodedeus.com.br/logo.svg",
+            "name": "Palavra em Graça",
+            "url": "https://palavraemgraca.com.br",
+            "logo": "https://palavraemgraca.com.br/logo.svg",
             "description": "Aplicativo cristão dedicado a trazer conforto e orientação espiritual através de versículos bíblicos personalizados.",
             "foundingDate": "2023",
             "email": "contato@amigodedeus.com.br",
@@ -57,12 +57,12 @@ const About: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 py-8">
         <Breadcrumb items={getBreadcrumbItems()} />
 
-        <h1 className="text-3xl font-bold mb-6 text-center">Sobre a Caixinha de Promessas</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center">Sobre o Palavra em Graça</h1>
         
         <section className="mb-10">
           <h2 className="text-2xl font-semibold mb-4" id="nossa-missao">Nossa Missão</h2>
           <p className="mb-4">
-            A Caixinha de Promessas nasceu com o propósito de trazer conforto, orientação e esperança através da Palavra de Deus. 
+            O Palavra em Graça nasceu com o propósito de trazer conforto, orientação e esperança através da Palavra de Deus. 
             Em um mundo cada vez mais acelerado e cheio de desafios, acreditamos que as escrituras sagradas têm o poder de 
             transformar vidas, acalmar corações e renovar a fé.
           </p>
@@ -75,7 +75,7 @@ const About: React.FC = () => {
         <section className="mb-10">
           <h2 className="text-2xl font-semibold mb-4" id="como-funciona">Como Funciona</h2>
           <p className="mb-4">
-            A Caixinha de Promessas utiliza tecnologia avançada para entender como você está se sentindo e oferecer 
+            O Palavra em Graça utiliza tecnologia avançada para entender como você está se sentindo e oferecer 
             versículos bíblicos e orientações personalizadas. Nosso sistema foi desenvolvido para proporcionar uma 
             experiência única e significativa para cada usuário.
           </p>
@@ -98,7 +98,7 @@ const About: React.FC = () => {
         <section className="mb-10">
           <h2 className="text-2xl font-semibold mb-4" id="nossa-historia">Nossa História</h2>
           <p className="mb-4">
-            A Caixinha de Promessas foi criada por um grupo de cristãos apaixonados por tecnologia e pela Palavra de Deus. 
+            O Palavra em Graça foi criado por um grupo de cristãos apaixonados por tecnologia e pela Palavra de Deus. 
             Inspirados pela tradição das "caixinhas de promessas" físicas, onde as pessoas sorteavam versículos bíblicos 
             em momentos de necessidade, decidimos trazer esse conceito para a era digital.
           </p>
@@ -109,7 +109,7 @@ const About: React.FC = () => {
           <blockquote className="italic border-l-4 border-blue-500 pl-4 my-6 text-gray-700 dark:text-gray-300">
             "Nosso sonho é que cada pessoa possa encontrar uma palavra de esperança e direção divina para seu momento específico, 
             exatamente quando mais precisar."
-            <footer className="mt-2 text-sm">— Fundadores da Caixinha de Promessas</footer>
+            <footer className="mt-2 text-sm">— Fundadores do Palavra em Graça</footer>
           </blockquote>
         </section>
 
@@ -128,7 +128,7 @@ const About: React.FC = () => {
           <h2 className="text-2xl font-semibold mb-4" id="depoimentos">Depoimentos</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-blue-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm">
-              <p className="italic mb-4">"A Caixinha de Promessas tem sido uma bênção na minha vida. Todos os dias recebo um versículo que parece falar diretamente ao meu coração."</p>
+              <p className="italic mb-4">"O Palavra em Graça tem sido uma bênção na minha vida. Todos os dias recebo um versículo que parece falar diretamente ao meu coração."</p>
               <p className="font-semibold">Maria S.</p>
             </div>
             <div className="bg-blue-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm">

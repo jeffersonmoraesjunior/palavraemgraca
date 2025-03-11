@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Configurações
-const SITE_URL = "https://amigosdedeus.com.br";
+const SITE_URL = "https://palavraemgraca.com.br";
 const BIBLE_DIR = path.join(__dirname, "../public/bible");
 const OUTPUT_DIR = path.join(__dirname, "../public/bible-sitemaps/");
 

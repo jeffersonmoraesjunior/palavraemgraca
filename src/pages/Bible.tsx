@@ -524,11 +524,11 @@ const Bible: React.FC = () => {
       "description": pageDescription,
       "author": {
         "@type": "Organization",
-        "name": "Amigos de Deus"
+        "name": "Palavra em Graça"
       },
       "publisher": {
         "@type": "Organization",
-        "name": "Amigos de Deus",
+        "name": "Palavra em Graça",
         "logo": {
           "@type": "ImageObject",
           "url": `${window.location.origin}/logo.svg`,
@@ -664,7 +664,7 @@ const Bible: React.FC = () => {
         <meta property="og:description" content={pageDescription} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="Amigos de Deus" />
+        <meta property="og:site_name" content="Palavra em Graça" />
         
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={pageTitle} />

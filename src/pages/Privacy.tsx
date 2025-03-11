@@ -22,31 +22,31 @@ const Privacy: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Política de Privacidade | Caixinha de Promessas - Proteção de Dados</title>
-        <meta name="description" content="Conheça nossa política de privacidade e como protegemos seus dados na Caixinha de Promessas. Transparência e segurança são nossas prioridades na proteção de suas informações pessoais." />
-        <meta name="keywords" content="política de privacidade, proteção de dados, segurança de dados, caixinha de promessas, LGPD, privacidade online, dados pessoais" />
-        <link rel="canonical" href="https://amigodedeus.com.br/privacidade" />
-        <meta property="og:title" content="Política de Privacidade | Caixinha de Promessas - Proteção de Dados" />
-        <meta property="og:description" content="Conheça nossa política de privacidade. Saiba como a Caixinha de Promessas protege seus dados e garante sua segurança digital." />
-        <meta property="og:url" content="https://amigodedeus.com.br/privacidade" />
+        <title>Política de Privacidade | Palavra em Graça - Proteção de Dados</title>
+        <meta name="description" content="Conheça nossa política de privacidade e como protegemos seus dados no Palavra em Graça. Transparência e segurança são nossas prioridades na proteção de suas informações pessoais." />
+        <meta name="keywords" content="política de privacidade, proteção de dados, segurança de dados, palavra em graça, LGPD, privacidade online, dados pessoais" />
+        <link rel="canonical" href="https://palavraemgraca.com.br/privacidade" />
+        <meta property="og:title" content="Política de Privacidade | Palavra em Graça - Proteção de Dados" />
+        <meta property="og:description" content="Conheça nossa política de privacidade. Saiba como o Palavra em Graça protege seus dados e garante sua segurança digital." />
+        <meta property="og:url" content="https://palavraemgraca.com.br/privacidade" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://amigodedeus.com.br/og-image-privacy.jpg" />
+        <meta property="og:image" content="https://palavraemgraca.com.br/og-image-privacy.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Política de Privacidade | Caixinha de Promessas - Proteção de Dados" />
-        <meta name="twitter:description" content="Conheça nossa política de privacidade. Saiba como a Caixinha de Promessas protege seus dados e garante sua segurança digital." />
-        <meta name="twitter:image" content="https://amigodedeus.com.br/twitter-image-privacy.jpg" />
+        <meta name="twitter:title" content="Política de Privacidade | Palavra em Graça - Proteção de Dados" />
+        <meta name="twitter:description" content="Conheça nossa política de privacidade. Saiba como o Palavra em Graça protege seus dados e garante sua segurança digital." />
+        <meta name="twitter:image" content="https://palavraemgraca.com.br/twitter-image-privacy.jpg" />
         
         {/* Schema.org markup para melhor SEO */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "name": "Política de Privacidade | Caixinha de Promessas",
-            "description": "Conheça nossa política de privacidade. Saiba como a Caixinha de Promessas protege seus dados e garante sua segurança digital.",
+            "name": "Política de Privacidade | Palavra em Graça",
+            "description": "Conheça nossa política de privacidade. Saiba como o Palavra em Graça protege seus dados e garante sua segurança digital.",
             "publisher": {
               "@type": "Organization",
-              "name": "Caixinha de Promessas",
-              "logo": "https://amigodedeus.com.br/logo.svg"
+              "name": "Palavra em Graça",
+              "logo": "https://palavraemgraca.com.br/logo.svg"
             },
             "dateModified": new Date().toISOString().split('T')[0],
             "mainEntity": {
@@ -85,12 +85,12 @@ const Privacy: React.FC = () => {
         <section className="mb-10" id="introducao">
           <h2 className="text-2xl font-semibold mb-4">1. Introdução</h2>
           <p className="mb-4">
-            A Caixinha de Promessas está comprometida em proteger sua privacidade e seus dados pessoais. Esta Política de 
+            O Palavra em Graça está comprometido em proteger sua privacidade e seus dados pessoais. Esta Política de 
             Privacidade explica como coletamos, usamos, compartilhamos e protegemos suas informações quando você utiliza 
             nosso aplicativo e serviços.
           </p>
           <p className="mb-4">
-            Ao utilizar a Caixinha de Promessas, você concorda com as práticas descritas nesta política. Recomendamos que 
+            Ao utilizar o Palavra em Graça, você concorda com as práticas descritas nesta política. Recomendamos que 
             você leia este documento na íntegra para entender nossos procedimentos em relação aos seus dados.
           </p>
           <div className="bg-yellow-50 dark:bg-yellow-900/30 border-l-4 border-yellow-500 p-4 my-6">
