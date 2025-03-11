@@ -2,6 +2,10 @@ export interface AIResponse {
   verse: string;
   support: string;
   tips: string[];
+  categories: string[];
+  verseRef: string;
+  quoteAuthor: string;
+  tipIds: string[];
 }
 
 export interface Theme {

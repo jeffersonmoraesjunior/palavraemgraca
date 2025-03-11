@@ -67,11 +67,21 @@ export const GuidanceDisplay: React.FC<GuidanceDisplayProps> = ({
         <div className="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg">
           <h3 className="font-medium text-blue-800 dark:text-blue-300 mb-2">Versículo</h3>
           <p className="italic">{guidance.verse}</p>
+          {guidance.verseRef && (
+            <p className="text-right text-sm text-blue-600 dark:text-blue-400 mt-2 font-medium">
+              {guidance.verseRef}
+            </p>
+          )}
         </div>
 
         <div className="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg">
           <h3 className="font-medium text-purple-800 dark:text-purple-300 mb-2">Palavra de Apoio</h3>
           <p>{guidance.support}</p>
+          {guidance.quoteAuthor && (
+            <p className="text-right text-sm text-purple-600 dark:text-purple-400 mt-2 font-medium">
+              {guidance.quoteAuthor}
+            </p>
+          )}
         </div>
 
         <div className="bg-green-50 dark:bg-green-900/30 p-4 rounded-lg">

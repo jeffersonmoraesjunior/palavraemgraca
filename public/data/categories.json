@@ -1,0 +1,23 @@
+﻿{
+  "ANXIETY": ["ansioso", "ansiosa", "ansiedade", "preocupado", "preocupada", "medo", "nervoso", "nervosa", "tenso", "tensa", "aflito", "aflita", "angústia"],
+  "SADNESS": ["triste", "tristeza", "deprimido", "deprimida", "depressão", "melancolia", "melancólico", "melancólica", "desanimado", "desanimada", "dor", "sofrimento", "luto"],
+  "ANGER": ["raiva", "irritado", "irritada", "frustrado", "frustrada", "bravo", "brava", "indignado", "indignada", "ódio", "ressentimento", "amargo", "amarga"],
+  "JOY": ["feliz", "felicidade", "alegre", "alegria", "contente", "satisfeito", "satisfeita", "realizado", "realizada", "jubiloso", "jubilosa", "animado", "animada"],
+  "GRATITUDE": ["grato", "grata", "gratidão", "agradecido", "agradecida", "abençoado", "abençoada", "reconhecido", "reconhecida", "agraciado", "agraciada"],
+  "CONFUSION": ["confuso", "confusa", "perdido", "perdida", "indeciso", "indecisa", "dúvida", "incerto", "incerta", "desorientado", "desorientada", "perplexo", "perplexa"],
+  "HOPE": ["esperança", "esperançoso", "esperançosa", "otimista", "confiante", "fé", "expectativa", "positivo", "positiva", "promessa", "futuro"],
+  "LOVE": ["amor", "amoroso", "amorosa", "apaixonado", "apaixonada", "carinho", "carinhoso", "carinhosa", "afeto", "afetuoso", "afetuosa", "compaixão"],
+  "LONELINESS": ["sozinho", "sozinha", "solidão", "abandonado", "abandonada", "isolado", "isolada", "rejeitado", "rejeitada", "excluído", "excluída", "solitário", "solitária"],
+  "FAITH_CRISIS": ["crise", "fé", "dúvida", "espiritual", "distante", "deus", "afastado", "afastada", "questionamento", "descrença", "incerteza", "espiritual"],
+  "PEACE": ["paz", "tranquilo", "tranquila", "sereno", "serena", "calmo", "calma", "sossegado", "sossegada", "quietude", "harmonia", "equilíbrio"],
+  "FEAR": ["medo", "assustado", "assustada", "temor", "amedrontado", "amedrontada", "receio", "pavor", "terror", "inseguro", "insegura", "ameaçado", "ameaçada"],
+  "FORGIVENESS": ["perdão", "perdoar", "reconciliação", "paz", "liberdade", "libertação", "cura", "restauração", "renovação", "recomeço"],
+  "STRENGTH": ["força", "fortaleza", "resistência", "perseverança", "determinação", "garra", "coragem", "vigor", "poder", "superação", "resiliência"],
+  "PURPOSE": ["propósito", "sentido", "direção", "chamado", "vocação", "missão", "objetivo", "destino", "significado", "razão", "motivação"],
+  "WISDOM": ["sabedoria", "discernimento", "entendimento", "conhecimento", "compreensão", "prudência", "sensatez", "juízo", "orientação", "direção"],
+  "HEALING": ["cura", "restauração", "recuperação", "renovação", "libertação", "transformação", "saúde", "bem-estar", "restabelecimento", "regeneração"],
+  "TRUST": ["confiança", "fé", "segurança", "certeza", "convicção", "crença", "dependência", "entrega", "abandono", "rendição"],
+  "WORSHIP": ["adoração", "louvor", "gratidão", "exaltação", "glorificar", "celebração", "alegria no senhor", "presença de deus"],
+  "GROWTH": ["crescimento", "desenvolvimento", "progresso", "evolução", "amadurecimento", "aprendizado", "transformação"],
+  "WORTH": ["valor", "autoestima", "dignidade", "importância", "significado", "merecimento", "aceitação"]
+}
