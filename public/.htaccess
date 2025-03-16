@@ -12,6 +12,12 @@ RewriteRule ^(.*)$ https://palavraemgraca.com.br/$1 [L,R=301]
 # Evitar redirecionamentos desnecessários
 RewriteRule ^index\.html$ / [NC,L,R=301]
 
+# Regras específicas para rotas da Bíblia
+RewriteRule ^biblia/([^/]+)/([^/]+)/([^/]+)/?$ /index.html [L]
+RewriteRule ^biblia/([^/]+)/([^/]+)/?$ /index.html [L]
+RewriteRule ^biblia/([^/]+)/?$ /index.html [L]
+RewriteRule ^biblia/?$ /index.html [L]
+
 # Garantir que as rotas do SPA funcionem corretamente
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -32,6 +38,7 @@ RewriteRule ^ index.html [L]
   ExpiresByType application/x-javascript "access plus 1 month"
   ExpiresByType application/x-shockwave-flash "access plus 1 month"
   ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType application/json "access plus 1 day"
   ExpiresDefault "access plus 2 days"
 </IfModule>
 
@@ -46,4 +53,5 @@ RewriteRule ^ index.html [L]
   AddOutputFilterByType DEFLATE application/rss+xml
   AddOutputFilterByType DEFLATE application/javascript
   AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
 </IfModule> 

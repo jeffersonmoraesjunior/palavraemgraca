@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import type { Theme } from './types';
 import { Header, Footer } from './components';
-import { About, Privacy, Contact, Terms, Home, Bible, BibleIndex, Sitemap, VoiceSearch } from './pages';
+import { About, Privacy, Contact, Terms, Home, Bible, BibleIndex, Sitemap, VoiceSearch, NotFound } from './pages';
 import { HelmetProvider } from 'react-helmet-async';
 import CookieConsent from './components/CookieConsent';
 
@@ -84,6 +84,8 @@ function App() {
             <Route path="/biblia/:version" element={<Bible />} />
             <Route path="/biblia/:version/:book" element={<Bible />} />
             <Route path="/biblia/:version/:book/:chapter" element={<Bible />} />
+            <Route path="/404" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           
           <Footer />
