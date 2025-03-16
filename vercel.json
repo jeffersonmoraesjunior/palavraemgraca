@@ -1,44 +1,43 @@
 {
   "version": 2,
-  "routes": [
+  "redirects": [
     {
-      "src": "^/index.html",
-      "status": 301,
-      "headers": { "Location": "/" }
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
     },
     {
-      "src": "^/(.*)",
+      "source": "/:path*",
       "has": [
         {
           "type": "host",
           "value": "www.palavraemgraca.com.br"
         }
       ],
-      "status": 301,
-      "headers": { "Location": "https://palavraemgraca.com.br/$1" }
+      "destination": "https://palavraemgraca.com.br/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/biblia/:version/:book/:chapter",
+      "destination": "/index.html"
     },
     {
-      "src": "^/biblia/([^/]+)/([^/]+)/([^/]+)/?$",
-      "dest": "/index.html"
+      "source": "/biblia/:version/:book",
+      "destination": "/index.html"
     },
     {
-      "src": "^/biblia/([^/]+)/([^/]+)/?$",
-      "dest": "/index.html"
+      "source": "/biblia/:version",
+      "destination": "/index.html"
     },
     {
-      "src": "^/biblia/([^/]+)/?$",
-      "dest": "/index.html"
+      "source": "/biblia",
+      "destination": "/index.html"
     },
     {
-      "src": "^/biblia/?$",
-      "dest": "/index.html"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [
