@@ -1,0 +1,24 @@
+# Redirecionar HTTP para HTTPS
+http://palavraemgraca.com.br/* https://palavraemgraca.com.br/:splat 301!
+http://www.palavraemgraca.com.br/* https://palavraemgraca.com.br/:splat 301!
+
+# Redirecionar www para non-www
+https://www.palavraemgraca.com.br/* https://palavraemgraca.com.br/:splat 301!
+
+# Evitar redirecionamentos desnecessários
+/index.html / 301!
+
+# Rotas específicas da Bíblia
+/biblia/*/dt/* /index.html 200
+/biblia/*/zc/* /index.html 200
+/biblia/*/2pe/* /index.html 200
+/biblia/*/1rs/* /index.html 200
+/biblia/*/sl/* /index.html 200
+
+# Rotas genéricas da Bíblia
+/biblia/*/* /index.html 200
+/biblia/* /index.html 200
+/biblia /index.html 200
+
+# Garantir que as rotas do SPA funcionem corretamente
+/* /index.html 200 
