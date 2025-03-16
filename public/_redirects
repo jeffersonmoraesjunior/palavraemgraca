@@ -1,0 +1,12 @@
+# Redirecionar HTTP para HTTPS
+http://palavraemgraca.com.br/* https://palavraemgraca.com.br/:splat 301!
+http://www.palavraemgraca.com.br/* https://palavraemgraca.com.br/:splat 301!
+
+# Redirecionar www para non-www
+https://www.palavraemgraca.com.br/* https://palavraemgraca.com.br/:splat 301!
+
+# Evitar redirecionamentos desnecessários
+/index.html / 301!
+
+# Garantir que as rotas do SPA funcionem corretamente
+/* /index.html 200 
