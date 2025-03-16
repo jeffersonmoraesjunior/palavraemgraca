@@ -63,7 +63,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.(?:jpg|jpeg|gif|png|svg|ico|webp)$",
+      "source": "/:path*\\.(jpg|jpeg|gif|png|svg|ico|webp)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.(?:js|css)$",
+      "source": "/:path*\\.(js|css)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.(?:json)$",
+      "source": "/:path*\\.(json)",
       "headers": [
         {
           "key": "Cache-Control",
