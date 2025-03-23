@@ -12,6 +12,22 @@
       "permanent": true
     },
     {
+      "source": "/biblia/indice/:version",
+      "has": [
+        {
+          "type": "query",
+          "key": "page"
+        }
+      ],
+      "destination": "/biblia/indice/:version",
+      "permanent": true
+    },
+    {
+      "source": "/biblia/indice",
+      "destination": "/biblia",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
@@ -24,6 +40,10 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/biblia/indice/:version",
+      "destination": "/index.html"
+    },
     {
       "source": "/biblia/:version/:book/:chapter",
       "destination": "/index.html"

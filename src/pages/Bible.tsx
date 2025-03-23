@@ -487,41 +487,52 @@ const Bible: React.FC = () => {
     // Palavras-chave
     let pageKeywords = 'bíblia online, estudo bíblico, versículos bíblicos, leitura da bíblia, meditação diária';
     
+    // URL canônica
+    let canonicalUrl = `${window.location.origin}/biblia`;
+    
     // Se tiver versão selecionada
     if (selectedVersion) {
-      const versionName = bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion;
-      pageTitle = `${versionName} - Bíblia Sagrada Online para Leitura e Estudo`;
-      pageDescription = `Leia a Bíblia ${versionName} online gratuitamente. Navegue por livros, capítulos e versículos para estudo bíblico e meditação diária.`;
-      pageKeywords = `${versionName}, bíblia ${versionName.toLowerCase()}, versículos ${versionName.toLowerCase()}, estudo bíblico ${versionName.toLowerCase()}`;
+      // Normalizar a versão para minúsculo
+      const normalizedVersion = selectedVersion.toLowerCase();
+      
+      // Verificar se é uma página de índice
+      const path = window.location.pathname;
+      if (path.includes('/indice/')) {
+        canonicalUrl = `${window.location.origin}/biblia/indice/${normalizedVersion}`;
+      } else if (currentBookData) {
+        // Para páginas de livros/capítulos
+        const normalizedBook = normalizeForUrl(currentBookData.abbrev);
+        if (selectedChapter) {
+          canonicalUrl = `${window.location.origin}/biblia/${normalizedVersion}/${normalizedBook}/${selectedChapter}`;
+        } else {
+          canonicalUrl = `${window.location.origin}/biblia/${normalizedVersion}/${normalizedBook}`;
+        }
+      } else {
+        canonicalUrl = `${window.location.origin}/biblia/${normalizedVersion}`;
+      }
       
       // Se tiver livro selecionado
       if (currentBookData) {
         const bookName = currentBookData.name;
-        pageTitle = `${bookName} - ${versionName} | Leitura e Estudo Bíblico Online`;
-        pageDescription = `Leia o livro de ${bookName} na Bíblia ${versionName} online. Encontre ensinamentos, histórias e versículos para meditação e estudo bíblico.`;
-        pageKeywords = `${bookName}, livro de ${bookName}, ${bookName} na bíblia, ${bookName} ${versionName.toLowerCase()}, versículos de ${bookName}`;
+        pageTitle = `${bookName} - ${selectedVersion} | Leitura e Estudo Bíblico Online`;
+        pageDescription = `Leia o livro de ${bookName} na Bíblia ${selectedVersion} online. Encontre ensinamentos, histórias e versículos para meditação e estudo bíblico.`;
+        pageKeywords = `${bookName}, livro de ${bookName}, ${bookName} na bíblia, ${bookName} ${selectedVersion.toLowerCase()}, versículos de ${bookName}`;
         
         // Se tiver capítulo selecionado
         if (selectedChapter) {
-          pageTitle = `${bookName} ${selectedChapter} - ${versionName} | Versículos para Estudo e Reflexão`;
-          pageDescription = `Leia ${bookName} capítulo ${selectedChapter} na Bíblia ${versionName}. Estude, medite e compartilhe versículos deste capítulo para crescimento espiritual.`;
+          pageTitle = `${bookName} ${selectedChapter} - ${selectedVersion} | Versículos para Estudo e Reflexão`;
+          pageDescription = `Leia ${bookName} capítulo ${selectedChapter} na Bíblia ${selectedVersion}. Estude, medite e compartilhe versículos deste capítulo para crescimento espiritual.`;
           pageKeywords = `${bookName} ${selectedChapter}, ${bookName} capítulo ${selectedChapter}, versículos de ${bookName} ${selectedChapter}, estudo de ${bookName} ${selectedChapter}, ${bookName} ${selectedChapter} explicação`;
           
           // Se tiver versículo selecionado
           if (selectedVerse) {
-            pageTitle = `${bookName} ${selectedChapter}:${selectedVerse} - ${versionName} | Versículo para Meditação`;
-            pageDescription = `"${getVerseText(selectedVerse)}" - ${bookName} ${selectedChapter}:${selectedVerse} na Bíblia ${versionName}. Medite neste versículo e compartilhe esta palavra.`;
+            pageTitle = `${bookName} ${selectedChapter}:${selectedVerse} - ${selectedVersion} | Versículo para Meditação`;
+            pageDescription = `"${getVerseText(selectedVerse)}" - ${bookName} ${selectedChapter}:${selectedVerse} na Bíblia ${selectedVersion}. Medite neste versículo e compartilhe esta palavra.`;
             pageKeywords = `${bookName} ${selectedChapter}:${selectedVerse}, versículo ${bookName} ${selectedChapter}:${selectedVerse}, significado de ${bookName} ${selectedChapter}:${selectedVerse}, explicação de ${bookName} ${selectedChapter}:${selectedVerse}`;
           }
         }
       }
     }
-    
-    // URL canônica
-    const normalizedBook = currentBookData ? normalizeForUrl(currentBookData.abbrev) : '';
-    const canonicalUrl = currentBookData && selectedChapter
-      ? `${window.location.origin}/biblia/${selectedVersion?.toLowerCase()}/${normalizedBook}/${selectedChapter}`
-      : `${window.location.origin}/biblia`;
     
     return { pageTitle, pageDescription, pageKeywords, canonicalUrl };
   };
