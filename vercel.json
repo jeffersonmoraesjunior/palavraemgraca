@@ -7,6 +7,21 @@
       "permanent": true
     },
     {
+      "source": "/biblia/:version/jó/:chapter",
+      "destination": "/biblia/:version/jo/:chapter",
+      "permanent": true
+    },
+    {
+      "source": "/biblia/:version/êx/:chapter",
+      "destination": "/biblia/:version/ex/:chapter",
+      "permanent": true
+    },
+    {
+      "source": "/biblia/:version/gên/:chapter",
+      "destination": "/biblia/:version/gen/:chapter",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
