@@ -208,10 +208,40 @@ const Bible: React.FC = () => {
 
   // Função para normalizar caracteres especiais para URLs
   const normalizeForUrl = (text: string): string => {
-    return text
+    const specialChars: Record<string, string> = {
+      'jó': 'jo',
+      'êx': 'ex',
+      'gên': 'gen',
+      'núm': 'num',
+      'provér': 'prov',
+      'ecle': 'ec',
+      'cantár': 'cant',
+      'isaí': 'is',
+      'jeremí': 'jr',
+      'ezequí': 'ez',
+      'oséi': 'os',
+      'amós': 'am',
+      'miquéi': 'mq',
+      'naúm': 'na',
+      'sofoní': 'sf',
+      'agéu': 'ag',
+      'zacarí': 'zc',
+      'malaquí': 'ml'
+    };
+
+    const normalized = text
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '') // Remove acentos
       .toLowerCase();
+
+    // Verifica se há uma substituição específica para o texto normalizado
+    for (const [key, value] of Object.entries(specialChars)) {
+      if (normalized.startsWith(key)) {
+        return value + normalized.slice(key.length);
+      }
+    }
+
+    return normalized;
   };
 
   // Função para obter o nome completo do livro a partir da abreviação
