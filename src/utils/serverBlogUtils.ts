@@ -7,17 +7,32 @@ const postsDirectory = process.env.NODE_ENV === 'production'
   ? path.join(process.cwd(), 'dist/contents/posts')
   : path.join(process.cwd(), 'src/contents/posts');
 
+// Função para obter o caminho do diretório de posts
+function getPostsDirectory() {
+  // Em produção, primeiro tenta o diretório dist, se não existir, usa o src
+  if (process.env.NODE_ENV === 'production') {
+    const distDir = path.join(process.cwd(), 'dist/contents/posts');
+    if (fs.existsSync(distDir)) {
+      return distDir;
+    }
+  }
+  return path.join(process.cwd(), 'src/contents/posts');
+}
+
 /**
  * Obtém todos os posts de blog
  * Função exclusiva para o servidor
  */
 export function getAllPosts(): BlogPost[] {
   try {
-    if (!fs.existsSync(postsDirectory)) {
+    const currentPostsDirectory = getPostsDirectory();
+    
+    if (!fs.existsSync(currentPostsDirectory)) {
+      console.error(`Posts directory not found: ${currentPostsDirectory}`);
       return [];
     }
     
-    const fileNames = fs.readdirSync(postsDirectory);
+    const fileNames = fs.readdirSync(currentPostsDirectory);
     const allPosts = fileNames
       .filter(fileName => fileName.endsWith('.json'))
       .map(fileName => {
@@ -25,7 +40,7 @@ export function getAllPosts(): BlogPost[] {
         const slug = fileName.replace(/\.json$/, '');
         
         // Read the JSON file
-        const fullPath = path.join(postsDirectory, fileName);
+        const fullPath = path.join(currentPostsDirectory, fileName);
         const fileContents = fs.readFileSync(fullPath, 'utf8');
         
         // Parse the JSON content
@@ -51,9 +66,11 @@ export function getAllPosts(): BlogPost[] {
  */
 export function getPostBySlug(slug: string): BlogPost | null {
   try {
-    const fullPath = path.join(postsDirectory, `${slug}.json`);
+    const currentPostsDirectory = getPostsDirectory();
+    const fullPath = path.join(currentPostsDirectory, `${slug}.json`);
     
     if (!fs.existsSync(fullPath)) {
+      console.error(`Post file not found: ${fullPath}`);
       return null;
     }
     
