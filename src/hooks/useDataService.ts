@@ -88,7 +88,7 @@ export function useQuoteByCategories(categories: string[]) {
 /**
  * Hook para obter dicas por categorias
  */
-export function useTipsByCategories(categories: string[], count: number = 3) {
+export function useTipsByCategories(categories: string[]) {
   const [tips, setTips] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
@@ -97,14 +97,14 @@ export function useTipsByCategories(categories: string[], count: number = 3) {
     try {
       setLoading(true);
       setError(null);
-      const result = await dataService.getTipsByCategories(categories, count);
+      const result = await dataService.getTipsByCategories(categories);
       setTips(result);
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Erro desconhecido'));
     } finally {
       setLoading(false);
     }
-  }, [categories, count]);
+  }, [categories]);
 
   useEffect(() => {
     fetchTips();

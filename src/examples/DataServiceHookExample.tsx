@@ -39,10 +39,11 @@ const DataServiceHookExample: React.FC = () => {
   
   // Exemplo 4: Dicas por categorias
   const { 
-    tips, 
-    loading: tipsLoading, 
-    error: tipsError 
-  } = useTipsByCategories(['ANXIETY', 'PEACE'], 2);
+    tips,
+    loading: tipsLoading,
+    error: tipsError,
+    refresh: refreshTips
+  } = useTipsByCategories(['ANXIETY', 'PEACE']);
   
   // Exemplo 5: Orientação personalizada
   const { 

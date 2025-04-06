@@ -8,3 +8,5 @@ export { default as BibleIndex } from './BibleIndex';
 export { default as Sitemap } from './Sitemap'; 
 export { default as VoiceSearch } from './VoiceSearch'; 
 export { default as NotFound } from './NotFound'; 
+export { default as BlogList } from './BlogList';
+export { default as BlogPost } from './BlogPost'; 

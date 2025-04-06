@@ -695,21 +695,21 @@ const Bible: React.FC = () => {
   return (
     <div className="py-6">
       <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-        <meta name="keywords" content={pageKeywords} />
-        <link rel="canonical" href={canonicalUrl} />
+        <title>{pageTitle || 'Bíblia Sagrada | Palavra em Graça'}</title>
+        <meta name="description" content={pageDescription || ''} />
+        <meta name="keywords" content={pageKeywords || ''} />
+        <link rel="canonical" href={canonicalUrl || ''} />
         
         {/* Meta tags adicionais para SEO */}
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDescription} />
-        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:title" content={pageTitle || ''} />
+        <meta property="og:description" content={pageDescription || ''} />
+        <meta property="og:url" content={canonicalUrl || ''} />
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content="Palavra em Graça" />
         
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:title" content={pageTitle || ''} />
+        <meta name="twitter:description" content={pageDescription || ''} />
         
         {/* Dados estruturados JSON-LD para SEO */}
         <script type="application/ld+json">
