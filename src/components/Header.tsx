@@ -35,6 +35,9 @@ const Header: React.FC<HeaderProps> = ({ theme, setTheme, adjustFontSize }) => {
           <Link to="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
             Início
           </Link>
+          <Link to="/artigos" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
+            Artigos
+          </Link>
           <Link to="/sobre" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
             Sobre
           </Link>
@@ -101,6 +104,15 @@ const Header: React.FC<HeaderProps> = ({ theme, setTheme, adjustFontSize }) => {
                 onClick={() => setMenuOpen(false)}
               >
                 Início
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/artigos" 
+                className="block py-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+                onClick={() => setMenuOpen(false)}
+              >
+                Artigos
               </Link>
             </li>
             <li>

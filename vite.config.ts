@@ -1,9 +1,16 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { blogPlugin } from './src/utils/vite-plugin-blog';
+import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    blogPlugin({
+      postsDir: path.resolve(process.cwd(), 'src/contents/posts')
+    })
+  ],
   optimizeDeps: {
     exclude: ['lucide-react'],
   },

@@ -272,33 +272,7 @@ export const dataService = {
     );
     
     if (matchingTips.length === 0) {
-      // Selecionar aleatoriamente se não houver correspondência
-      const session = getSession();
-      const recentTips = session.recentTips;
-      
-      // Filtrar dicas que não foram usadas recentemente
-      const availableTips = tips.filter(tip => 
-        !recentTips.includes(tip.text)
-      );
-      
-      // Se todas as dicas já foram usadas recentemente, usar todas
-      const tipsToSelectFrom = availableTips.length > 0 ? availableTips : tips;
-      
-      // Selecionar 3 dicas aleatórias
-      const selectedTips: string[] = [];
-      const maxTips = Math.min(3, tipsToSelectFrom.length);
-      
-      while (selectedTips.length < maxTips) {
-        const randomIndex = Math.floor(Math.random() * tipsToSelectFrom.length);
-        const tip = tipsToSelectFrom[randomIndex];
-        
-        if (!selectedTips.includes(tip.text)) {
-          selectedTips.push(tip.text);
-          addRecentItem('tips', tip.text);
-        }
-      }
-      
-      return selectedTips;
+      return [];
     }
     
     // Ordenar por relevância (número de categorias correspondentes)
@@ -308,34 +282,8 @@ export const dataService = {
       return bMatches - aMatches;
     });
     
-    // Obter dicas recentes para evitar repetições
-    const session = getSession();
-    const recentTips = session.recentTips;
-    
-    // Filtrar dicas que não foram usadas recentemente
-    const availableTips = matchingTips.filter(tip => 
-      !recentTips.includes(tip.text)
-    );
-    
-    // Se todas as dicas já foram usadas recentemente, usar todas as dicas correspondentes
-    const tipsToSelectFrom = availableTips.length > 0 ? availableTips : matchingTips;
-    
-    // Selecionar 3 dicas aleatórias entre as mais relevantes
-    const selectedTips: string[] = [];
-    const maxTips = Math.min(3, tipsToSelectFrom.length);
-    const topTips = tipsToSelectFrom.slice(0, Math.max(5, maxTips * 2));
-    
-    while (selectedTips.length < maxTips) {
-      const randomIndex = Math.floor(Math.random() * topTips.length);
-      const tip = topTips[randomIndex];
-      
-      if (!selectedTips.includes(tip.text)) {
-        selectedTips.push(tip.text);
-        addRecentItem('tips', tip.text);
-      }
-    }
-    
-    return selectedTips;
+    // Retornar apenas o texto das dicas
+    return matchingTips.map(tip => tip.text);
   },
   
   getPersonalizedGuidance: async (feeling: string): Promise<AIResponse> => {
