@@ -3,7 +3,9 @@ import fs from 'fs';
 import path from 'path';
 import { BlogPost } from './blogUtils';
 
-const postsDirectory = path.join(process.cwd(), 'src/contents/posts');
+const postsDirectory = process.env.NODE_ENV === 'production'
+  ? path.join(process.cwd(), 'dist/contents/posts')
+  : path.join(process.cwd(), 'src/contents/posts');
 
 /**
  * Obtém todos os posts de blog
