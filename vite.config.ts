@@ -8,7 +8,9 @@ export default defineConfig({
   plugins: [
     react(),
     blogPlugin({
-      postsDir: path.resolve(process.cwd(), 'src/contents/posts')
+      postsDir: process.env.NODE_ENV === 'production' 
+        ? path.resolve(process.cwd(), 'dist/contents/posts')
+        : path.resolve(process.cwd(), 'src/contents/posts')
     })
   ],
   optimizeDeps: {
@@ -40,8 +42,6 @@ export default defineConfig({
   },
   // Otimizações para o servidor de desenvolvimento
   server: {
-    // Comprimir respostas
-    compress: true,
     // Abrir o navegador automaticamente
     open: true,
     // Configuração para resolver problemas de CORS
