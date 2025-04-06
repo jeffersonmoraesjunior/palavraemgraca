@@ -33,6 +33,13 @@ export default defineConfig({
           vendor: ['react', 'react-dom'],
           ui: ['lucide-react', '@headlessui/react'],
         },
+        // Garantir que arquivos JSON sejam copiados
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name?.endsWith('.json')) {
+            return 'contents/posts/[name][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
+        }
       },
     },
     // Gerar source maps para produção
