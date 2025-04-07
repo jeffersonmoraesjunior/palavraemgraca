@@ -2,33 +2,33 @@ import fs from 'fs';
 import path from 'path';
 
 const sourceDir = path.resolve(process.cwd(), 'src/contents/posts');
-const targetDir = path.resolve(process.cwd(), 'public/contents/posts');
+const publicDir = path.resolve(process.cwd(), 'public/contents/posts');
 
 console.log('Source directory:', sourceDir);
-console.log('Target directory:', targetDir);
+console.log('Public directory:', publicDir);
 
-// Ensure target directory exists
-if (!fs.existsSync(targetDir)) {
-  fs.mkdirSync(targetDir, { recursive: true });
+// Ensure public directory exists
+if (!fs.existsSync(publicDir)) {
+  fs.mkdirSync(publicDir, { recursive: true });
 }
 
 // Get list of files in source directory
 const files = fs.readdirSync(sourceDir);
-console.log('Found', files.length, 'files in', sourceDir + ':', files);
+console.log('Found', files.length, 'files in source directory:', files);
 
-// Copy each file
+// Copy each file to public directory
 files.forEach(file => {
   const sourcePath = path.join(sourceDir, file);
-  const targetPath = path.join(targetDir, file);
+  const publicPath = path.join(publicDir, file);
   
   console.log('Copying file:', {
     from: sourcePath,
-    to: targetPath
+    to: publicPath
   });
   
-  fs.copyFileSync(sourcePath, targetPath);
+  fs.copyFileSync(sourcePath, publicPath);
   console.log('Copied:', file);
 });
 
 console.log('Content files copied successfully!');
-console.log('Blog plugin initialized with directory:', targetDir); 
+console.log('Blog plugin initialized with directory:', publicDir); 

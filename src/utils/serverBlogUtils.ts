@@ -7,9 +7,14 @@ import type { BlogPost } from './blogUtils';
  * Obtém o diretório dos posts baseado no ambiente
  */
 function getPostsDirectory(): string {
+  // Em produção no Vercel, os arquivos estáticos ficam em uma pasta diferente
+  if (process.env.VERCEL) {
+    return path.join('/var/task/public/contents/posts');
+  }
+  
   const isProduction = process.env.NODE_ENV === 'production';
   const postsDirectory = isProduction
-    ? path.join(process.cwd(), '.vercel/output/static/contents/posts')
+    ? path.join(process.cwd(), 'public/contents/posts')
     : path.resolve(process.cwd(), 'src/contents/posts');
   
   console.log('Getting posts directory:', {
