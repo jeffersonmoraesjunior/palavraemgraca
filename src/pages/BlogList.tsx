@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import type { BlogPost } from '../utils/blogUtils';
-import { getPaginatedPosts } from '../utils/api';
+import { getPaginatedPosts } from '../utils/blogUtils';
 
 const BlogList: React.FC = () => {
   const location = useLocation();
