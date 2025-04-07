@@ -22,7 +22,7 @@ export default defineConfig({
     // Otimizações para o Terser
     terserOptions: {
       compress: {
-        drop_console: true,
+        drop_console: false, // Mantém os console.log para debug
         drop_debugger: true,
       },
     },
@@ -47,7 +47,7 @@ export default defineConfig({
     // Otimizar o tamanho do CSS
     cssCodeSplit: true,
   },
-  // Otimizações para o servidor de desenvolvimento
+  // Otimizações para o servidor de desenvolvimento e preview
   server: {
     // Abrir o navegador automaticamente
     open: true,
@@ -61,4 +61,10 @@ export default defineConfig({
     port: 5173,
     strictPort: false,
   },
+  preview: {
+    // Configurações para o servidor de preview
+    port: 5173,
+    strictPort: false,
+    cors: true
+  }
 });

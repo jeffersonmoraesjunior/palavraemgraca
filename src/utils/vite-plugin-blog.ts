@@ -11,42 +11,27 @@ export function blogPlugin(options?: { postsDir?: string }): Plugin {
   
   // Função para configurar o servidor
   function setupServer(server: ViteDevServer | PreviewServer) {
-    // Endpoint for getting paginated blog posts
-    server.middlewares.use('/api/posts', (req: IncomingMessage, res: ServerResponse, next: () => void) => {
-      try {
-        // Verifica se é uma solicitação para a lista de posts (sem slug)
-        if (req.url === '/' || req.url?.startsWith('/?')) {
-          const url = new URL(req.url || '', 'http://localhost');
-          const page = parseInt(url.searchParams.get('page') || '1', 10);
-          const postsPerPage = parseInt(url.searchParams.get('limit') || '10', 10);
-          
-          const paginatedData = serverUtils.getPaginatedPosts(page, postsPerPage);
-          
-          res.setHeader('Content-Type', 'application/json');
-          res.end(JSON.stringify(paginatedData));
-        } else {
-          // Passa para o próximo middleware que pode ser o que processa posts específicos
-          next();
-        }
-      } catch (error) {
-        console.error('Error serving blog posts API:', error);
-        res.statusCode = 500;
-        res.end(JSON.stringify({ error: 'Internal server error' }));
-      }
-    });
-    
-    // Endpoint for getting a single post by slug
-    server.middlewares.use('/api/posts', (req: IncomingMessage, res: ServerResponse, next: () => void) => {
+    // Handler para todas as requisições /api/posts
+    server.middlewares.use('/api/posts', async (req: IncomingMessage, res: ServerResponse) => {
       try {
         // Certifica-se de que req.url existe
-        if (!req.url) {
-          next();
-          return;
+        const url = req.url || '';
+        
+        // Rota para lista de posts paginados
+        if (url === '/' || url.startsWith('/?')) {
+          const urlObj = new URL(url || '', 'http://localhost');
+          const page = parseInt(urlObj.searchParams.get('page') || '1', 10);
+          const postsPerPage = parseInt(urlObj.searchParams.get('limit') || '10', 10);
+          
+          const paginatedData = serverUtils.getPaginatedPosts(page, postsPerPage);
+          console.log('Serving paginated posts:', { page, postsPerPage, totalPosts: paginatedData.totalPosts });
+          
+          res.setHeader('Content-Type', 'application/json');
+          return res.end(JSON.stringify(paginatedData));
         }
         
-        // Extrai o slug da URL
-        const match = req.url.match(/^\/([^\/\?]+)/);
-        
+        // Rota para post específico
+        const match = url.match(/^\/([^\/\?]+)/);
         if (match) {
           const slug = match[1];
           console.log(`Buscando post com slug: ${slug}`);
@@ -55,16 +40,19 @@ export function blogPlugin(options?: { postsDir?: string }): Plugin {
           
           if (post) {
             res.setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify(post));
+            return res.end(JSON.stringify(post));
           } else {
             res.statusCode = 404;
-            res.end(JSON.stringify({ error: 'Post not found', slug }));
+            return res.end(JSON.stringify({ error: 'Post not found', slug }));
           }
-        } else {
-          next();
         }
+        
+        // Se nenhuma rota corresponder
+        res.statusCode = 404;
+        res.end(JSON.stringify({ error: 'Route not found' }));
+        
       } catch (error) {
-        console.error('Error serving blog post API:', error);
+        console.error('Error serving blog API:', error);
         res.statusCode = 500;
         res.end(JSON.stringify({ error: 'Internal server error' }));
       }
@@ -80,18 +68,32 @@ export function blogPlugin(options?: { postsDir?: string }): Plugin {
       setupServer(server);
     },
     generateBundle() {
-      // Garantir que os arquivos JSON sejam copiados para o build
-      const files = fs.readdirSync(path.resolve(process.cwd(), 'src/contents/posts'));
-      files.forEach(file => {
-        if (file.endsWith('.json')) {
-          const content = fs.readFileSync(path.resolve(process.cwd(), 'src/contents/posts', file), 'utf-8');
-          this.emitFile({
-            type: 'asset',
-            fileName: `contents/posts/${file}`,
-            source: content
-          });
+      try {
+        // Garantir que os arquivos JSON sejam copiados para o build
+        const sourceDir = path.resolve(process.cwd(), 'src/contents/posts');
+        if (!fs.existsSync(sourceDir)) {
+          console.error(`Source directory not found: ${sourceDir}`);
+          return;
         }
-      });
+        
+        const files = fs.readdirSync(sourceDir);
+        console.log(`Found ${files.length} files in ${sourceDir}`);
+        
+        files.forEach(file => {
+          if (file.endsWith('.json')) {
+            const sourcePath = path.resolve(sourceDir, file);
+            const content = fs.readFileSync(sourcePath, 'utf-8');
+            console.log(`Copying file to build: ${file}`);
+            this.emitFile({
+              type: 'asset',
+              fileName: `contents/posts/${file}`,
+              source: content
+            });
+          }
+        });
+      } catch (error) {
+        console.error('Error in generateBundle:', error);
+      }
     }
   };
 } 
