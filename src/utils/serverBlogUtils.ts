@@ -1,39 +1,24 @@
 // Este arquivo é usado apenas no servidor
 import fs from 'fs';
 import path from 'path';
-import { BlogPost } from './blogUtils';
+import type { BlogPost } from './blogUtils';
 
-// Função para obter o caminho do diretório de posts
-function getPostsDirectory() {
-  console.log('Current working directory:', process.cwd());
+/**
+ * Obtém o diretório dos posts baseado no ambiente
+ */
+function getPostsDirectory(): string {
+  const isProduction = process.env.NODE_ENV === 'production';
+  const postsDirectory = isProduction
+    ? path.resolve(process.cwd(), 'dist/contents/posts')
+    : path.resolve(process.cwd(), 'src/contents/posts');
   
-  // Em produção, primeiro tenta o diretório dist, se não existir, usa o src
-  if (process.env.NODE_ENV === 'production') {
-    const distDir = path.join(process.cwd(), 'dist/contents/posts');
-    const srcDir = path.join(process.cwd(), 'src/contents/posts');
-    
-    console.log('Checking directories:', {
-      distDir,
-      distExists: fs.existsSync(distDir),
-      srcDir,
-      srcExists: fs.existsSync(srcDir)
-    });
-    
-    if (fs.existsSync(distDir)) {
-      return distDir;
-    }
-    
-    if (fs.existsSync(srcDir)) {
-      return srcDir;
-    }
-    
-    console.error('Neither dist nor src directory exists');
-    return distDir; // Retorna dist mesmo assim para manter consistência
-  }
+  console.log('Getting posts directory:', {
+    environment: process.env.NODE_ENV,
+    directory: postsDirectory,
+    exists: fs.existsSync(postsDirectory)
+  });
   
-  const srcDir = path.join(process.cwd(), 'src/contents/posts');
-  console.log('Development directory:', srcDir);
-  return srcDir;
+  return postsDirectory;
 }
 
 /**

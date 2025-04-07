@@ -6,8 +6,11 @@ import { BlogPost } from './blogUtils';
 import * as serverUtils from './serverBlogUtils';
 
 // Main Vite plugin function
-export function blogPlugin(options?: { postsDir?: string }): Plugin {
-  const postsDirectory = options?.postsDir || path.resolve(process.cwd(), 'contents/posts');
+export function blogPlugin(): Plugin {
+  const postsDirectory = process.env.NODE_ENV === 'production'
+    ? path.resolve(process.cwd(), 'dist/contents/posts')
+    : path.resolve(process.cwd(), 'src/contents/posts');
+
   console.log('Blog plugin initialized with directory:', postsDirectory);
   
   // Função para configurar o servidor
@@ -41,6 +44,8 @@ export function blogPlugin(options?: { postsDir?: string }): Plugin {
           });
           
           res.setHeader('Content-Type', 'application/json');
+          res.setHeader('Access-Control-Allow-Origin', '*');
+          res.setHeader('Cache-Control', 'public, max-age=300');
           return res.end(JSON.stringify(paginatedData));
         }
         
@@ -58,6 +63,8 @@ export function blogPlugin(options?: { postsDir?: string }): Plugin {
               headline: post.headline
             });
             res.setHeader('Content-Type', 'application/json');
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            res.setHeader('Cache-Control', 'public, max-age=300');
             return res.end(JSON.stringify(post));
           } else {
             console.log('Post não encontrado:', { slug });
@@ -94,11 +101,19 @@ export function blogPlugin(options?: { postsDir?: string }): Plugin {
         console.log('Starting bundle generation');
         // Garantir que os arquivos JSON sejam copiados para o build
         const sourceDir = path.resolve(process.cwd(), 'src/contents/posts');
+        const targetDir = path.resolve(process.cwd(), 'dist/contents/posts');
+        
         console.log('Source directory:', sourceDir);
+        console.log('Target directory:', targetDir);
         
         if (!fs.existsSync(sourceDir)) {
           console.error(`Source directory not found: ${sourceDir}`);
           return;
+        }
+        
+        // Criar diretório de destino se não existir
+        if (!fs.existsSync(targetDir)) {
+          fs.mkdirSync(targetDir, { recursive: true });
         }
         
         const files = fs.readdirSync(sourceDir);
@@ -107,14 +122,12 @@ export function blogPlugin(options?: { postsDir?: string }): Plugin {
         files.forEach(file => {
           if (file.endsWith('.json')) {
             const sourcePath = path.resolve(sourceDir, file);
-            console.log('Reading file:', sourcePath);
-            const content = fs.readFileSync(sourcePath, 'utf-8');
-            console.log(`Copying file to build: ${file}`);
-            this.emitFile({
-              type: 'asset',
-              fileName: `contents/posts/${file}`,
-              source: content
+            const targetPath = path.resolve(targetDir, file);
+            console.log('Copying file:', {
+              from: sourcePath,
+              to: targetPath
             });
+            fs.copyFileSync(sourcePath, targetPath);
           }
         });
         
