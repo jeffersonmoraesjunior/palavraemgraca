@@ -1,15 +1,5 @@
 {
   "version": 2,
-  "routes": [
-    {
-      "src": "/api/posts",
-      "dest": "/api/posts"
-    },
-    {
-      "src": "/api/posts/(.*)",
-      "dest": "/api/posts/$1"
-    }
-  ],
   "redirects": [
     {
       "source": "/index.html",
@@ -50,6 +40,14 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/api/posts",
+      "destination": "/api/posts"
+    },
+    {
+      "source": "/api/posts/:path*",
+      "destination": "/api/posts/:path*"
+    },
     {
       "source": "/biblia/indice/:version",
       "destination": "/index.html"
