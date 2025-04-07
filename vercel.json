@@ -1,135 +1,17 @@
 {
   "version": 2,
-  "redirects": [
+  "routes": [
     {
-      "source": "/index.html",
-      "destination": "/",
-      "permanent": true
+      "src": "/api/posts",
+      "dest": "/api/posts"
     },
     {
-      "source": "/biblia/:version/jó/:chapter",
-      "destination": "/biblia/:version/jo/:chapter",
-      "permanent": true
+      "src": "/api/posts/(.*)",
+      "dest": "/api/posts/$1"
     },
     {
-      "source": "/biblia/indice/:version",
-      "has": [
-        {
-          "type": "query",
-          "key": "page"
-        }
-      ],
-      "destination": "/biblia/indice/:version",
-      "permanent": true
-    },
-    {
-      "source": "/biblia/indice",
-      "destination": "/biblia",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.palavraemgraca.com.br"
-        }
-      ],
-      "destination": "https://palavraemgraca.com.br/:path*",
-      "permanent": true
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/api/posts",
-      "destination": "/api/posts"
-    },
-    {
-      "source": "/api/posts/:path*",
-      "destination": "/api/posts/:path*"
-    },
-    {
-      "source": "/biblia/indice/:version",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/biblia/:version/:book/:chapter",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/biblia/:version/:book",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/biblia/:version",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/biblia",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        },
-        {
-          "key": "Strict-Transport-Security",
-          "value": "max-age=31536000; includeSubDomains"
-        }
-      ]
-    },
-    {
-      "source": "/:path*\\.(jpg|jpeg|gif|png|svg|ico|webp)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/:path*\\.(js|css)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/:path*\\.(json)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
-        }
-      ]
-    },
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=60, stale-while-revalidate=300"
-        }
-      ]
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ],
   "functions": {
@@ -140,5 +22,16 @@
   },
   "env": {
     "POSTS_DIRECTORY": "/var/task/public/contents/posts"
-  }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ]
 } 

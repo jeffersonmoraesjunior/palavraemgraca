@@ -22,6 +22,7 @@
     "@headlessui/react": "^1.7.18",
     "@types/react-helmet": "^6.1.11",
     "feed": "^4.2.2",
+    "gray-matter": "^4.0.3",
     "lucide-react": "^0.344.0",
     "openai": "^4.28.0",
     "react": "^18.2.0",
