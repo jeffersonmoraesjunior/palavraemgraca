@@ -9,13 +9,15 @@ import type { BlogPost } from './blogUtils';
 function getPostsDirectory(): string {
   const isProduction = process.env.NODE_ENV === 'production';
   const postsDirectory = isProduction
-    ? path.resolve(process.cwd(), 'dist/contents/posts')
+    ? path.join(process.cwd(), '.vercel/output/static/contents/posts')
     : path.resolve(process.cwd(), 'src/contents/posts');
   
   console.log('Getting posts directory:', {
     environment: process.env.NODE_ENV,
     directory: postsDirectory,
-    exists: fs.existsSync(postsDirectory)
+    exists: fs.existsSync(postsDirectory),
+    cwd: process.cwd(),
+    files: fs.existsSync(postsDirectory) ? fs.readdirSync(postsDirectory) : []
   });
   
   return postsDirectory;
