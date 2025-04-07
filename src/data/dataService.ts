@@ -282,8 +282,8 @@ export const dataService = {
       return bMatches - aMatches;
     });
     
-    // Retornar apenas o texto das dicas
-    return matchingTips.map(tip => tip.text);
+    // Retornar apenas o texto das 5 primeiras dicas
+    return matchingTips.slice(0, 5).map(tip => tip.text);
   },
   
   getPersonalizedGuidance: async (feeling: string): Promise<AIResponse> => {
