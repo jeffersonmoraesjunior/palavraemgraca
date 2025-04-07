@@ -1,31 +1,28 @@
 // Este arquivo é usado apenas no servidor
 import fs from 'fs';
 import path from 'path';
+import matter from 'gray-matter';
 import type { BlogPost } from './blogUtils';
 
 /**
  * Obtém o diretório dos posts baseado no ambiente
  */
-function getPostsDirectory(): string {
-  // Em produção no Vercel, os arquivos estáticos ficam em uma pasta diferente
-  if (process.env.VERCEL) {
-    return path.join('/var/task/public/contents/posts');
-  }
+export function getPostsDirectory(): string {
+  // In production (Vercel), the posts should be in /var/task/public/contents/posts
+  // In development, they should be in public/contents/posts
+  const isProd = process.env.NODE_ENV === 'production';
+  const baseDir = isProd ? '/var/task' : process.cwd();
+  const postsDir = path.join(baseDir, 'public/contents/posts');
   
-  const isProduction = process.env.NODE_ENV === 'production';
-  const postsDirectory = isProduction
-    ? path.join(process.cwd(), 'public/contents/posts')
-    : path.resolve(process.cwd(), 'src/contents/posts');
-  
-  console.log('Getting posts directory:', {
+  console.log('Posts directory configuration:', {
     environment: process.env.NODE_ENV,
-    directory: postsDirectory,
-    exists: fs.existsSync(postsDirectory),
-    cwd: process.cwd(),
-    files: fs.existsSync(postsDirectory) ? fs.readdirSync(postsDirectory) : []
+    baseDir,
+    postsDir,
+    exists: fs.existsSync(postsDir),
+    contents: fs.existsSync(postsDir) ? fs.readdirSync(postsDir) : []
   });
-  
-  return postsDirectory;
+
+  return postsDir;
 }
 
 /**
@@ -33,44 +30,37 @@ function getPostsDirectory(): string {
  * Função exclusiva para o servidor
  */
 export function getAllPosts(): BlogPost[] {
-  try {
-    const currentPostsDirectory = getPostsDirectory();
-    console.log('Getting all posts from directory:', currentPostsDirectory);
-    
-    if (!fs.existsSync(currentPostsDirectory)) {
-      console.error(`Posts directory not found: ${currentPostsDirectory}`);
-      return [];
-    }
-    
-    const fileNames = fs.readdirSync(currentPostsDirectory);
-    console.log('Found files:', fileNames);
-    
-    const allPosts = fileNames
-      .filter(fileName => fileName.endsWith('.json'))
-      .map(fileName => {
-        // Remove ".json" from file name to get slug
-        const slug = fileName.replace(/\.json$/, '');
-        console.log('Processing file:', fileName, 'with slug:', slug);
-        
-        // Read the JSON file
-        const fullPath = path.join(currentPostsDirectory, fileName);
-        const fileContents = fs.readFileSync(fullPath, 'utf8');
-        
-        // Parse the JSON content
-        const post = JSON.parse(fileContents) as BlogPost;
-        return post;
-      })
-      .sort((a, b) => {
-        // Sort by date, most recent first
-        return new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime();
-      });
-    
-    console.log(`Processed ${allPosts.length} posts`);
-    return allPosts;
-  } catch (error) {
-    console.error('Error fetching blog posts:', error);
+  const postsDirectory = getPostsDirectory();
+  
+  if (!fs.existsSync(postsDirectory)) {
+    console.error('Posts directory does not exist:', postsDirectory);
     return [];
   }
+
+  const fileNames = fs.readdirSync(postsDirectory);
+  console.log('Found files in posts directory:', fileNames);
+
+  const allPosts = fileNames
+    .filter(fileName => fileName.endsWith('.json'))
+    .map(fileName => {
+      const fullPath = path.join(postsDirectory, fileName);
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      
+      try {
+        const { data } = matter(fileContents);
+        return {
+          slug: fileName.replace(/\.json$/, ''),
+          ...data,
+        } as BlogPost;
+      } catch (error) {
+        console.error(`Error parsing ${fileName}:`, error);
+        return null;
+      }
+    })
+    .filter((post): post is BlogPost => post !== null)
+    .sort((post1, post2) => (post1.datePublished > post2.datePublished ? -1 : 1));
+
+  return allPosts;
 }
 
 /**
@@ -78,33 +68,23 @@ export function getAllPosts(): BlogPost[] {
  * Função exclusiva para o servidor
  */
 export function getPostBySlug(slug: string): BlogPost | null {
+  const postsDirectory = getPostsDirectory();
+  const fullPath = path.join(postsDirectory, `${slug}.json`);
+  
+  if (!fs.existsSync(fullPath)) {
+    console.error('Post file does not exist:', fullPath);
+    return null;
+  }
+
   try {
-    const currentPostsDirectory = getPostsDirectory();
-    const fullPath = path.join(currentPostsDirectory, `${slug}.json`);
-    
-    console.log('Looking for post file:', {
-      slug,
-      directory: currentPostsDirectory,
-      fullPath,
-      exists: fs.existsSync(fullPath)
-    });
-    
-    if (!fs.existsSync(fullPath)) {
-      console.error(`Post file not found: ${fullPath}`);
-      return null;
-    }
-    
     const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const post = JSON.parse(fileContents) as BlogPost;
-    
-    console.log('Found post:', {
-      slug: post.slug,
-      headline: post.headline
-    });
-    
-    return post;
+    const { data } = matter(fileContents);
+    return {
+      slug,
+      ...data,
+    } as BlogPost;
   } catch (error) {
-    console.error(`Error fetching post with slug "${slug}":`, error);
+    console.error(`Error reading post ${slug}:`, error);
     return null;
   }
 }
@@ -113,32 +93,17 @@ export function getPostBySlug(slug: string): BlogPost | null {
  * Obtém posts paginados
  * Função exclusiva para o servidor
  */
-export function getPaginatedPosts(page = 1, postsPerPage = 10): {
-  posts: BlogPost[];
-  totalPosts: number;
-  totalPages: number;
-} {
-  console.log('Getting paginated posts:', { page, postsPerPage });
-  
+export function getPaginatedPosts(page: number = 1, limit: number = 10) {
   const allPosts = getAllPosts();
-  const startIndex = (page - 1) * postsPerPage;
-  const endIndex = startIndex + postsPerPage;
-  const paginatedPosts = allPosts.slice(startIndex, endIndex);
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+  const posts = allPosts.slice(startIndex, endIndex);
   
-  const result = {
-    posts: paginatedPosts,
+  return {
+    posts,
     totalPosts: allPosts.length,
-    totalPages: Math.ceil(allPosts.length / postsPerPage)
+    totalPages: Math.ceil(allPosts.length / limit)
   };
-  
-  console.log('Paginated posts result:', {
-    totalPosts: result.totalPosts,
-    totalPages: result.totalPages,
-    currentPage: page,
-    postsInPage: result.posts.length
-  });
-  
-  return result;
 }
 
 /**

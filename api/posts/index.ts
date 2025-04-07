@@ -1,53 +1,53 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { getPaginatedPosts } from '../../src/utils/serverBlogUtils';
-import fs from 'fs';
+import * as fs from 'fs';
+import * as path from 'path';
 
-export default async function handler(
-  request: VercelRequest,
-  response: VercelResponse
-) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
-    console.log('API Request:', {
-      method: request.method,
-      query: request.query,
+    console.log('API Request received:', {
+      method: req.method,
+      query: req.query,
       env: process.env.NODE_ENV,
-      postsDir: process.env.POSTS_DIRECTORY,
       cwd: process.cwd(),
-      files: fs.readdirSync(process.cwd())
+      postsDir: process.env.POSTS_DIRECTORY || path.join(process.cwd(), 'public/contents/posts')
     });
 
-    if (request.method !== 'GET') {
-      return response.status(405).json({ error: 'Method not allowed' });
+    // Log directory contents for debugging
+    const postsDir = process.env.POSTS_DIRECTORY || path.join(process.cwd(), 'public/contents/posts');
+    console.log('Checking directory:', postsDir);
+    if (fs.existsSync(postsDir)) {
+      console.log('Directory contents:', fs.readdirSync(postsDir));
+    } else {
+      console.log('Directory does not exist:', postsDir);
     }
 
-    const page = Number(request.query.page) || 1;
-    const limit = Number(request.query.limit) || 10;
+    if (req.method !== 'GET') {
+      return res.status(405).json({ error: 'Method not allowed' });
+    }
 
-    console.log('Fetching posts:', { 
-      page, 
-      limit,
-      postsDirectory: process.env.POSTS_DIRECTORY,
-      exists: fs.existsSync(process.env.POSTS_DIRECTORY || '')
-    });
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
 
-    const result = getPaginatedPosts(page, limit);
+    console.log('Fetching posts with params:', { page, limit });
 
+    const result = await getPaginatedPosts(page, limit);
+    
     console.log('Posts fetched:', {
-      totalPosts: result.totalPosts,
-      postsReturned: result.posts.length,
-      currentPage: page,
-      totalPages: result.totalPages
+      total: result.posts.length,
+      firstPost: result.posts[0]?.headline || 'No posts found'
     });
 
-    response.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=59');
-    return response.status(200).json(result);
+    res.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=59');
+    return res.status(200).json(result);
+
   } catch (error) {
-    console.error('Error in posts API:', error);
-    return response.status(500).json({ 
+    console.error('Error in API route:', error);
+    return res.status(500).json({
       error: 'Internal Server Error',
-      details: error instanceof Error ? error.message : String(error),
+      details: error instanceof Error ? error.message : 'Unknown error',
       env: process.env.NODE_ENV,
-      postsDir: process.env.POSTS_DIRECTORY
+      cwd: process.cwd()
     });
   }
 } 
