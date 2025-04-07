@@ -1,5 +1,15 @@
 {
   "version": 2,
+  "routes": [
+    {
+      "src": "/api/posts",
+      "dest": "/api/posts"
+    },
+    {
+      "src": "/api/posts/(.*)",
+      "dest": "/api/posts/$1"
+    }
+  ],
   "redirects": [
     {
       "source": "/index.html",
@@ -113,6 +123,21 @@
           "value": "public, max-age=86400"
         }
       ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60, stale-while-revalidate=300"
+        }
+      ]
     }
-  ]
+  ],
+  "functions": {
+    "api/posts/**": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  }
 } 
