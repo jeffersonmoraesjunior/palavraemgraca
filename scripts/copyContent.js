@@ -1,53 +1,34 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Função para criar diretório recursivamente
-function mkdirRecursive(dir) {
-  if (fs.existsSync(dir)) return;
-  
-  try {
-    fs.mkdirSync(dir, { recursive: true });
-    console.log(`Created directory: ${dir}`);
-  } catch (err) {
-    console.error(`Error creating directory ${dir}:`, err);
-    throw err;
-  }
-}
-
-// Função para copiar arquivos
-function copyFiles(sourceDir, targetDir) {
-  try {
-    // Criar diretório de destino se não existir
-    mkdirRecursive(targetDir);
-    
-    // Ler arquivos do diretório fonte
-    const files = fs.readdirSync(sourceDir);
-    
-    // Copiar cada arquivo JSON
-    files.forEach(file => {
-      if (file.endsWith('.json')) {
-        const sourcePath = path.join(sourceDir, file);
-        const targetPath = path.join(targetDir, file);
-        
-        fs.copyFileSync(sourcePath, targetPath);
-        console.log(`Copied: ${file}`);
-      }
-    });
-    
-    console.log('Content files copied successfully!');
-  } catch (error) {
-    console.error('Error copying content files:', error);
-    process.exit(1);
-  }
-}
-
-// Definir diretórios
 const sourceDir = path.resolve(process.cwd(), 'src/contents/posts');
-const targetDir = path.resolve(process.cwd(), 'dist/contents/posts');
+const targetDir = path.resolve(process.cwd(), 'public/contents/posts');
 
-// Executar cópia
-copyFiles(sourceDir, targetDir); 
+console.log('Source directory:', sourceDir);
+console.log('Target directory:', targetDir);
+
+// Ensure target directory exists
+if (!fs.existsSync(targetDir)) {
+  fs.mkdirSync(targetDir, { recursive: true });
+}
+
+// Get list of files in source directory
+const files = fs.readdirSync(sourceDir);
+console.log('Found', files.length, 'files in', sourceDir + ':', files);
+
+// Copy each file
+files.forEach(file => {
+  const sourcePath = path.join(sourceDir, file);
+  const targetPath = path.join(targetDir, file);
+  
+  console.log('Copying file:', {
+    from: sourcePath,
+    to: targetPath
+  });
+  
+  fs.copyFileSync(sourcePath, targetPath);
+  console.log('Copied:', file);
+});
+
+console.log('Content files copied successfully!');
+console.log('Blog plugin initialized with directory:', targetDir); 

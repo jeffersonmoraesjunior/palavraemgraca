@@ -151,7 +151,7 @@ export default defineConfig({
         }
       },
       input: {
-        main: path.resolve(__dirname, 'index.html')
+        main: './index.html'
       }
     },
     // Gerar source maps para produção
@@ -163,6 +163,7 @@ export default defineConfig({
     // Limpar o diretório de saída antes do build
     emptyOutDir: true,
     assetsDir: 'assets',
+    copyPublicDir: true
   },
   // Otimizações para o servidor de desenvolvimento e preview
   server: {
@@ -179,9 +180,9 @@ export default defineConfig({
     strictPort: false,
     proxy: {
       '/api': {
-        target: 'http://localhost:5173',
+        target: 'http://localhost:3000',
         changeOrigin: true,
-        rewrite: (path) => path
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   },
