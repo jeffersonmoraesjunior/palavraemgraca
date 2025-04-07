@@ -119,11 +119,7 @@ function jsonServerPlugin() {
 export default defineConfig({
   plugins: [
     react(),
-    blogPlugin({
-      postsDir: process.env.NODE_ENV === 'production' 
-        ? path.resolve(process.cwd(), 'dist/contents/posts')
-        : path.resolve(process.cwd(), 'src/contents/posts')
-    }),
+    blogPlugin(),
     jsonServerPlugin()
   ],
   optimizeDeps: {
@@ -154,6 +150,9 @@ export default defineConfig({
           return 'assets/[name]-[hash][extname]';
         }
       },
+      input: {
+        main: path.resolve(__dirname, 'index.html')
+      }
     },
     // Gerar source maps para produção
     sourcemap: true,
@@ -163,6 +162,7 @@ export default defineConfig({
     outDir: 'dist',
     // Limpar o diretório de saída antes do build
     emptyOutDir: true,
+    assetsDir: 'assets',
   },
   // Otimizações para o servidor de desenvolvimento e preview
   server: {
@@ -177,6 +177,13 @@ export default defineConfig({
     // Configuração para resolver problemas de porta
     port: 5173,
     strictPort: false,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5173',
+        changeOrigin: true,
+        rewrite: (path) => path
+      }
+    }
   },
   preview: {
     // Configurações para o servidor de preview
