@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Save, Share } from 'lucide-react';
+import { Save, Share, Copy } from 'lucide-react';
 import type { AIResponse } from '../types';
 
 interface GuidanceDisplayProps {
   guidance: AIResponse;
   onSave: () => void;
-  onShare: (platform: 'whatsapp' | 'copy') => void;
+  onShare: (platform?: 'whatsapp' | 'copy') => void;
 }
 
 export const GuidanceDisplay: React.FC<GuidanceDisplayProps> = ({
@@ -14,6 +14,9 @@ export const GuidanceDisplay: React.FC<GuidanceDisplayProps> = ({
   onShare
 }) => {
   const [showShareOptions, setShowShareOptions] = useState<boolean>(false);
+  
+  // Limitar a 5 dicas
+  const limitedTips = guidance.tips.slice(0, 5);
   
   return (
     <section className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
@@ -36,27 +39,27 @@ export const GuidanceDisplay: React.FC<GuidanceDisplayProps> = ({
               <Share size={20} className="text-blue-600 dark:text-blue-400" />
             </button>
             {showShareOptions && (
-              <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg z-10 border dark:border-gray-700">
-                <div className="py-1">
-                  <button
-                    onClick={() => {
-                      onShare('whatsapp');
-                      setShowShareOptions(false);
-                    }}
-                    className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
-                  >
-                    Compartilhar no WhatsApp
-                  </button>
-                  <button
-                    onClick={() => {
-                      onShare('copy');
-                      setShowShareOptions(false);
-                    }}
-                    className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700"
-                  >
-                    Copiar para área de transferência
-                  </button>
-                </div>
+              <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 rounded-lg shadow-lg z-10">
+                <button
+                  onClick={() => {
+                    onShare('whatsapp');
+                    setShowShareOptions(false);
+                  }}
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-t-lg flex items-center gap-2"
+                >
+                  <Share size={20} />
+                  Compartilhar no WhatsApp
+                </button>
+                <button
+                  onClick={() => {
+                    onShare('copy');
+                    setShowShareOptions(false);
+                  }}
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-b-lg flex items-center gap-2"
+                >
+                  <Copy size={20} />
+                  Copiar texto
+                </button>
               </div>
             )}
           </div>
@@ -87,7 +90,7 @@ export const GuidanceDisplay: React.FC<GuidanceDisplayProps> = ({
         <div className="bg-green-50 dark:bg-green-900/30 p-4 rounded-lg">
           <h3 className="font-medium text-green-800 dark:text-green-300 mb-2">Dicas Práticas</h3>
           <ul className="space-y-2">
-            {guidance.tips.map((tip, index) => (
+            {limitedTips.map((tip, index) => (
               <li key={index} className="flex items-start">
                 <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200 text-sm font-medium mr-3 flex-shrink-0">
                   {index + 1}
