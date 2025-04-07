@@ -137,5 +137,8 @@
       "memory": 1024,
       "maxDuration": 10
     }
+  },
+  "env": {
+    "POSTS_DIRECTORY": "/var/task/public/contents/posts"
   }
 } 
