@@ -57,6 +57,19 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
+    <!-- Reader Revenue Manager -->
+    <script async type="application/javascript"
+        src="https://news.google.com/swg/js/v1/swg-basic.js"></script>
+    <script>
+      (self.SWG_BASIC = self.SWG_BASIC || []).push( basicSubscriptions => {
+        basicSubscriptions.init({
+          type: "NewsArticle",
+          isPartOfType: ["Product"],
+          isPartOfProductId: "CAow3O3aCw:openaccess",
+          clientOptions: { theme: "light", lang: "pt-BR" },
+        });
+      });
+    </script>
     <!-- Structured Data / JSON-LD -->
     <script type="application/ld+json">
       {
