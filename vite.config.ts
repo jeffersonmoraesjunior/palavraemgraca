@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -33,18 +34,35 @@ export default defineConfig({
   },
   // Otimizações para o servidor de desenvolvimento
   server: {
-    // Comprimir respostas
-    compress: true,
-    // Abrir o navegador automaticamente
+    port: 5173,
+    strictPort: false,
     open: true,
-    // Configuração para resolver problemas de CORS
     cors: true,
-    // Configuração para resolver problemas de HMR
     hmr: {
       overlay: true,
     },
-    // Configuração para resolver problemas de porta
-    port: 5173,
-    strictPort: false,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  },
+  // Suporte para o problema de módulos Node.js
+  resolve: {
+    alias: {
+      // Estes módulos são problemáticos no browser
+      fs: 'empty-module', // não usado mais, mas pode estar sendo importado em dependências
+      path: 'path-browserify',
+      stream: 'stream-browserify',
+      util: 'util',
+      'reading-time': './src/utils/mockReadingTime.js'
+    }
+  },
+  // Permite a definição de variáveis globais
+  define: {
+    // Variáveis de ambiente
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
   },
 });
