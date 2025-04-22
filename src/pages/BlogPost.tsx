@@ -24,12 +24,10 @@ const BlogPost: React.FC = () => {
         const postData = await getPostBySlug(slug);
         
         if (postData) {
-          // Processar o conteúdo para remover o H1 duplicado
+          // Processar o conteúdo para converter tags H1 para H2, preservando o conteúdo
           let processedContent = postData.content;
-          
-          // Remover o primeiro <h1> que aparece no conteúdo, pois já exibimos o título
-          const h1Regex = /<h1[^>]*>(.*?)<\/h1>/i;
-          processedContent = processedContent.replace(h1Regex, '');
+          const h1Regex = /<h1[^>]*>(.*?)<\/h1>/gi;
+          processedContent = processedContent.replace(h1Regex, '<h2>$1</h2>');
           
           setPost({
             ...postData,
@@ -85,91 +83,44 @@ const BlogPost: React.FC = () => {
   }
   
   return (
-    <article className="max-w-2xl mx-auto">
-      <Helmet>
-        <title>{post.title} | Palavra em Graça</title>
-        <meta name="description" content={post.description} />
-        <meta name="keywords" content={post.keywords.join(', ')} />
-        <link rel="canonical" href={`https://palavraemgraca.com.br/${post.slug}`} />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": post.title,
-            "description": post.description,
-            "image": `https://palavraemgraca.com.br${post.featuredImage}`,
-            "author": {
-              "@type": "Person",
-              "name": post.author
-            },
-            "publisher": {
-              "@type": "Organization",
-              "name": "Palavra em Graça",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://palavraemgraca.com.br/logo.svg"
-              }
-            },
-            "datePublished": post.datePublished,
-            "dateModified": post.dateModified,
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": `https://palavraemgraca.com.br/${post.slug}`
-            },
-            "keywords": post.keywords.join(',')
-          })}
-        </script>
-      </Helmet>
-      
-      <div className="mb-6">
-        <Link 
-          to="/blog" 
-          className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
-          </svg>
-          Voltar para o Blog
-        </Link>
-      </div>
-      
-      <header className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-        
-        <div className="flex flex-wrap items-center text-gray-600 dark:text-gray-400 text-sm mb-4">
+    <article className="w-full">
+      <section className="max-w-6xl mx-auto p-4">
+        <h1 className="text-3xl md:text-4xl font-bold text-center mb-4">{post.title}</h1>
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-6 text-sm md:text-base text-gray-600 dark:text-gray-400">
           <span>{formatDate(post.datePublished)}</span>
-          <span className="mx-2">•</span>
+          <span>•</span>
           <span>{post.author}</span>
-          <span className="mx-2">•</span>
-          <span>{post.readingTime}</span>
+          {post.tags && post.tags.length > 0 && (
+            <>
+              <span>•</span>
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag) => (
+                  <Link
+                    key={tag}
+                    to={`/tag/${tag}`}
+                    className="hover:text-blue-600 dark:hover:text-blue-400"
+                  >
+                    #{tag}
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
         </div>
         
-        <div className="flex flex-wrap gap-2 mb-6">
-          {post.tags.map(tag => (
-            <Link 
-              key={tag} 
-              to={`/tag/${tag.toLowerCase()}`}
-              className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 text-xs px-2 py-1 rounded"
-            >
-              {tag}
-            </Link>
-          ))}
-        </div>
-        
-        <div className="rounded-lg overflow-hidden mb-6">
-          <ImageOptimized 
-            src={post.featuredImage} 
-            alt={post.title} 
-            className="w-full h-auto"
-            priority={true}
+        {post.featuredImage && (
+          <img
+            src={post.featuredImage}
+            alt={post.title}
+            className="w-full max-w-4xl h-auto mx-auto rounded-lg shadow-md mb-8"
           />
-        </div>
-      </header>
-      
-      <div 
-        className="prose dark:prose-invert prose-blue max-w-none mb-10 blog-content"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
+        )}
+
+        <div 
+          className="blog-content prose prose-lg dark:prose-invert max-w-none"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
+      </section>
       
       <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
         <h3 className="text-xl font-bold mb-4">Compartilhe este artigo</h3>
