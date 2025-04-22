@@ -15,7 +15,8 @@ import {
   NotFound,
   BlogList,
   BlogPost,
-  BlogTagPage
+  BlogTagPage,
+  Articles
 } from './pages';
 import { HelmetProvider } from 'react-helmet-async';
 import CookieConsent from './components/CookieConsent';
@@ -103,6 +104,7 @@ function App() {
               
               {/* Rotas do Blog */}
               <Route path="/blog" element={<BlogList />} />
+              <Route path="/artigos" element={<Articles />} />
               <Route path="/tag/:tag" element={<BlogTagPage />} />
               <Route path="/:slug" element={<BlogPost />} />
               
