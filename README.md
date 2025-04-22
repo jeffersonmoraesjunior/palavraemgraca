@@ -1,169 +1,94 @@
-# 📖 Palavra em Graça
+# Palavra em Graça
 
-<div align="center">
-  <img src="public/bible.svg" alt="Palavra em Graça Logo" width="150px" />
-  
-  [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-  [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-  [![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
-  [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-  
-  Uma plataforma moderna de conteúdo cristão que oferece versículos bíblicos, orientações personalizadas e artigos edificantes.
-</div>
+![Palavra em Graça](public/bible.svg)
 
-## ✨ Destaques
+Uma aplicação web que oferece versículos bíblicos e palavras de conforto personalizadas para o momento do usuário.
 
-- 🎯 **Orientação Personalizada**: IA avançada para oferecer palavras de conforto baseadas na Bíblia
-- 📱 **PWA Ready**: Funciona offline e pode ser instalado como aplicativo
-- 🎨 **Design Moderno**: Interface limpa e responsiva com Tailwind CSS
-- 📊 **SEO Otimizado**: Implementação completa de JSON-LD e sitemap automático
-- 🔄 **Conteúdo Dinâmico**: Sistema de blog com RSS feed automático
-- 🌓 **Tema Adaptativo**: Suporte a modo claro/escuro
-- ♿ **Acessibilidade**: Seguindo as melhores práticas WCAG
-- 🚀 **Performance**: Otimização automática de assets e code splitting
+## 🚀 Funcionalidades
 
-## 🛠️ Stack Tecnológica
+- **Versículo Diário**: Receba um versículo bíblico diário para inspiração.
+- **Orientação Personalizada**: Compartilhe como está se sentindo e receba uma palavra de conforto baseada na Bíblia.
+- **Histórico de Orientações**: Salve orientações recebidas para consulta posterior.
+- **Compartilhamento**: Compartilhe facilmente as orientações via WhatsApp ou copie para a área de transferência.
+- **Acessibilidade**: Ajuste o tamanho da fonte e escolha entre tema claro e escuro.
+- **PWA**: Funciona offline e pode ser instalada como aplicativo.
 
-### Frontend
-- **Framework**: React 18 com TypeScript
-- **Build Tool**: Vite 5.4
-- **Estilização**: Tailwind CSS 4.1
-- **Roteamento**: React Router DOM 7
-- **UI Components**: Headless UI
-- **Ícones**: Lucide React
+## 🛠️ Tecnologias
 
-### Performance & SEO
-- **Meta Tags**: React Helmet
-- **Dados Estruturados**: JSON-LD
-- **Métricas**: Web Vitals
-- **Otimização**: Sharp para imagens
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Lucide React](https://lucide.dev/)
+- [OpenAI API](https://openai.com/api/)
 
-### Integrações
-- **IA**: OpenAI API
-- **Feed**: RSS Automático
-- **Sitemap**: Geração Dinâmica
+## 📋 Pré-requisitos
 
-## 🚀 Começando
+- Node.js (versão 16 ou superior)
+- npm ou yarn
 
-### Pré-requisitos
-\`\`\`bash
-node >= 16.0.0
-npm >= 7.0.0
-\`\`\`
+## 🔧 Instalação
 
-### Instalação
-
-1. **Clone o repositório**
-   \`\`\`bash
+1. Clone o repositório:
+   ```bash
    git clone https://github.com/seu-usuario/palavra-em-graca.git
    cd palavra-em-graca
-   \`\`\`
+   ```
 
-2. **Instale as dependências**
-   \`\`\`bash
+2. Instale as dependências:
+   ```bash
    npm install
-   \`\`\`
+   # ou
+   yarn install
+   ```
 
-3. **Configure as variáveis de ambiente**
-   \`\`\`bash
+3. Copie o arquivo `.env.example` para `.env` e configure as variáveis de ambiente:
+   ```bash
    cp .env.example .env
-   \`\`\`
+   ```
 
-4. **Inicie o ambiente de desenvolvimento**
-   \`\`\`bash
+4. Inicie o servidor de desenvolvimento:
+   ```bash
    npm run dev
-   \`\`\`
+   # ou
+   yarn dev
+   ```
 
-## 📦 Scripts Disponíveis
+## 🚀 Implantação
 
-- \`npm run dev\`: Inicia o servidor de desenvolvimento
-- \`npm run build\`: Build de produção com todas as otimizações
-- \`npm run preview\`: Preview da build de produção
-- \`npm run lint\`: Executa o linter
-- \`npm run generate:rss\`: Gera o feed RSS
-- \`npm run generate-sitemap\`: Atualiza o sitemap
-- \`npm run image-optimize\`: Otimiza as imagens
+Para construir a versão de produção:
 
-## 📝 Sistema de Blog
+```bash
+npm run build
+# ou
+yarn build
+```
 
-### Estrutura de Post
-\`\`\`json
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Título do Post",
-  "description": "Descrição SEO",
-  "author": {
-    "@type": "Person",
-    "name": "Autor"
-  },
-  "datePublished": "2024-04-14T10:00:00Z",
-  "content": {
-    "introduction": "Texto introdutório",
-    "sections": [
-      {
-        "title": "Seção 1",
-        "content": "Conteúdo"
-      }
-    ]
-  }
-}
-\`\`\`
+Para visualizar a versão de produção localmente:
 
-## 🌐 Rotas Principais
+```bash
+npm run preview
+# ou
+yarn preview
+```
 
-- \`/\`: Página inicial com versículo do dia
-- \`/orientacao\`: Orientação personalizada
-- \`/artigos\`: Lista de artigos do blog
-- \`/artigos/[slug]\`: Artigo individual
-- \`/biblia\`: Explorador bíblico
-- \`/sobre\`: Sobre o projeto
+Para construir a versão para WordPress:
 
-## 📱 Progressive Web App
+```bash
+npm run build:wp
+# ou
+yarn build:wp
+```
 
-A aplicação é totalmente PWA compatível:
-- ✅ Instalável como aplicativo
-- ✅ Funciona offline
-- ✅ Cache inteligente
-- ✅ Atualizações automáticas
+## 📝 Licença
 
-## 🔒 Segurança
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
-- ✅ Sanitização de conteúdo
-- ✅ Headers de segurança
-- ✅ Proteção contra XSS
-- ✅ Variáveis de ambiente seguras
+## 👥 Contribuição
 
-## 📈 Performance
-
-Métricas de Web Vitals:
-- ⚡ First Contentful Paint (FCP): < 1.8s
-- 🎯 Largest Contentful Paint (LCP): < 2.5s
-- ⌛ First Input Delay (FID): < 100ms
-- 📊 Cumulative Layout Shift (CLS): < 0.1
-
-## 🤝 Contribuindo
-
-1. Fork o projeto
-2. Crie sua Feature Branch (\`git checkout -b feature/AmazingFeature\`)
-3. Commit suas mudanças (\`git commit -m 'Add some AmazingFeature'\`)
-4. Push para a Branch (\`git push origin feature/AmazingFeature\`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request.
 
 ## 📞 Contato
 
 - Website: [palavraemgraca.com.br](https://palavraemgraca.com.br)
-- Email: contato@palavraemgraca.com.br
-
----
-
-<div align="center">
-  
-  **Feito com ❤️ para a glória de Deus**
-  
-  [⬆ Voltar ao topo](#-palavra-em-graça)
-</div> 
+- Email: contato@palavraemgraca.com.br 

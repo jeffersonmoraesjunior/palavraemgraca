@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import type { Theme } from './types';
-import { Header, Footer, GoogleCMS } from './components';
-import { About, Privacy, Contact, Terms, Home, Bible, BibleIndex, Sitemap, VoiceSearch, NotFound, BlogList, BlogPost } from './pages';
-import { HelmetProvider, Helmet } from 'react-helmet-async';
+import { Header, Footer } from './components';
+import { About, Privacy, Contact, Terms, Home, Bible, BibleIndex, Sitemap, VoiceSearch, NotFound } from './pages';
+import { HelmetProvider } from 'react-helmet-async';
 import CookieConsent from './components/CookieConsent';
 
 // Main App Component
@@ -63,12 +63,6 @@ function App() {
   return (
     <HelmetProvider>
       <div className={`min-h-screen transition-colors duration-300 ${theme.isDark ? 'dark bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
-        <Helmet>
-          <meta name="robots" content="max-image-preview:large" />
-          <link rel="alternate" type="application/rss+xml" title="Palavra em Graça RSS Feed" href="https://palavraemgraca.com.br/feed.xml" />
-        </Helmet>
-        <GoogleCMS />
-        
         <div className="container mx-auto px-4 py-8 max-w-2xl">
           <Header 
             theme={theme} 
@@ -90,8 +84,6 @@ function App() {
             <Route path="/biblia/:version" element={<Bible />} />
             <Route path="/biblia/:version/:book" element={<Bible />} />
             <Route path="/biblia/:version/:book/:chapter" element={<Bible />} />
-            <Route path="/artigos" element={<BlogList />} />
-            <Route path="/:slug" element={<BlogPost />} />
             <Route path="/404" element={<NotFound />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

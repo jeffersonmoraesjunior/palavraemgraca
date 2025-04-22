@@ -191,7 +191,7 @@ const BibleIndex: React.FC = () => {
     "@type": "CollectionPage",
     "name": pageTitle,
     "description": pageDescription,
-    "url": `https://palavraemgraca.com.br/biblia/indice/${selectedVersion.toLowerCase()}`,
+    "url": `https://amigosdedeus.com/biblia/indice/${selectedVersion.toLowerCase()}`,
     "mainEntity": {
       "@type": "Book",
       "name": "Bíblia Sagrada",
@@ -219,19 +219,19 @@ const BibleIndex: React.FC = () => {
   return (
     <div className="py-6">
       <Helmet>
-        <title>{pageTitle || 'Índice da Bíblia Sagrada | Palavra em Graça'}</title>
-        <meta name="description" content={pageDescription || ''} />
-        <link rel="canonical" href={`https://palavraemgraca.com.br/biblia/indice/${selectedVersion.toLowerCase()}`} />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={`https://amigosdedeus.com/biblia/indice/${selectedVersion.toLowerCase()}`} />
         
         {/* Meta tags para SEO */}
-        <meta property="og:title" content={pageTitle || ''} />
-        <meta property="og:description" content={pageDescription || ''} />
-        <meta property="og:url" content={`https://palavraemgraca.com.br/biblia/indice/${selectedVersion.toLowerCase()}`} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={`https://amigosdedeus.com/biblia/indice/${selectedVersion.toLowerCase()}`} />
         <meta property="og:type" content="website" />
         
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={pageTitle || ''} />
-        <meta name="twitter:description" content={pageDescription || ''} />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
         
         <meta name="keywords" content={`índice bíblia, livros da bíblia, capítulos bíblia, ${bibleVersions.find(v => v.id === selectedVersion)?.name || selectedVersion}, antigo testamento, novo testamento, evangelhos, salmos, provérbios`} />
         
@@ -339,7 +339,37 @@ const BibleIndex: React.FC = () => {
                 </div>
               ))}
             </div>
-          </div>         
+          </div>
+          
+          <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900 rounded-lg">
+            <h3 className="text-lg font-semibold mb-2">Versículos Populares</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link 
+                  to={`/biblia/${selectedVersion.toLowerCase()}/jo/3/16`}
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  João 3:16 - "Porque Deus amou o mundo de tal maneira..."
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to={`/biblia/${selectedVersion.toLowerCase()}/sl/23/1`}
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  Salmos 23:1 - "O Senhor é o meu pastor..."
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to={`/biblia/${selectedVersion.toLowerCase()}/jr/29/11`}
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  Jeremias 29:11 - "Porque eu bem sei os pensamentos que tenho a vosso respeito..."
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       )}
     </div>
