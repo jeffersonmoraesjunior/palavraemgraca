@@ -22,6 +22,11 @@ async function build() {
     await execAsync('npm run generate:blog-sitemap');
     console.log('✅ blog-sitemap.xml gerado com sucesso!');
 
+    // Gerar API estática para os posts
+    console.log('🔄 Gerando API estática para os posts...');
+    await execAsync('npm run generate:static-api');
+    console.log('✅ API estática gerada com sucesso!');
+
     // Executar a build do Vite
     console.log('🚧 Gerando build da aplicação...');
     await execAsync('npm run build:all');

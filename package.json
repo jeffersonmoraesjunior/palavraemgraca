@@ -12,6 +12,7 @@
     "build:wp": "vite build --outDir wordpress-build --config vite.config.wp.ts",
     "generate:rss": "node scripts/generateRssFeed.js",
     "generate:blog-sitemap": "node scripts/generateBlogSitemap.js",
+    "generate:static-api": "node scripts/generateStaticApi.js",
     "optimize:images": "node scripts/optimizeImages.js"
   },
   "dependencies": {
