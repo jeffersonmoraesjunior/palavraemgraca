@@ -1,6 +1,7 @@
 import { Feed } from 'feed';
 import fs from 'fs/promises';
 import path from 'path';
+import matter from 'gray-matter';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -25,28 +26,39 @@ async function generateRssFeed() {
         });
 
         // Read posts directory
-        const postsDir = path.join(process.cwd(), 'src', 'contents', 'posts');
+        const postsDir = path.join(process.cwd(), 'public', 'contents', 'markdown');
         const files = await fs.readdir(postsDir);
 
         // Process each post
         for (const file of files) {
-            if (file.endsWith('.json')) {
-                const content = await fs.readFile(path.join(postsDir, file), 'utf8');
-                const post = JSON.parse(content);
-
+            if (file.endsWith('.md')) {
+                const filePath = path.join(postsDir, file);
+                const fileContent = await fs.readFile(filePath, 'utf8');
+                
+                // Parse markdown frontmatter
+                const { data, content } = matter(fileContent);
+                const slug = file.replace(/\.md$/, '');
+                
+                // Extract first paragraph for content preview
+                const contentPreview = content
+                    .replace(/^#(.*)$/gm, '') // Remove headers
+                    .split('\n\n')[0] // Get first paragraph
+                    .trim();
+                
                 feed.addItem({
-                    title: post.headline,
-                    id: `https://palavraemgraca.com.br/${post.slug}`,
-                    link: `https://palavraemgraca.com.br/${post.slug}`,
-                    description: post.description,
-                    content: post.content.introduction,
+                    title: data.title,
+                    id: `https://palavraemgraca.com.br/${slug}`,
+                    link: `https://palavraemgraca.com.br/${slug}`,
+                    description: data.description,
+                    content: data.description || contentPreview.substring(0, 200) + '...',
                     author: [
                         {
-                            name: post.author?.name || "Palavra em Graça",
+                            name: data.author || "Palavra em Graça",
                         },
                     ],
-                    date: new Date(post.datePublished),
-                    image: post.image ? `https://palavraemgraca.com.br${post.image}` : undefined,
+                    date: new Date(data.datePublished),
+                    image: data.featuredImage ? `https://palavraemgraca.com.br${data.featuredImage}` : undefined,
+                    category: data.tags.map(tag => ({ name: tag }))
                 });
             }
         }
@@ -63,7 +75,7 @@ async function generateRssFeed() {
             feed.rss2()
         );
 
-        console.log('RSS feed generated successfully! ');
+        console.log('RSS feed generated successfully!');
     } catch (error) {
         console.error('Error generating RSS feed:', error);
     }

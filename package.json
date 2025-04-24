@@ -5,14 +5,19 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/build.js",
+    "build:all": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build:wp": "vite build --outDir wordpress-build --config vite.config.wp.ts"
+    "build:wp": "vite build --outDir wordpress-build --config vite.config.wp.ts",
+    "generate:rss": "node scripts/generateRssFeed.js",
+    "generate:blog-sitemap": "node scripts/generateBlogSitemap.js",
+    "optimize:images": "node scripts/optimizeImages.js"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "@types/react-helmet": "^6.1.11",
+    "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.344.0",
     "openai": "^4.28.0",
@@ -29,6 +34,7 @@
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
     "remark-parse": "^11.0.0",
+    "sharp": "^0.34.1",
     "web-vitals": "^3.5.2"
   },
   "devDependencies": {

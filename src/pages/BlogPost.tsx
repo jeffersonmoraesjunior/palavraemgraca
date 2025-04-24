@@ -25,9 +25,14 @@ const BlogPost: React.FC = () => {
         
         if (postData) {
           // Processar o conteúdo para converter tags H1 para H2, preservando o conteúdo
+          // Garantindo que todas as variações de H1 sejam capturadas
           let processedContent = postData.content;
-          const h1Regex = /<h1[^>]*>(.*?)<\/h1>/gi;
+          
+          // Regex mais eficiente para capturar todas as variações de H1 com atributos
+          const h1Regex = /<h1[^>]*>([\s\S]*?)<\/h1>/gi;
           processedContent = processedContent.replace(h1Regex, '<h2>$1</h2>');
+          
+          // Não remover espaços, pois isso pode afetar a formatação do texto
           
           setPost({
             ...postData,
@@ -84,6 +89,61 @@ const BlogPost: React.FC = () => {
   
   return (
     <article className="w-full">
+      <Helmet>
+        <title>{post.title} | Palavra em Graça</title>
+        <meta name="description" content={post.description} />
+        <meta name="keywords" content={post.keywords.join(', ')} />
+        <meta name="author" content={post.author} />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://palavraemgraca.com.br/${post.slug}`} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.description} />
+        {post.featuredImage && <meta property="og:image" content={post.featuredImage.startsWith('http') ? post.featuredImage : `https://palavraemgraca.com.br${post.featuredImage}`} />}
+        
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={`https://palavraemgraca.com.br/${post.slug}`} />
+        <meta property="twitter:title" content={post.title} />
+        <meta property="twitter:description" content={post.description} />
+        {post.featuredImage && <meta property="twitter:image" content={post.featuredImage.startsWith('http') ? post.featuredImage : `https://palavraemgraca.com.br${post.featuredImage}`} />}
+        
+        {/* Canonical URL */}
+        <link rel="canonical" href={`https://palavraemgraca.com.br/${post.slug}`} />
+        
+        {/* Structured Data (Schema.org) */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "description": post.description,
+            "author": {
+              "@type": "Person",
+              "name": post.author
+            },
+            "datePublished": post.datePublished,
+            "dateModified": post.dateModified,
+            "publisher": {
+              "@type": "Organization",
+              "name": "Palavra em Graça",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://palavraemgraca.com.br/logo.png"
+              }
+            },
+            "image": post.featuredImage ? (post.featuredImage.startsWith('http') ? post.featuredImage : `https://palavraemgraca.com.br${post.featuredImage}`) : undefined,
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": `https://palavraemgraca.com.br/${post.slug}`
+            },
+            "keywords": post.keywords.join(','),
+            "articleSection": post.category
+          })}
+        </script>
+      </Helmet>
+      
       <section className="max-w-6xl mx-auto p-4">
         <h1 className="text-3xl md:text-4xl font-bold text-center mb-4">{post.title}</h1>
         <div className="flex flex-wrap items-center justify-center gap-2 mb-6 text-sm md:text-base text-gray-600 dark:text-gray-400">
@@ -117,7 +177,7 @@ const BlogPost: React.FC = () => {
         )}
 
         <div 
-          className="blog-content prose prose-lg dark:prose-invert max-w-none"
+          className="blog-content prose prose-lg dark:prose-invert max-w-none mx-auto px-4"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </section>

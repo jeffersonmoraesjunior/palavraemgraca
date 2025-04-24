@@ -4,7 +4,7 @@
         <title>Palavra em Graça</title>
         <link>https://palavraemgraca.com.br/</link>
         <description>Reflexões cristãs e estudos bíblicos para edificação espiritual</description>
-        <lastBuildDate>Mon, 07 Apr 2025 13:01:04 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 24 Apr 2025 18:49:37 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Feed for Node.js</generator>
         <language>pt-BR</language>
@@ -15,13 +15,29 @@
         </image>
         <copyright>Todos os direitos reservados 2025, Palavra em Graça</copyright>
         <item>
-            <title><![CDATA[Jesus: Conheça a História que Mudou o Mundo para Sempre]]></title>
-            <link>https://palavraemgraca.com.br/a-vida-de-jesus</link>
-            <guid>https://palavraemgraca.com.br/a-vida-de-jesus</guid>
-            <pubDate>Fri, 14 Apr 2023 10:00:00 GMT</pubDate>
-            <description><![CDATA[Ei, você já parou pra pensar sobre a incrível jornada de Jesus? Vem comigo descobrir como seus ensinamentos e milagres continuam transformando vidas até hoje!]]></description>
-            <content:encoded><![CDATA[Sabe aquela história que todo mundo já ouviu falar, mas que nunca perde a força? Então, é a história de Jesus! Nascido em uma pequena cidade chamada Belém, há mais de dois mil anos, Ele revolucionou completamente o mundo com seu amor e compaixão. E olha, não é exagero não - até hoje, bilhões de pessoas encontram esperança e sentido através dos seus ensinamentos. Vem comigo, vou te contar mais sobre essa jornada incrível!]]></content:encoded>
-            <enclosure url="https://palavraemgraca.com.brimages/a-vida-jesus-palavra-em-graca.webp" length="0" type="image/webp"/>
+            <title><![CDATA[O Poder da Oração Diária na Vida Cristã]]></title>
+            <link>https://palavraemgraca.com.br/oracao-diaria</link>
+            <guid>https://palavraemgraca.com.br/oracao-diaria</guid>
+            <pubDate>Fri, 15 Sep 2023 10:30:00 GMT</pubDate>
+            <description><![CDATA[Como estabelecer uma prática de oração que transforma seu relacionamento com Deus]]></description>
+            <content:encoded><![CDATA[Como estabelecer uma prática de oração que transforma seu relacionamento com Deus]]></content:encoded>
+            <category>Oração</category>
+            <category>Devocionais</category>
+            <category>Vida Cristã</category>
+            <enclosure url="https://palavraemgraca.com.br/images/oracao-diaria.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Salmos: O Poder Curativo das Antigas Palavras]]></title>
+            <link>https://palavraemgraca.com.br/poder-dos-salmos</link>
+            <guid>https://palavraemgraca.com.br/poder-dos-salmos</guid>
+            <pubDate>Wed, 24 Apr 2024 11:30:00 GMT</pubDate>
+            <description><![CDATA[Descubra como os Salmos podem transformar sua vida espiritual e emocional nos momentos de alegria e dificuldade]]></description>
+            <content:encoded><![CDATA[Descubra como os Salmos podem transformar sua vida espiritual e emocional nos momentos de alegria e dificuldade]]></content:encoded>
+            <category>Salmos</category>
+            <category>Oração</category>
+            <category>Adoração</category>
+            <category>Vida Espiritual</category>
+            <enclosure url="https://palavraemgraca.com.br/images/salmos-biblia.webp" length="0" type="image/webp"/>
         </item>
     </channel>
 </rss>

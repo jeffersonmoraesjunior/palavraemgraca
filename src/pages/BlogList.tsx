@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import type { BlogPost } from '../utils/markdownUtils';
-import { getPaginatedPosts, getAllCategories, getAllTags } from '../utils/markdownUtils';
+import { getPaginatedPosts, getAllPosts } from '../utils/markdownUtils';
 import ImageOptimized from '../components/ImageOptimized';
 
 const BlogList: React.FC = () => {
@@ -21,21 +21,16 @@ const BlogList: React.FC = () => {
     totalPages: 0
   });
   
-  const [categories, setCategories] = useState<{ category: string; count: number }[]>([]);
-  const [tags, setTags] = useState<{ tag: string; count: number }[]>([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState<BlogPost[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
   
   useEffect(() => {
     async function loadData() {
       try {
         const data = await getPaginatedPosts(currentPage);
         setBlogData(data);
-        
-        const categoriesData = await getAllCategories();
-        setCategories(categoriesData);
-        
-        const tagsData = await getAllTags();
-        setTags(tagsData);
       } catch (error) {
         console.error('Error loading blog data:', error);
       } finally {
@@ -50,6 +45,39 @@ const BlogList: React.FC = () => {
   const handlePageChange = (page: number) => {
     navigate(`/blog?page=${page}`);
     window.scrollTo(0, 0);
+    setSearchTerm('');
+    setIsSearching(false);
+  };
+  
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!searchTerm.trim()) {
+      setIsSearching(false);
+      return;
+    }
+    
+    setLoading(true);
+    setIsSearching(true);
+    
+    try {
+      const allPosts = await getAllPosts();
+      const filtered = allPosts.filter(post => {
+        const searchContent = `${post.title} ${post.description} ${post.author} ${post.tags.join(' ')} ${post.category}`.toLowerCase();
+        return searchContent.includes(searchTerm.toLowerCase());
+      });
+      
+      setSearchResults(filtered);
+    } catch (error) {
+      console.error('Erro ao pesquisar posts:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  const clearSearch = () => {
+    setSearchTerm('');
+    setIsSearching(false);
   };
   
   const formatDate = (dateString: string) => {
@@ -69,8 +97,11 @@ const BlogList: React.FC = () => {
     );
   }
   
+  // Determinar quais posts mostrar (resultados da pesquisa ou posts paginados normais)
+  const displayPosts = isSearching ? searchResults : blogData.posts;
+  
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-4xl mx-auto">
       <Helmet>
         <title>Blog Cristão | Palavra em Graça</title>
         <meta 
@@ -104,152 +135,164 @@ const BlogList: React.FC = () => {
         </p>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Lista de Posts */}
-        <div className="md:col-span-2">
-          {blogData.posts.length === 0 ? (
-            <div className="text-center py-10">
-              <p className="text-lg">Nenhum artigo encontrado.</p>
-            </div>
-          ) : (
-            <div className="space-y-8">
-              {blogData.posts.map((post) => (
-                <article 
-                  key={post.slug} 
-                  className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden transition hover:shadow-lg"
-                >
-                  <Link to={`/${post.slug}`} className="block group">
-                    <div className="h-48 overflow-hidden">
-                      <ImageOptimized
-                        src={post.featuredImage}
-                        alt={post.title}
-                        className="w-full h-full"
-                        objectFit="cover"
-                      />
+      {/* Barra de pesquisa */}
+      <div className="mb-8">
+        <form onSubmit={handleSearch} className="flex items-center gap-2">
+          <div className="relative flex-1">
+            <input
+              type="search"
+              className="block w-full pl-4 pr-10 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+              placeholder="Pesquisar por artigos..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+              aria-label="Pesquisar"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </button>
+          </div>
+          
+          {isSearching && (
+            <button
+              type="button"
+              onClick={clearSearch}
+              className="px-4 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+            >
+              Limpar
+            </button>
+          )}
+        </form>
+      </div>
+      
+      {/* Status da Pesquisa */}
+      {isSearching && (
+        <div className="mb-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-semibold">
+              {searchResults.length === 0 
+                ? 'Nenhum resultado encontrado' 
+                : `${searchResults.length} ${searchResults.length === 1 ? 'resultado encontrado' : 'resultados encontrados'}`}
+            </h2>
+            <span className="text-sm text-gray-500 dark:text-gray-400">
+              Pesquisando por: "{searchTerm}"
+            </span>
+          </div>
+        </div>
+      )}
+      
+      <div className="w-full">
+        {displayPosts.length === 0 ? (
+          <div className="text-center py-10">
+            <p className="text-lg">
+              {isSearching 
+                ? `Nenhum artigo encontrado para "${searchTerm}".`
+                : 'Nenhum artigo encontrado.'}
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-8">
+            {displayPosts.map((post) => (
+              <article 
+                key={post.slug} 
+                className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden transition hover:shadow-lg"
+              >
+                <Link to={`/${post.slug}`} className="block group">
+                  <div className="h-48 overflow-hidden">
+                    <ImageOptimized
+                      src={post.featuredImage}
+                      alt={post.title}
+                      className="w-full h-full"
+                      objectFit="cover"
+                    />
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
+                      <span>{formatDate(post.datePublished)}</span>
+                      <span className="mx-2">•</span>
+                      <span>{post.readingTime}</span>
                     </div>
                     
-                    <div className="p-6">
-                      <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
-                        <span>{formatDate(post.datePublished)}</span>
-                        <span className="mx-2">•</span>
-                        <span>{post.readingTime}</span>
-                      </div>
-                      
-                      <h2 className="text-xl font-bold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
-                        {post.title}
-                      </h2>
-                      
-                      <p className="text-gray-600 dark:text-gray-300 mb-4">
-                        {post.excerpt}
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-2 mb-2">
-                        {post.tags.slice(0, 3).map(tag => (
-                          <span 
-                            key={tag} 
-                            className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 text-xs px-2 py-1 rounded"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      
-                      <div className="flex items-center mt-4">
-                        <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
-                          Ler artigo →
+                    <h2 className="text-xl font-bold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+                      {post.title}
+                    </h2>
+                    
+                    <p className="text-gray-600 dark:text-gray-300 mb-4">
+                      {post.excerpt}
+                    </p>
+                    
+                    <div className="flex flex-wrap gap-2 mb-2">
+                      {post.tags.slice(0, 3).map(tag => (
+                        <span 
+                          key={tag} 
+                          className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 text-xs px-2 py-1 rounded"
+                        >
+                          {tag}
                         </span>
-                      </div>
+                      ))}
                     </div>
-                  </Link>
-                </article>
-              ))}
-            </div>
-          )}
-          
-          {/* Paginação */}
-          {blogData.totalPages > 1 && (
-            <div className="mt-10 flex justify-center">
-              <nav className="inline-flex rounded-md shadow">
-                <button
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  disabled={currentPage === 1}
-                  className={`px-4 py-2 rounded-l-md ${
-                    currentPage === 1
-                      ? 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
-                      : 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700'
-                  }`}
-                >
-                  Anterior
-                </button>
-                
-                {Array.from({ length: blogData.totalPages }).map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handlePageChange(index + 1)}
-                    className={`px-4 py-2 ${
-                      currentPage === index + 1
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700'
-                    }`}
-                  >
-                    {index + 1}
-                  </button>
-                ))}
-                
-                <button
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  disabled={currentPage === blogData.totalPages}
-                  className={`px-4 py-2 rounded-r-md ${
-                    currentPage === blogData.totalPages
-                      ? 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
-                      : 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700'
-                  }`}
-                >
-                  Próxima
-                </button>
-              </nav>
-            </div>
-          )}
-        </div>
-        
-        {/* Sidebar */}
-        <aside className="md:col-span-1">
-          {/* Categorias */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
-            <h3 className="text-lg font-bold mb-4">Categorias</h3>
-            <ul className="space-y-2">
-              {categories.map(({ category, count }) => (
-                <li key={category}>
-                  <Link 
-                    to={`/categoria/${category.toLowerCase()}`}
-                    className="flex justify-between items-center text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
-                  >
-                    <span>{category}</span>
-                    <span className="bg-gray-100 dark:bg-gray-700 text-xs px-2 py-1 rounded-full">
-                      {count}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          {/* Tags */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h3 className="text-lg font-bold mb-4">Tags</h3>
-            <div className="flex flex-wrap gap-2">
-              {tags.map(({ tag, count }) => (
-                <Link 
-                  key={tag}
-                  to={`/tag/${tag.toLowerCase()}`}
-                  className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-blue-100 dark:hover:bg-blue-900 text-xs px-2 py-1 rounded-full transition"
-                >
-                  {tag} ({count})
+                    
+                    <div className="flex items-center mt-4">
+                      <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                        Ler artigo →
+                      </span>
+                    </div>
+                  </div>
                 </Link>
-              ))}
-            </div>
+              </article>
+            ))}
           </div>
-        </aside>
+        )}
+        
+        {/* Paginação - Mostrar apenas quando não estiver pesquisando */}
+        {!isSearching && blogData.totalPages > 1 && (
+          <div className="mt-10 flex justify-center">
+            <nav className="inline-flex rounded-md shadow">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className={`px-4 py-2 rounded-l-md ${
+                  currentPage === 1
+                    ? 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+                    : 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700'
+                }`}
+              >
+                Anterior
+              </button>
+              
+              {Array.from({ length: blogData.totalPages }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handlePageChange(index + 1)}
+                  className={`px-4 py-2 ${
+                    currentPage === index + 1
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+              
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === blogData.totalPages}
+                className={`px-4 py-2 rounded-r-md ${
+                  currentPage === blogData.totalPages
+                    ? 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+                    : 'bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700'
+                }`}
+              >
+                Próxima
+              </button>
+            </nav>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -10,5 +10,4 @@ export { default as VoiceSearch } from './VoiceSearch';
 export { default as NotFound } from './NotFound'; 
 export { default as BlogList } from './BlogList';
 export { default as BlogPost } from './BlogPost';
-export { default as BlogTagPage } from './BlogTagPage';
-export { default as Articles } from './Articles'; 
+export { default as BlogTagPage } from './BlogTagPage'; 
