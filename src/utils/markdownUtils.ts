@@ -28,6 +28,11 @@ export interface BlogPost {
 // Diretório dos posts em Markdown
 const postsDirectory = 'public/contents/markdown';
 
+// Cache para evitar requisições repetidas
+const postsCache: Record<string, any> = {};
+const allPostsCache: { data: any[] | null; timestamp: number } = { data: null, timestamp: 0 };
+const CACHE_TTL = 60 * 1000; // 1 minuto em milissegundos
+
 // Função simples para calcular o tempo de leitura
 function calculateReadingTime(text: string): string {
   const wordsPerMinute = 200;
@@ -43,6 +48,13 @@ export async function getAllPosts(): Promise<BlogPost[]> {
   console.log('Obtendo todos os posts...');
   
   try {
+    // Verifica se tem cache válido
+    const now = Date.now();
+    if (allPostsCache.data && (now - allPostsCache.timestamp < CACHE_TTL)) {
+      console.log('Usando cache para todos os posts');
+      return allPostsCache.data;
+    }
+    
     // Se estamos em um ambiente de navegador, buscar os posts via API
     if (typeof window !== 'undefined') {
       // Tentar buscar a lista de posts do arquivo JSON estático
@@ -68,9 +80,15 @@ export async function getAllPosts(): Promise<BlogPost[]> {
       );
       
       // Filtrar posts nulos e ordenar por data
-      return posts
+      const validPosts = posts
         .filter((post): post is BlogPost => post !== null)
         .sort((a, b) => new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime());
+      
+      // Atualizar o cache
+      allPostsCache.data = validPosts;
+      allPostsCache.timestamp = now;
+      
+      return validPosts;
     } 
     // Se estamos no ambiente Node.js (SSG/SSR)
     else {
@@ -191,10 +209,16 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   console.log(`Buscando post com slug: ${slug}`);
   
   try {
+    // Verifica se o post está em cache
+    if (postsCache[slug]) {
+      console.log(`Usando cache para post: ${slug}`);
+      return postsCache[slug];
+    }
+    
     // Se estamos em um ambiente de navegador, buscar o post via API
     if (typeof window !== 'undefined') {
       // Primeiro tenta buscar do arquivo JSON estático
-      return fetch(`/api/posts/${slug}.json`)
+      const post = await fetch(`/api/posts/${slug}.json`)
         .then(res => {
           if (!res.ok) {
             // Fallback: tentar buscar do endpoint do servidor de desenvolvimento
@@ -211,6 +235,13 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
           console.error('Erro ao buscar post:', error);
           return null;
         });
+      
+      // Armazena no cache se o post for encontrado
+      if (post) {
+        postsCache[slug] = post;
+      }
+      
+      return post;
     } 
     // Se estamos no ambiente Node.js (SSG/SSR)
     else {
