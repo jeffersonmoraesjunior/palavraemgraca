@@ -37,10 +37,10 @@ self.addEventListener('install', event => {
   event.waitUntil(
     Promise.all([
       // Cache principal para arquivos críticos
-      caches.open(CACHE_NAME)
-        .then(cache => {
-          console.log('[Service Worker] Cacheando recursos essenciais');
-          return cache.addAll(CORE_ASSETS);
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        console.log('[Service Worker] Cacheando recursos essenciais');
+        return cache.addAll(CORE_ASSETS);
         }),
       // Cache separado para imagens
       caches.open(IMAGE_CACHE_NAME)
@@ -70,7 +70,7 @@ self.addEventListener('activate', event => {
           .map((cacheName) => {
             console.log('[Service Worker] Removendo cache antigo:', cacheName);
             return caches.delete(cacheName);
-          })
+        })
       );
     })
     .then(() => {
@@ -189,9 +189,9 @@ self.addEventListener('fetch', event => {
 
   // Estratégia para API - Network First com timeout
   if (new URL(event.request.url).pathname.includes('/api/')) {
-    event.respondWith(
-      fetch(event.request)
-        .then(response => {
+  event.respondWith(
+    fetch(event.request)
+      .then(response => {
           // Não armazenar em cache respostas com erro
           if (!response.ok) {
             return response;
@@ -205,13 +205,13 @@ self.addEventListener('fetch', event => {
             if (event.request.method === 'GET') {
               cache.put(event.request, clonedResponse);
             }
-          });
+            });
           
-          return response;
-        })
-        .catch(() => {
+        return response;
+      })
+      .catch(() => {
           // Se a rede falhar, tenta buscar do cache
-          return caches.match(event.request);
+        return caches.match(event.request);
         })
     );
     return;
@@ -241,7 +241,7 @@ self.addEventListener('fetch', event => {
       
       // Retornar cache imediatamente enquanto atualiza em segundo plano
       return cachedResponse || fetchPromise;
-    })
+      })
   );
 });
 
