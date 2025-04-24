@@ -140,7 +140,36 @@ async function processMarkdown(markdown: string): Promise<string> {
       .use(html, { sanitize: false })
       .process(markdown);
     
-    return result.toString();
+    let htmlContent = result.toString();
+    
+    // Processa o HTML para evitar múltiplas tags h1
+    // Encontra todas as ocorrências de tags h1
+    const h1regex = /<h1[^>]*>([\s\S]*?)<\/h1>/gi;
+    
+    // Coletando todas as ocorrências de h1 em um array
+    const h1matches = [];
+    let match;
+    while ((match = h1regex.exec(htmlContent)) !== null) {
+      h1matches.push({
+        fullMatch: match[0],
+        content: match[1]
+      });
+    }
+    
+    // Se houver mais de uma tag h1, converte as adicionais para h2
+    if (h1matches.length > 1) {
+      // Mantém a primeira tag h1 intacta
+      for (let i = 1; i < h1matches.length; i++) {
+        const h1Tag = h1matches[i].fullMatch;
+        const h1Content = h1matches[i].content;
+        const h2Tag = `<h2>${h1Content}</h2>`;
+        
+        // Substitui a tag h1 atual por h2
+        htmlContent = htmlContent.replace(h1Tag, h2Tag);
+      }
+    }
+    
+    return htmlContent;
   } catch (error) {
     console.error('Erro ao processar markdown:', error);
     return '';
