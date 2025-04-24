@@ -169,14 +169,16 @@ const BlogPost: React.FC = () => {
         </div>
         
         {post.featuredImage && (
-          <ImageOptimized
-            src={post.featuredImage}
-            alt={post.title}
-            className="w-full max-w-4xl mx-auto rounded-lg shadow-md mb-8"
-            priority={true}
-            objectFit="contain"
-            type="featured"
-          />
+          <div className="relative w-full max-w-4xl mx-auto overflow-hidden rounded-lg shadow-md mb-8" style={{ height: "400px" }}>
+            <ImageOptimized
+              src={post.featuredImage}
+              alt={post.title}
+              className="w-full h-full absolute inset-0"
+              priority={true}
+              objectFit="cover"
+              type="featured"
+            />
+          </div>
         )}
 
         <div 

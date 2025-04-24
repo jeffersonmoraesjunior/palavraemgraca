@@ -103,7 +103,7 @@ const BlogList: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto">
       <Helmet>
-        <title>Blog Cristão | Palavra em Graça</title>
+        <title>Blog | Palavra em Graça</title>
         <meta 
           name="description" 
           content="Artigos cristãos sobre fé, espiritualidade, vida cristã e estudos bíblicos para edificação espiritual."
@@ -113,7 +113,7 @@ const BlogList: React.FC = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            "headline": "Blog Cristão | Palavra em Graça",
+            "headline": "Blog | Palavra em Graça",
             "description": "Artigos cristãos sobre fé, espiritualidade, vida cristã e estudos bíblicos para edificação espiritual.",
             "url": `https://palavraemgraca.com.br/blog${currentPage > 1 ? `?page=${currentPage}` : ''}`,
             "mainEntity": {
@@ -129,7 +129,7 @@ const BlogList: React.FC = () => {
       </Helmet>
       
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-center">Blog Cristão</h1>
+        <h1 className="text-3xl font-bold text-center">Blog</h1>
         <p className="text-center text-gray-600 dark:text-gray-400 mt-2">
           Artigos para edificação e crescimento espiritual
         </p>
@@ -202,12 +202,13 @@ const BlogList: React.FC = () => {
                 className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden transition hover:shadow-lg"
               >
                 <Link to={`/${post.slug}`} className="block group">
-                  <div className="h-48 overflow-hidden">
+                  <div className="relative h-48 overflow-hidden">
                     <ImageOptimized
                       src={post.featuredImage}
                       alt={post.title}
-                      className="w-full h-full"
+                      className="w-full h-full absolute inset-0"
                       objectFit="cover"
+                      type="thumbnail"
                     />
                   </div>
                   

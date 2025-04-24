@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 // Dimensões padrão por tipo de imagem
 const DEFAULT_DIMENSIONS = {
-  featured: { width: 1200, height: 630 },
+  featured: { width: 800, height: 450 },
   thumbnail: { width: 320, height: 180 },
   avatar: { width: 80, height: 80 },
   related: { width: 300, height: 200 }
@@ -110,12 +110,10 @@ const ImageOptimized: React.FC<ImageOptimizedProps> = ({
   
   // Estilo de objeto com boas práticas para evitar layout shifts
   const containerStyle = {
-    width: dimensions.width ? `${dimensions.width}px` : '100%',
-    height: dimensions.height ? `${dimensions.height}px` : 'auto',
-    // Definir um aspect ratio ajuda a evitar layout shifts
-    aspectRatio: dimensions.width && dimensions.height 
-      ? `${dimensions.width} / ${dimensions.height}` 
-      : undefined
+    position: 'relative' as const,
+    width: '100%',
+    height: '100%',
+    overflow: 'hidden'
   };
   
   return (
@@ -127,9 +125,6 @@ const ImageOptimized: React.FC<ImageOptimizedProps> = ({
         <div 
           className="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse" 
           aria-hidden="true"
-          style={{ 
-            aspectRatio: containerStyle.aspectRatio,
-          }}
         />
       )}
       
@@ -154,7 +149,7 @@ const ImageOptimized: React.FC<ImageOptimizedProps> = ({
         }}
         className={`transition-opacity duration-300 ${
           isLoaded ? 'opacity-100' : 'opacity-0'
-        } w-full h-full object-${objectFit}`}
+        } w-full h-full object-${objectFit} absolute inset-0`}
       />
     </div>
   );
