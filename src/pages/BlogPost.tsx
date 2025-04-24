@@ -169,10 +169,13 @@ const BlogPost: React.FC = () => {
         </div>
         
         {post.featuredImage && (
-          <img
+          <ImageOptimized
             src={post.featuredImage}
             alt={post.title}
-            className="w-full max-w-4xl h-auto mx-auto rounded-lg shadow-md mb-8"
+            className="w-full max-w-4xl mx-auto rounded-lg shadow-md mb-8"
+            priority={true}
+            objectFit="contain"
+            type="featured"
           />
         )}
 
@@ -234,6 +237,7 @@ const BlogPost: React.FC = () => {
                       alt={relatedPost.title}
                       className="w-full h-full"
                       objectFit="cover"
+                      type="related"
                     />
                   </div>
                   <div className="p-4">
