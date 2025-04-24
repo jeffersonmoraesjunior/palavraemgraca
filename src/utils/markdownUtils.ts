@@ -45,11 +45,19 @@ export async function getAllPosts(): Promise<BlogPost[]> {
   try {
     // Se estamos em um ambiente de navegador, buscar os posts via API
     if (typeof window !== 'undefined') {
-      const allPostsFilenames = await fetch('/api/posts-list')
+      // Tentar buscar a lista de posts do arquivo JSON estático
+      const allPostsFilenames = await fetch('/api/posts-list.json')
         .then(res => res.json())
         .catch(error => {
           console.error('Erro ao buscar lista de posts:', error);
-          return [];
+          
+          // Fallback: tentar buscar do endpoint do servidor de desenvolvimento
+          return fetch('/api/posts-list')
+            .then(res => res.json())
+            .catch(err => {
+              console.error('Erro em ambos os métodos de busca de lista de posts:', err);
+              return [];
+            });
         });
       
       const posts = await Promise.all(
@@ -185,10 +193,17 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   try {
     // Se estamos em um ambiente de navegador, buscar o post via API
     if (typeof window !== 'undefined') {
-      return fetch(`/api/posts/${slug}`)
+      // Primeiro tenta buscar do arquivo JSON estático
+      return fetch(`/api/posts/${slug}.json`)
         .then(res => {
           if (!res.ok) {
-            throw new Error(`Post não encontrado: ${slug}`);
+            // Fallback: tentar buscar do endpoint do servidor de desenvolvimento
+            return fetch(`/api/posts/${slug}`).then(response => {
+              if (!response.ok) {
+                throw new Error(`Post não encontrado: ${slug}`);
+              }
+              return response.json();
+            });
           }
           return res.json();
         })
