@@ -1,5 +1,6 @@
 // Service Worker unificado para o Palavra em Graça
 const CACHE_NAME = 'palavra-em-graca-v2';
+const IMAGE_CACHE_NAME = 'palavra-em-graca-images-v1';
 
 // Arquivos essenciais para armazenar em cache
 const CORE_ASSETS = [
@@ -19,17 +20,31 @@ const ADDITIONAL_ASSETS = [
   '/js/main.js'
 ];
 
+// Assets para pré-cache
+const PRECACHE_ASSETS = [
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/bible.svg',
+  '/images/fallback.webp'
+];
+
 // Instalação do service worker
 self.addEventListener('install', event => {
   console.log('[Service Worker] Instalando...');
   
   // Pré-cache dos recursos essenciais
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('[Service Worker] Cacheando recursos essenciais');
-        return cache.addAll(CORE_ASSETS);
-      })
+    Promise.all([
+      // Cache principal para arquivos críticos
+      caches.open(CACHE_NAME)
+        .then(cache => {
+          console.log('[Service Worker] Cacheando recursos essenciais');
+          return cache.addAll(CORE_ASSETS);
+        }),
+      // Cache separado para imagens
+      caches.open(IMAGE_CACHE_NAME)
+    ])
       .then(() => {
         // Ativa o service worker imediatamente, sem esperar pelo refresh
         return self.skipWaiting();
@@ -45,12 +60,17 @@ self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
+        cacheNames
+          .filter((cacheName) => {
+            return (
+              cacheName !== CACHE_NAME && 
+              cacheName !== IMAGE_CACHE_NAME
+            );
+          })
+          .map((cacheName) => {
             console.log('[Service Worker] Removendo cache antigo:', cacheName);
             return caches.delete(cacheName);
-          }
-        })
+          })
       );
     })
     .then(() => {
@@ -59,6 +79,34 @@ self.addEventListener('activate', event => {
     })
   );
 });
+
+// Estratégia para imagens: Cache First com fallback para rede
+const handleImageRequest = async (request) => {
+  // Verificar no cache de imagens primeiro
+  const cachedResponse = await caches.match(request, { cacheName: IMAGE_CACHE_NAME });
+  if (cachedResponse) {
+    return cachedResponse;
+  }
+  
+  // Se não estiver em cache, buscar da rede
+  try {
+    const networkResponse = await fetch(request);
+    
+    // Clonar a resposta para armazenar no cache e retornar
+    const responseToCache = networkResponse.clone();
+    
+    // Verificar se a resposta é válida antes de armazenar
+    if (responseToCache.ok) {
+      const cache = await caches.open(IMAGE_CACHE_NAME);
+      cache.put(request, responseToCache);
+    }
+    
+    return networkResponse;
+  } catch (error) {
+    // Se falhar, tentar retornar uma imagem padrão
+    return caches.match('/images/fallback.webp');
+  }
+};
 
 // Estratégia de cache para diferentes tipos de recursos
 self.addEventListener('fetch', event => {
@@ -132,24 +180,68 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Estratégia padrão para outras requisições (network-first)
+  // Estratégia para imagens - Cache First para imagens
+  if (/\.(webp|jpg|jpeg|png|gif|svg)$/.test(new URL(event.request.url).pathname) || 
+      event.request.destination === 'image') {
+    event.respondWith(handleImageRequest(event.request));
+    return;
+  }
+
+  // Estratégia para API - Network First com timeout
+  if (new URL(event.request.url).pathname.includes('/api/')) {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          // Não armazenar em cache respostas com erro
+          if (!response.ok) {
+            return response;
+          }
+          
+          // Clone da resposta para armazenar no cache
+          const clonedResponse = response.clone();
+          
+          caches.open(CACHE_NAME).then(cache => {
+            // Armazena apenas responses GET
+            if (event.request.method === 'GET') {
+              cache.put(event.request, clonedResponse);
+            }
+          });
+          
+          return response;
+        })
+        .catch(() => {
+          // Se a rede falhar, tenta buscar do cache
+          return caches.match(event.request);
+        })
+    );
+    return;
+  }
+
+  // Estratégia padrão - Stale While Revalidate
   event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        // Se a resposta for válida, armazena no cache
-        if (response && response.ok && response.type === 'basic') {
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME)
-            .then(cache => {
-              cache.put(event.request, responseToCache);
+    caches.match(event.request).then((cachedResponse) => {
+      // Usar o cache se disponível
+      const fetchPromise = fetch(event.request)
+        .then((networkResponse) => {
+          // Atualizar o cache com a nova resposta
+          if (networkResponse.ok && event.request.method === 'GET') {
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, networkResponse.clone());
             });
-        }
-        return response;
-      })
-      .catch(() => {
-        // Se falhar, tenta retornar do cache
-        return caches.match(event.request);
-      })
+          }
+          return networkResponse;
+        })
+        .catch(() => {
+          // Se a rede falhar e não tivermos cache, retornar página offline
+          if (event.request.mode === 'navigate') {
+            return caches.match('/offline.html');
+          }
+          return null;
+        });
+      
+      // Retornar cache imediatamente enquanto atualiza em segundo plano
+      return cachedResponse || fetchPromise;
+    })
   );
 });
 
