@@ -120,20 +120,18 @@ const Articles: React.FC = () => {
         <>
           <div className="grid grid-cols-1 gap-8 mb-8">
             {currentPosts.map((post) => (
-              <article key={post.slug} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row">
-                <div className="md:w-1/3">
-                  <Link to={`/${post.slug}`} className="block h-full">
-                    <div className="h-64 md:h-full overflow-hidden">
-                      <ImageOptimized
-                        src={post.featuredImage}
-                        alt={post.title}
-                        className="w-full h-full"
-                        objectFit="cover"
-                      />
-                    </div>
-                  </Link>
-                </div>
-                <div className="p-6 md:w-2/3">
+              <article key={post.slug} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden flex flex-col">
+                <Link to={`/${post.slug}`} className="block">
+                  <div className="h-64 overflow-hidden">
+                    <ImageOptimized
+                      src={post.featuredImage}
+                      alt={post.title}
+                      className="w-full h-full"
+                      objectFit="cover"
+                    />
+                  </div>
+                </Link>
+                <div className="p-6">
                   <div className="flex flex-wrap gap-2 mb-3">
                     {post.tags.map(tag => (
                       <Link 
