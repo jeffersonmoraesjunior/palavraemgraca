@@ -2,9 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import type { Theme } from './types';
 import { Header, Footer } from './components';
-import { About, Privacy, Contact, Terms, Home, Bible, BibleIndex, Sitemap, VoiceSearch, NotFound } from './pages';
+import { 
+  About, 
+  Privacy, 
+  Contact, 
+  Terms, 
+  Home, 
+  Bible, 
+  BibleIndex, 
+  Sitemap, 
+  VoiceSearch, 
+  NotFound,
+  BlogList,
+  BlogPost,
+  BlogTagPage
+} from './pages';
 import { HelmetProvider } from 'react-helmet-async';
 import CookieConsent from './components/CookieConsent';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Main App Component
 function App() {
@@ -61,38 +76,46 @@ function App() {
 
   // Render
   return (
-    <HelmetProvider>
-      <div className={`min-h-screen transition-colors duration-300 ${theme.isDark ? 'dark bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
-        <div className="container mx-auto px-4 py-8 max-w-2xl">
-          <Header 
-            theme={theme} 
-            setTheme={setTheme} 
-            adjustFontSize={adjustFontSize} 
-          />
-          
-          <Routes>
-            <Route path="/" element={<Home theme={theme} />} />
-            <Route path="/sobre" element={<About />} />
-            <Route path="/privacidade" element={<Privacy />} />
-            <Route path="/contato" element={<Contact />} />
-            <Route path="/termos" element={<Terms />} />
-            <Route path="/sitemap" element={<Sitemap />} />
-            <Route path="/perguntas" element={<VoiceSearch />} />
-            <Route path="/biblia" element={<Bible />} />
-            <Route path="/biblia/indice" element={<BibleIndex />} />
-            <Route path="/biblia/indice/:version" element={<BibleIndex />} />
-            <Route path="/biblia/:version" element={<Bible />} />
-            <Route path="/biblia/:version/:book" element={<Bible />} />
-            <Route path="/biblia/:version/:book/:chapter" element={<Bible />} />
-            <Route path="/404" element={<NotFound />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          
-          <Footer />
-          <CookieConsent onAccept={handleCookieConsent} />
+    <ErrorBoundary>
+      <HelmetProvider>
+        <div className={`min-h-screen transition-colors duration-300 ${theme.isDark ? 'dark bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
+          <div className="container mx-auto px-4 py-8 max-w-2xl">
+            <Header 
+              theme={theme} 
+              setTheme={setTheme} 
+              adjustFontSize={adjustFontSize} 
+            />
+            
+            <Routes>
+              <Route path="/" element={<Home theme={theme} />} />
+              <Route path="/sobre" element={<About />} />
+              <Route path="/privacidade" element={<Privacy />} />
+              <Route path="/contato" element={<Contact />} />
+              <Route path="/termos" element={<Terms />} />
+              <Route path="/sitemap" element={<Sitemap />} />
+              <Route path="/perguntas" element={<VoiceSearch />} />
+              <Route path="/biblia" element={<Bible />} />
+              <Route path="/biblia/indice" element={<BibleIndex />} />
+              <Route path="/biblia/indice/:version" element={<BibleIndex />} />
+              <Route path="/biblia/:version" element={<Bible />} />
+              <Route path="/biblia/:version/:book" element={<Bible />} />
+              <Route path="/biblia/:version/:book/:chapter" element={<Bible />} />
+              
+              {/* Rotas do Blog */}
+              <Route path="/blog" element={<BlogList />} />
+              <Route path="/tag/:tag" element={<BlogTagPage />} />
+              <Route path="/:slug" element={<BlogPost />} />
+              
+              <Route path="/404" element={<NotFound />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            
+            <Footer />
+            <CookieConsent onAccept={handleCookieConsent} />
+          </div>
         </div>
-      </div>
-    </HelmetProvider>
+      </HelmetProvider>
+    </ErrorBoundary>
   );
 }
 

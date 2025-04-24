@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Palavra em Graça</title>
+        <link>https://palavraemgraca.com.br/</link>
+        <description>Reflexões cristãs e estudos bíblicos para edificação espiritual</description>
+        <lastBuildDate>Thu, 24 Apr 2025 20:37:43 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>Feed for Node.js</generator>
+        <language>pt-BR</language>
+        <image>
+            <title>Palavra em Graça</title>
+            <url>https://palavraemgraca.com.br/images/logo.webp</url>
+            <link>https://palavraemgraca.com.br/</link>
+        </image>
+        <copyright>Todos os direitos reservados 2025, Palavra em Graça</copyright>
+        <item>
+            <title><![CDATA[O Poder da Oração Diária na Vida Cristã]]></title>
+            <link>https://palavraemgraca.com.br/oracao-diaria</link>
+            <guid>https://palavraemgraca.com.br/oracao-diaria</guid>
+            <pubDate>Fri, 15 Sep 2023 10:30:00 GMT</pubDate>
+            <description><![CDATA[Como estabelecer uma prática de oração que transforma seu relacionamento com Deus]]></description>
+            <content:encoded><![CDATA[Como estabelecer uma prática de oração que transforma seu relacionamento com Deus]]></content:encoded>
+            <category>Oração</category>
+            <category>Devocionais</category>
+            <category>Vida Cristã</category>
+            <enclosure url="https://palavraemgraca.com.br/images/oracao-diaria.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Salmos: O Poder Curativo das Antigas Palavras]]></title>
+            <link>https://palavraemgraca.com.br/poder-dos-salmos</link>
+            <guid>https://palavraemgraca.com.br/poder-dos-salmos</guid>
+            <pubDate>Wed, 24 Apr 2024 11:30:00 GMT</pubDate>
+            <description><![CDATA[Descubra como os Salmos podem transformar sua vida espiritual e emocional nos momentos de alegria e dificuldade]]></description>
+            <content:encoded><![CDATA[Descubra como os Salmos podem transformar sua vida espiritual e emocional nos momentos de alegria e dificuldade]]></content:encoded>
+            <category>Salmos</category>
+            <category>Oração</category>
+            <category>Adoração</category>
+            <category>Vida Espiritual</category>
+            <enclosure url="https://palavraemgraca.com.br/images/salmos-biblia.webp" length="0" type="image/webp"/>
+        </item>
+    </channel>
+</rss>

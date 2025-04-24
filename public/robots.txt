@@ -28,6 +28,12 @@ Disallow: /_error
 # Main Sitemaps
 Sitemap: https://palavraemgraca.com.br/sitemap.xml
 
+# Blog Sitemap
+Sitemap: https://palavraemgraca.com.br/blog-sitemap.xml
+
+# RSS Feed
+Sitemap: https://palavraemgraca.com.br/feed.xml
+
 # Bible Version Specific Sitemaps
 Sitemap: https://palavraemgraca.com.br/bible-sitemaps/acf-sitemap.xml
 Sitemap: https://palavraemgraca.com.br/bible-sitemaps/ara-sitemap.xml

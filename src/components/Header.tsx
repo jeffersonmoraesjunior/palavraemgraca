@@ -35,6 +35,9 @@ const Header: React.FC<HeaderProps> = ({ theme, setTheme, adjustFontSize }) => {
           <Link to="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
             Início
           </Link>
+          <Link to="/blog" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
+            Blog
+          </Link>
           <Link to="/sobre" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
             Sobre
           </Link>
